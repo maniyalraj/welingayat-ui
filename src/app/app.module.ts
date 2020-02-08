@@ -7,7 +7,6 @@ import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { HomeComponent } from './component/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialNavigationComponent } from './material-navigation/material-navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,7 +20,6 @@ import { MatListModule } from '@angular/material/list';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    MaterialNavigationComponent
   ],
   imports: [
     BrowserModule,

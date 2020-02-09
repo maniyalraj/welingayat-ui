@@ -23,6 +23,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NouisliderModule} from "ng2-nouislider";
 import { SignupComponent } from './component/signup/signup.component'
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,8 @@ import { SignupComponent } from './component/signup/signup.component'
     ReactiveFormsModule,
     NgbModule,
     SectionsModule,
-    NouisliderModule
+    NouisliderModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

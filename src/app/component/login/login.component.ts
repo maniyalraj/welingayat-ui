@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(userdata).subscribe(result=>{
       console.log(result);
       localStorage.setItem("accesToken", result["accessToken"]);
+      alert("Login Success");
     },error=>{
       console.log(error);
       alert(error.error.message)

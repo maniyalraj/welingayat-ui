@@ -5,15 +5,15 @@ import {environment} from "../../environments/environment"
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class SignupService {
 
   url: string;
 
   constructor(private httpClient: HttpClient) { 
-    this.url = environment.serverUrl + "api/auth/signin";
+    this.url = environment.serverUrl + "api/auth/signup";
   }
-  
-  login(userData){
+
+  signup(userData){
     let url = this.url
     return this.post(url, userData)
   }

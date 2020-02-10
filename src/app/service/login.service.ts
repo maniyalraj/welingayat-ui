@@ -10,7 +10,7 @@ export class LoginService {
   url: string;
 
   constructor(private httpClient: HttpClient) { 
-    this.url = environment.serverUrl + "/api/auth/signup";
+    this.url = environment.serverUrl + "api/auth/signin";
   }
   
 

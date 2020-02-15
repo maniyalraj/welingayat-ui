@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { LoginService } from 'src/app/service/login.service';
 
 @Component({
     selector: 'app-navbar',
@@ -12,10 +14,19 @@ export class NavbarComponent implements OnInit {
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
 
-    constructor(public location: Location, private router: Router) {
+    private isLoggedIn: Boolean = false;
+    subscription:Subscription;
+
+    constructor(public location: Location, private router: Router, private loginService: LoginService) {
     }
 
     ngOnInit() {
+
+        this.isLoggedIn = this.checkIsLoggedIn() != null ? true:false;
+
+        this.subscription = this.loginService.loggedInState$
+       .subscribe(item => this.isLoggedIn = item);
+
       this.router.events.subscribe((event) => {
         this.isCollapsed = true;
         if (event instanceof NavigationStart) {
@@ -32,6 +43,10 @@ export class NavbarComponent implements OnInit {
      this.location.subscribe((ev:PopStateEvent) => {
          this.lastPoppedUrl = ev.url;
      });
+    }
+
+    checkIsLoggedIn(){
+        return localStorage.getItem("accessToken");
     }
 
     isHome() {
@@ -52,5 +67,11 @@ export class NavbarComponent implements OnInit {
         else {
             return false;
         }
+    }
+    
+    logout(){
+        localStorage.removeItem("accessToken");
+        this.isLoggedIn = false;
+        this.router.navigate(["/home"]);
     }
 }

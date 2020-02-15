@@ -82,6 +82,16 @@
         </li> -->
       </ul>
       <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link nav-link-icon">
+            <span class="nav-link-inner--text d-lg-none">Logout</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link nav-link-icon">
+            <span class="nav-link-inner--text d-lg-none">Sign in / Sign up</span>
+          </a>
+        </li>
         <li class="nav-item">
           <a class="nav-link nav-link-icon" href="https://www.facebook.com/creativetim" target="_blank" data-toggle="tooltip" title="Like us on Facebook">
             <i class="fa fa-facebook-square"></i>
@@ -106,12 +116,20 @@
             <span class="nav-link-inner--text d-lg-none">Github</span>
           </a>
         </li>
-        <li class="nav-item d-none d-lg-block ml-lg-4">
+        <li class="nav-item d-none d-lg-block ml-lg-4" *ngIf="!isLoggedIn">
           <a [routerLink]="['/login']" class="btn btn-neutral btn-icon">
             <span class="btn-inner--icon">
               <i class="fa fa-cloud-download mr-2"></i>
             </span>
             <span class="nav-link-inner--text">Sign up / Login</span>
+          </a>
+        </li>
+        <li class="nav-item d-none d-lg-block ml-lg-4" *ngIf="isLoggedIn" (click)="logout()">
+          <a class="btn btn-neutral btn-icon">
+            <span class="btn-inner--icon">
+              <i class="fa fa-cloud-download mr-2"></i>
+            </span>
+            <span class="nav-link-inner--text">Logout</span>
           </a>
         </li>
       </ul>

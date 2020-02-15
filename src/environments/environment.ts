@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  serverUrl:"https://lingayat-test.herokuapp.com/"
+  // serverUrl:"https://lingayat-test.herokuapp.com/",
+  serverUrl:"http://localhost:8080/"
+
 };
 
 /*

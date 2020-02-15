@@ -24,6 +24,7 @@ import {NouisliderModule} from "ng2-nouislider";
 import { SignupComponent } from './component/signup/signup.component'
 
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileRegisterComponent } from './component/profile-register/profile-register.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     LoginComponent,
     NavbarComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileRegisterComponent
   ],
   imports: [
     BrowserModule,

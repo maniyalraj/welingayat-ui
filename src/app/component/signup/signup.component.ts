@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
 
   signup(){
     let userData ={
-      "username":this.username,
+      "username":this.email,
       "email":this.email,
       "password":this.password,
       "name":this.firstname+" "+this.lastname,

@@ -23,8 +23,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NouisliderModule} from "ng2-nouislider";
 import { SignupComponent } from './component/signup/signup.component'
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileRegisterComponent } from './component/profile-register/profile-register.component';
+import { TokenInterceptorService } from './tokenInterceptor';
+import { BasicFormComponent } from './component/basic-form/basic-form.component';
+import { PersonalFormComponent } from './component/personal-form/personal-form.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { ProfileRegisterComponent } from './component/profile-register/profile-r
     LoginComponent,
     NavbarComponent,
     SignupComponent,
-    ProfileRegisterComponent
+    ProfileRegisterComponent,
+    BasicFormComponent,
+    PersonalFormComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,7 @@ import { ProfileRegisterComponent } from './component/profile-register/profile-r
     NouisliderModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

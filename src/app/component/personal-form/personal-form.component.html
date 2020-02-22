@@ -3,7 +3,8 @@
         <div class="col-lg-2 col-md-4 col-5">
 
             <div class="custom-control custom-radio mb-3">
-                <input name="custom-radio-1" class="custom-control-input" id="customRadio1" type="radio" [(ngModel)]="gender" value="GENDER_MALE">
+                <input name="custom-radio-1" class="custom-control-input" id="customRadio1" type="radio"
+                    [(ngModel)]="gender" value="GENDER_MALE">
                 <label class="custom-control-label" for="customRadio1">
                     <span>Male</span>
                 </label>
@@ -11,7 +12,8 @@
         </div>
         <div class="col-lg-2 col-md-4 col-5">
             <div class="custom-control custom-radio mb-3">
-                <input name="custom-radio-1" class="custom-control-input" id="customRadio2" checked type="radio" [(ngModel)]="gender" value="GENDER_FEMALE">
+                <input name="custom-radio-1" class="custom-control-input" id="customRadio2" checked type="radio"
+                    [(ngModel)]="gender" value="GENDER_FEMALE">
                 <label class="custom-control-label" for="customRadio2">
                     <span>Female</span>
                 </label>
@@ -27,7 +29,7 @@
                         ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
                 </div>
             </div>
-        </div>  
+        </div>
         <div class="col-lg-4 col-md-8">
             <div class="form-group" [ngClass]="{'focused':focus1===true}">
                 <div class="input-group input-group-alternative">
@@ -98,16 +100,17 @@
         </div>
     </div>
     <div class="row justify-content-center">
-    <div class="text-center col-4">
-        <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save and Next</button>
+        <div class="text-center col-4">
+            <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save and Next</button>
+        </div>
+        <div class="text-center col-4">
+            <button type="button" class="btn btn-primary my-4" (click)="skipAndNext()">Skip and Next</button>
+        </div>
     </div>
-    <div class="text-center col-4">
-        <button type="button" class="btn btn-primary my-4" (click)="closeAlert()">Skip and Next</button>
-    </div>
+
+
 </div>
 
 
-</div>
-
-
-<ngb-alert [dismissible]="true" [type]="alertType" class="alert" *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">{{alertMessage}}</ngb-alert>
+<ngb-alert [dismissible]="true" [type]="alertType" class="alert" *ngIf="!staticAlertClosed"
+    (close)="staticAlertClosed = true">{{alertMessage}}</ngb-alert>

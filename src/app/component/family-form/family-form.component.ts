@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-family-form',
@@ -7,8 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FamilyFormComponent implements OnInit {
 
+  @Output() changeTabEvent = new EventEmitter<string>();
 
   relations=[];
+  
+  title:string="TITLE_SELECTED";
+  firstName:string;
+  middleName:string;
+  lastName:string;
+  relation:string;
+  profession:string;
+  additionalDesc:string;
 
   constructor() { }
 
@@ -24,6 +33,42 @@ export class FamilyFormComponent implements OnInit {
       "additionalDesc":"Owns a land in Belgaum"
     })
 
+    this.resetDefaults();
+
+  }
+
+  addRelation(){
+    this.relations.push({
+      "title":this.title,
+      "firstName":this.firstName,
+      "middleName":this.middleName,
+      "lastName":this.lastName,
+      "relation":this.relation,
+      "profession":this.profession,
+      "additionalDesc":this.additionalDesc
+    })
+
+    this.resetDefaults();
+
+  }
+
+  resetDefaults(){
+    this.title="TITLE_SELECTED",
+    this.firstName = null;
+    this.middleName = null;
+    this.lastName = null;
+    this.relation = "RELATION_SELECTED"
+    this.profession = null;
+    this.additionalDesc = null;
+
+  }
+
+  saveAndNext(){
+    this.changeTabEvent.emit();
+  }
+
+  skipAndNext(){
+    this.changeTabEvent.emit();
   }
 
 }

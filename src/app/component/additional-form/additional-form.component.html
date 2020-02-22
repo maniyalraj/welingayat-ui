@@ -1,1 +1,142 @@
-<p>additional-form works!</p>
+<div class="justify-content-center">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8">
+
+            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="currentAddressLine1" name="currentAddressLine1"
+                        placeholder="Current Address Line 1" type="text" (focus)="focus=true" (blur)="focus=false">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8">
+
+            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="currentAddressLine2" name="currentAddressLine2"
+                        placeholder="Current Address Line 2" type="text" (focus)="focus=true" (blur)="focus=false">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-8">
+
+            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="currentAddressCity" name="currentAddressCity"
+                        placeholder="Current Address City" type="text" (focus)="focus=true" (blur)="focus=false">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-4 col-md-8">
+
+            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="currentAddressPin" name="currentAddressPin"
+                        placeholder="Current Address Pin" type="number" (focus)="focus=true" (blur)="focus=false">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="custom-control custom-checkbox mb-3">
+            <input class="custom-control-input" id="customCheck1" type="checkbox" [(ngModel)]="isSameAsCurrent"
+                (click)="checkAndCopy()">
+            <label class="custom-control-label" for="customCheck1">Same as Above</label>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8 col-md-8">
+
+            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="permanentAddressLine1" name="permanentAddressLine1"
+                        placeholder="Permanent Address Line 1" type="text" (focus)="focus=true" (blur)="focus=false">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8">
+
+            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="permanentAddressLine2" name="permanentAddressLine2"
+                        placeholder="Permanent Address Line 2" type="text" (focus)="focus=true" (blur)="focus=false">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-8">
+
+            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="permanentAddressCity" name="permanentAddressCity"
+                        placeholder="Permanent Address City" type="text" (focus)="focus=true" (blur)="focus=false">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-4 col-md-8">
+
+            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="permanentAddressPin" name="permanentAddressPin"
+                        placeholder="Permanent Address Pin" type="number" (focus)="focus=true" (blur)="focus=false">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="text-center col-4">
+            <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save and Next</button>
+        </div>
+        <div class="text-center col-4">
+            <button type="button" class="btn btn-primary my-4" (click)="closeAlert()">Skip and Next</button>
+        </div>
+    </div>
+
+</div>

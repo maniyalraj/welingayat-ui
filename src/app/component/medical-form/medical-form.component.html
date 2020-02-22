@@ -1,1 +1,48 @@
-<p>medical-form works!</p>
+<div class="justify-content-center">
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-8">
+            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                <select class="browser-default custom-select" [(ngModel)]="bloodGroup">
+                    <option selected value="BLOOD_GROUP_SELECTED">Select Blood Group</option>
+                    <option value="BLOOD_GROUP_A_POS">A+</option>
+                    <option value="BLOOD_GROUP_A_NEG">A-</option>
+                    <option value="BLOOD_GROUP_B_POS">B+</option>
+                    <option value="BLOOD_GROUP_B_NEG">B-</option>
+                    <option value="BLOOD_GROUP_AB_POS">AB+</option>
+                    <option value="BLOOD_GROUP_AB_NEG">AB-</option>
+                    <option value="BLOOD_GROUP_O_POS">O+</option>
+                    <option value="BLOOD_GROUP_O_NEG">O-</option>
+                    <option value="BLOOD_GROUP_DONTKNOW">Dont Know</option>
+
+                </select>
+            </div>
+        </div>
+
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-8">
+            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                <select class="browser-default custom-select" [(ngModel)]="isDisabled">
+                    <option selected value="false">Is Diabled</option>
+                    <option value="true">YES</option>
+                    <option value="false">NO</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-8" [hidden]="isDisabled!='true'">
+            <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-sign-in"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="typeOfDisability" name="typeOfDisability"
+                        placeholder="Type of Disability" type="text" (focus)="focus1=true" (blur)="focus1=false">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="button" class="btn btn-primary my-4" (click)="login()">Save and Next</button>
+    </div>
+
+</div>

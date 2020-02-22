@@ -28,6 +28,7 @@ import { ProfileRegisterComponent } from './component/profile-register/profile-r
 import { TokenInterceptorService } from './tokenInterceptor';
 import { BasicFormComponent } from './component/basic-form/basic-form.component';
 import { PersonalFormComponent } from './component/personal-form/personal-form.component';
+import { EducationalFormComponent } from './component/educational-form/educational-form.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PersonalFormComponent } from './component/personal-form/personal-form.c
     SignupComponent,
     ProfileRegisterComponent,
     BasicFormComponent,
-    PersonalFormComponent
+    PersonalFormComponent,
+    EducationalFormComponent
   ],
   imports: [
     BrowserModule,

@@ -68,36 +68,41 @@
               </div>
             </div> -->
           <div class="col-lg-12 order-lg-1">
-            <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
-              <ngb-tab>
+            <ngb-tabset [justify]="'center'" #t="ngbTabset" class="custom-tab-content flex-column flex-md-row" type="pills">
+              <ngb-tab id="basic">
                 <ng-template ngbTabTitle>
                   Basic
                 </ng-template>
                 <ng-template ngbTabContent>
-                  <div class="card-body px-lg-5 py-lg-5">
-                    <app-basic-form></app-basic-form>
+                  <div class="card-body px-lg-5 py-lg-5"> 
+                    <app-basic-form (changeTabEvent)="t.select('personal')"></app-basic-form>
+                    <!-- <div class="text-center">
+                      <button type="button" class="btn btn-primary my-4" (click)="t.select('personal')">Save and Next</button>
+                  </div> -->
                   </div>
                 </ng-template>
               </ngb-tab>
-              <ngb-tab>
+              <ngb-tab id="personal">
                 <ng-template ngbTabTitle>
                   Personal
                 </ng-template>
                 <ng-template ngbTabContent>
                   <div class="card-body px-lg-5 py-lg-5">
-                    <app-personal-form></app-personal-form>
+                    <app-personal-form (changeTabEvent)="t.select('educational')"></app-personal-form>
                   </div>
                 </ng-template>
               </ngb-tab>
-              <ngb-tab>
+              <ngb-tab id="educational">
                 <ng-template ngbTabTitle>
                   Educational
                 </ng-template>
                 <ng-template ngbTabContent>
-                  <p class="description">Educational Details form</p>
+                  <div class="card-body px-lg-5 py-lg-5">
+                    <app-educational-form (changeTabEvent)="t.select('professional')"></app-educational-form>
+                  </div>
                 </ng-template>
               </ngb-tab>
-              <ngb-tab>
+              <ngb-tab id="professional">
                 <ng-template ngbTabTitle>
                   Perofessional
                 </ng-template>
@@ -106,7 +111,7 @@
                 </ng-template>
               </ngb-tab>
 
-              <ngb-tab>
+              <ngb-tab id="family">
                 <ng-template ngbTabTitle>
                   Family
                 </ng-template>
@@ -115,7 +120,7 @@
                 </ng-template>
               </ngb-tab>
 
-              <ngb-tab>
+              <ngb-tab id="additional">
                 <ng-template ngbTabTitle>
                   Additional
                 </ng-template>

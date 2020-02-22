@@ -26,14 +26,19 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
-              "node_modules/argon-design-system-free/assets/scss/argon.scss"
+              "node_modules/argon-design-system-free/assets/scss/argon.scss",
+              "node_modules/argon-design-system-free/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css",
+              "node_modules/argon-design-system-free/assets/vendor/nucleo/css/nucleo.css",
+              "node_modules/argon-design-system-free/assets/vendor/nucleo/css/nucleo-svg.css"
+
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
-              
-              
-              
+              "node_modules/argon-design-system-free/assets/vendor/headroom/headroom.min.js",           
+              "node_modules/argon-design-system-free/assets/vendor/jquery/jquery.min.js",
+              "node_modules/argon-design-system-free/assets/vendor/popper/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",   
+              "node_modules/argon-design-system-free/assets/js/argon.min.js",
+              "node_modules/argon-design-system-free/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"
             ]
           },
           "configurations": {

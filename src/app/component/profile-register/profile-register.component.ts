@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProfileService } from 'src/app/service/profile.service';
 
@@ -9,18 +9,17 @@ import { ProfileService } from 'src/app/service/profile.service';
 })
 export class ProfileRegisterComponent implements OnInit {
 
-
   name: String;
 
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
-    this.profileService.getUserBasicDetails().subscribe(result=>{
-        console.log(result);
-        this.name=result["name"];
-    },error=>{
-      alert("Some error occured: "+error)
-    })
+    // this.profileService.getUserBasicDetails().subscribe(result=>{
+    //     console.log(result);
+    //     this.name=result["name"];
+    // },error=>{
+    //   alert("Some error occured: "+error)
+    // })
   }
 
   

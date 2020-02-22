@@ -104,10 +104,12 @@
               </ngb-tab>
               <ngb-tab id="professional">
                 <ng-template ngbTabTitle>
-                  Perofessional
+                  Professional
                 </ng-template>
                 <ng-template ngbTabContent>
-                  <p class="description">Professional Details form</p>
+                  <div class="card-body px-lg-5 py-lg-5">
+                    <app-professional-form (changeTabEvent)="t.select('family')"></app-professional-form>
+                  </div>
                 </ng-template>
               </ngb-tab>
 
@@ -116,7 +118,20 @@
                   Family
                 </ng-template>
                 <ng-template ngbTabContent>
-                  <p class="description">Family Details form</p>
+                  <!-- <div class="card-body px-lg-5 py-lg-5"> -->
+                    <app-family-form (changeTabEvent)="t.select('medical')"></app-family-form>
+                  <!-- </div> -->
+                </ng-template>
+              </ngb-tab>
+
+              <ngb-tab id="medical">
+                <ng-template ngbTabTitle>
+                  Medical
+                </ng-template>
+                <ng-template ngbTabContent>
+                  <div class="card-body px-lg-5 py-lg-5">
+                    <app-medical-form (changeTabEvent)="t.select('additional')"></app-medical-form>
+                  </div>
                 </ng-template>
               </ngb-tab>
 
@@ -125,7 +140,9 @@
                   Additional
                 </ng-template>
                 <ng-template ngbTabContent>
-                  <p class="description">Additional Details form</p>
+                  <div class="card-body px-lg-5 py-lg-5">
+                    <app-additional-form></app-additional-form>
+                  </div>
                 </ng-template>
               </ngb-tab>
             </ngb-tabset>

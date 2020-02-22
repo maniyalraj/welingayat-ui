@@ -29,6 +29,10 @@ import { TokenInterceptorService } from './tokenInterceptor';
 import { BasicFormComponent } from './component/basic-form/basic-form.component';
 import { PersonalFormComponent } from './component/personal-form/personal-form.component';
 import { EducationalFormComponent } from './component/educational-form/educational-form.component';
+import { ProfessionalFormComponent } from './component/professional-form/professional-form.component';
+import { FamilyFormComponent } from './component/family-form/family-form.component';
+import { MedicalFormComponent } from './component/medical-form/medical-form.component';
+import { AdditionalFormComponent } from './component/additional-form/additional-form.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,11 @@ import { EducationalFormComponent } from './component/educational-form/education
     ProfileRegisterComponent,
     BasicFormComponent,
     PersonalFormComponent,
-    EducationalFormComponent
+    EducationalFormComponent,
+    ProfessionalFormComponent,
+    FamilyFormComponent,
+    MedicalFormComponent,
+    AdditionalFormComponent
   ],
   imports: [
     BrowserModule,

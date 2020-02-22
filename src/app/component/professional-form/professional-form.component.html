@@ -1,0 +1,75 @@
+<div class="justify-content-center">
+    <div class="row">
+        <div class="col-lg-4 col-md-8">
+            <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                <select class="browser-default custom-select" [(ngModel)]="jobType">
+                    <option selected value="JOB_TYPE_SELECTED">Select Job Type</option>
+                    <option value="JOB_TYPE_SALARIED">Salaried</option>
+                    <option value="JOB_TYPE_BUSINESS">Business</option>
+                    <option value="JOB_TYPE_PROFESSIONAL">Professional</option>
+                    <option value="JOB_TYPE_RETIRED">Retired</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-8">
+            <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-sign-in"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="jobRole" name="jobRole"
+                        placeholder="Job Role" type="text" (focus)="focus1=true" (blur)="focus1=false">
+                </div>
+            </div>
+        </div>  
+        <div class="col-lg-4 col-md-8">
+            <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-sign-in"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="monthlyIncome" name="monthlyIncome"
+                        placeholder="Monthly Income" type="number" (focus)="focus1=true" (blur)="focus1=false">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-8">
+            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="jobLocation" name="jobLocation" placeholder="Job Location"
+                        type="text" (focus)="focus=true" (blur)="focus=false">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-8">
+            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" [(ngModel)]="jobIndustry" name="jobIndustry" placeholder="Job Industry"
+                        type="text" (focus)="focus=true" (blur)="focus=false">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+    <div class="text-center col-4">
+        <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save and Next</button>
+    </div>
+    <div class="text-center col-4">
+        <button type="button" class="btn btn-primary my-4" (click)="skipAndNext()">Skip and Next</button>
+    </div>
+</div>
+
+
+</div>
+
+
+<ngb-alert [dismissible]="true" [type]="alertType" class="alert" *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">{{alertMessage}}</ngb-alert>

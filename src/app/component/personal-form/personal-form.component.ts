@@ -11,7 +11,7 @@ export class PersonalFormComponent implements OnInit {
   @Output() changeTabEvent = new EventEmitter<string>();
 
   gender:string;
-  dob:string;
+  dob:any;
   placeOfBirth:string;
   heightInCms:number;
   weightInKgs:number;
@@ -19,12 +19,17 @@ export class PersonalFormComponent implements OnInit {
   maritalStatus:string = "MARITAL_STATUS_SELECTED";
   familyType:string = "FAMILY_TYPE_SELECTED";
 
+  alertMessage:string;
+  staticAlertClosed = false;
+  alertType:string="danger";
+
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
     this.profileService.getPersonalDetails().subscribe(result=>{
       this.gender=result["gender"]
-      this.dob=result["dob"]
+      let d = new Date(result["dob"]);
+      this.dob={"year":d.getFullYear(),"month":d.getMonth()+1,"day":d.getDate()}
       this.placeOfBirth=result["placeOfBirth"]
       this.heightInCms=result["heightInCms"]
       this.weightInKgs=result["weightInKgs"]
@@ -32,13 +37,20 @@ export class PersonalFormComponent implements OnInit {
       this.maritalStatus=result["maritalStatus"]
       this.familyType=result["familyType"]
     },error=>{
-        alert(error.error);
+        
+      this.showAlert("danger","Error:"+error.error);
     })
+  }
+
+  showAlert(type, message){
+        this.alertMessage=message;
+        this.alertType = "danger"
+        setTimeout(() => this.staticAlertClosed = true, 4000);
   }
 
   saveAndNext(){
 
-    let date = new Date(this.dob["year"]+"-"+(this.dob["month"]-1)+"-"+this.dob["day"]).toISOString().split('T')[0]
+    let date = new Date(this.dob["year"]+"-"+this.dob["month"]+"-"+this.dob["day"]).toISOString().split('T')[0]
 
     let obj= {
         "gender":this.gender,

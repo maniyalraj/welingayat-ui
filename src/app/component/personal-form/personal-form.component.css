@@ -1,0 +1,10 @@
+.alert{
+    position: fixed;
+    z-index: 9999;
+    top: 67px;
+    right: 50px;
+}
+
+.alert-dismissable .close{
+    right:5px !important;
+}

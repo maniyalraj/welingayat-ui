@@ -18,7 +18,7 @@ export class ProfileRegisterComponent implements OnInit {
         console.log(result);
         this.name=result["name"];
     },error=>{
-      alert("Some error occured: "+error)
+      // alert("Some error occured: "+error)
     })
   }
 

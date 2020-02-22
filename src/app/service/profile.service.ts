@@ -20,6 +20,12 @@ export class ProfileService {
     let url= this.baseUrl+ "save/basicDetails"
   }
 
+  getPersonalDetails(){
+    let url= this.baseUrl+"get/personalDetails"
+
+    return this.get(url);
+  }
+
   savePersonalDetails(data)
   {
     let url= this.baseUrl+"save/personalDetails"

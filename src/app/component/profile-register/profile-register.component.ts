@@ -14,12 +14,12 @@ export class ProfileRegisterComponent implements OnInit {
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
-    // this.profileService.getUserBasicDetails().subscribe(result=>{
-    //     console.log(result);
-    //     this.name=result["name"];
-    // },error=>{
-    //   alert("Some error occured: "+error)
-    // })
+    this.profileService.getUserBasicDetails().subscribe(result=>{
+        console.log(result);
+        this.name=result["name"];
+    },error=>{
+      alert("Some error occured: "+error)
+    })
   }
 
   

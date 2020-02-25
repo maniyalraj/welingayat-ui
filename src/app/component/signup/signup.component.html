@@ -59,6 +59,14 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
+                      <input class="form-control" [(ngModel)]="middleName" name="middleName" placeholder="Middle Name" type="text" (focus)="focus_LastName=true" (blur)="focus_LastName=false">
+                    </div>
+                  </div>
+                  <div class="form-group mb-3" [ngClass]="{'focused':focus_LastName===true}">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      </div>
                       <input class="form-control" [(ngModel)]="lastname" name="lastname" placeholder="Last Name" type="text" (focus)="focus_LastName=true" (blur)="focus_LastName=false">
                     </div>
                   </div>

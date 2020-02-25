@@ -15,6 +15,7 @@ export class SignupComponent implements OnInit {
   private firstname:string;
   private lastname:string;
   private contact:string;
+  private middleName:string;
 
   constructor(private signupService: SignupService,  private router: Router) { }
 
@@ -28,6 +29,7 @@ export class SignupComponent implements OnInit {
       "password":this.password,
       "firstName":this.firstname,
       "lastName":this.lastname,
+      "middleName":this.middleName,
       "contact":this.contact
     }
     this.signupService.signup(userData).subscribe(result=>{

@@ -1,5 +1,6 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { ProfileService } from 'src/app/service/profile.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-personal-form',
@@ -23,10 +24,14 @@ export class PersonalFormComponent implements OnInit {
   staticAlertClosed = false;
   alertType:string="danger";
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+
+    this.spinner.show();
+
     this.profileService.getPersonalDetails().subscribe(result=>{
+      this.spinner.hide()
       this.gender=result["gender"]
       let d = new Date(result["dob"]);
       this.dob={"year":d.getFullYear(),"month":d.getMonth()+1,"day":d.getDate()}
@@ -36,7 +41,11 @@ export class PersonalFormComponent implements OnInit {
       this.complexion=result["complexion"]
       this.maritalStatus=result["maritalStatus"]
       this.familyType=result["familyType"]
+
+      
     },error=>{
+
+      this.spinner.hide()
         
       this.showAlert("danger","Error:"+error.error);
     })

@@ -1,5 +1,6 @@
 import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { ProfileService } from 'src/app/service/profile.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-professional-form',
@@ -16,11 +17,15 @@ export class ProfessionalFormComponent implements OnInit {
   jobLocation:string;
   jobIndustry:string;
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
 
+    this.spinner.show()
+
     this.profileService.getProfessionalDetails().subscribe(result=>{
+
+      this.spinner.hide()
 
       this.jobType=result["jobType"]!=""?result["jobType"]:"JOB_TYPE_SELECTED";
       this.jobRole=result["jobRole"]!=""?result["jobRole"]:null;
@@ -32,6 +37,9 @@ export class ProfessionalFormComponent implements OnInit {
 
 
     },error=>{
+
+      this.spinner.hide()
+
       console.log(error);
     })
 

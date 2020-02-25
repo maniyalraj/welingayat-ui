@@ -34,6 +34,8 @@ import { FamilyFormComponent } from './component/family-form/family-form.compone
 import { MedicalFormComponent } from './component/medical-form/medical-form.component';
 import { AdditionalFormComponent } from './component/additional-form/additional-form.component';
 
+import { NgxSpinnerModule } from "ngx-spinner";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +71,8 @@ import { AdditionalFormComponent } from './component/additional-form/additional-
     NgbModule,
     SectionsModule,
     NouisliderModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}],
   bootstrap: [AppComponent]

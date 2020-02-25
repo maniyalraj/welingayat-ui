@@ -7,15 +7,15 @@
                         {{relation.title+" "+relation.firstName+" "+relation.middleName+" "+relation.lastName}}</h1>
                     <h6>Relation: {{relation.relation}}</h6>
                     <h6>Profession: {{relation.profession}}</h6>
-                    <h6>Additonal Info: {{relation.additionalDesc}}</h6>
+                    <h6>Additonal Info: {{relation.additionalDescription}}</h6>
                     <div class="text-center">
-                        <button type="button" class="btn btn-danger" (click)="skipAndNext()">Remove</button>
+                        <button type="button" class="btn btn-danger" (click)="removeRelation(relation)">Remove</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div style="border:solid black 1px;">
+    <div style="border:solid black 1px; margin-top: 10px;">
         <div class="row justify-content-center mt-5 mr-1 ml-1">
             <div class="col-lg-2 col-md-4">
                 <div class="form-group" [ngClass]="{'focused':focus1===true}">
@@ -76,7 +76,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-4 col-5">
+            <div class="col-lg-2 col-md-4 col-5" [hidden]="relation!='RELATION_SIBLING'">
 
                 <div class="custom-control custom-radio mb-3">
                     <input name="married-radio" class="custom-control-input" id="married-radio-1" type="radio"
@@ -86,7 +86,7 @@
                     </label>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-4 col-5">
+            <div class="col-lg-2 col-md-4 col-5" [hidden]="relation!='RELATION_SIBLING'">
                 <div class="custom-control custom-radio mb-3">
                     <input name="married-radio" class="custom-control-input" id="married-radio-2" checked type="radio"
                         [(ngModel)]="isMarried" value="false">
@@ -99,13 +99,13 @@
         <div class="row justify-content-center mr-1 ml-1">
             <div class="col-lg-4 col-md-8">
                 <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                    <div class="input-group input-group-alternative">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-sign-in"></i></span>
-                        </div>
-                        <input class="form-control" [(ngModel)]="profession" name="profession" placeholder="Profession"
-                            type="text" (focus)="focus1=true" (blur)="focus1=false">
-                    </div>
+                    <select class="browser-default custom-select" [(ngModel)]="profession">
+                        <option selected value="JOB_TYPE_SELECTED">Select Job Type</option>
+                        <option value="JOB_TYPE_SALARIED">Salaried</option>
+                        <option value="JOB_TYPE_BUSINESS">Business</option>
+                        <option value="JOB_TYPE_PROFESSIONAL">Professional</option>
+                        <option value="JOB_TYPE_RETIRED">Retired</option>
+                    </select>
                 </div>
             </div>
             <div class="col-lg-6 col-md-8">
@@ -114,7 +114,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-sign-in"></i></span>
                         </div>
-                        <input class="form-control" [(ngModel)]="additionalDesc" name="additionalDesc"
+                        <input class="form-control" [(ngModel)]="additionalDescription" name="additionalDescription"
                             placeholder="Additonal Desc" type="text" (focus)="focus1=true" (blur)="focus1=false">
                     </div>
                 </div>

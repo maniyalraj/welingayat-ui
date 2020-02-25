@@ -1,5 +1,6 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { ProfileService } from 'src/app/service/profile.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-educational-form',
@@ -14,15 +15,18 @@ export class EducationalFormComponent implements OnInit {
   otherQualification:string
   nameOfInstitute:string
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show()
 
     this.profileService.getEducationalDetails().subscribe(result=>{
+      this.spinner.hide()
       this.qualification = result["qualification"] != ""?result["qualification"] :"QUALIFICATION_SELECT";
       this.otherQualification = result["other_qualification"] != ""?result["other_qualification"] :null;
       this.nameOfInstitute =  result["institute"] != ""?result["institute"] :null;
     },error=>{
+      this.spinner.hide()
       console.log(error)
     })
 

@@ -60,6 +60,21 @@ export class ProfileService {
     return this.post(url,data);
   }
 
+  getFamilyDetails(){
+
+    let url= this.baseUrl+"get/userFamilyDetails"
+
+    return this.get(url)
+
+  }
+
+  saveFamilyDetails(data){
+    
+    let url= this.baseUrl+"save/userFamilyDetails"
+
+    return this.post(url, data);
+  }
+
   get(url){
     return this.httpClient.get(url);
   }

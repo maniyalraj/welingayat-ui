@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ProfileService } from 'src/app/service/profile.service';
 
 @Component({
   selector: 'app-family-form',
@@ -19,7 +20,7 @@ export class FamilyFormComponent implements OnInit {
   profession:string;
   additionalDesc:string;
 
-  constructor() { }
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
 
@@ -64,7 +65,22 @@ export class FamilyFormComponent implements OnInit {
   }
 
   saveAndNext(){
-    this.changeTabEvent.emit();
+
+    let obj= JSON.stringify(this.relations);
+    console.log(obj);
+
+    for(let rel of this.relations){
+      this.profileService.saveFamilyDetails(JSON.stringify(rel)).subscribe(result=>{
+        this.changeTabEvent.emit();
+        
+      },error=>{
+        console.log(error)
+      })
+
+    }
+   
+
+ 
   }
 
   skipAndNext(){

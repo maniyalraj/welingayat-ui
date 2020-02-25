@@ -9,14 +9,16 @@ import { ProfileService } from 'src/app/service/profile.service';
 })
 export class ProfileRegisterComponent implements OnInit {
 
-  name: String;
+  firstName: String;
+  lastName: String;
 
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
     this.profileService.getUserBasicDetails().subscribe(result=>{
         console.log(result);
-        this.name=result["name"];
+        this.firstName=result["firstName"];
+        this.lastName=result["lastName"];
     },error=>{
       // alert("Some error occured: "+error)
     })

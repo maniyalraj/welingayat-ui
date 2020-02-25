@@ -54,7 +54,7 @@
             </div>
           </div>
           <div class="text-center mt-5 mb-5">
-            <h3>{{name}}<span class="font-weight-light">, 27</span></h3>
+            <h3>{{firstName}}, {{lastName}}<span class="font-weight-light">, 27</span></h3>
             <!-- <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Bucharest, Romania</div>
               <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer</div>
               <div><i class="ni education_hat mr-2"></i>University of Computer Science</div> -->
@@ -69,7 +69,7 @@
             </div> -->
           <div class="col-lg-12 order-lg-1">
             <ngb-tabset [justify]="'center'" #t="ngbTabset" class="custom-tab-content flex-column flex-md-row" type="pills">
-              <!-- <ngb-tab id="basic">
+              <ngb-tab id="basic">
                 <ng-template ngbTabTitle>
                   Basic
                 </ng-template>
@@ -78,7 +78,7 @@
                     <app-basic-form (changeTabEvent)="t.select('personal')"></app-basic-form>
                   </div>
                 </ng-template>
-              </ngb-tab> -->
+              </ngb-tab>
               <ngb-tab id="personal">
                 <ng-template ngbTabTitle>
                   Personal

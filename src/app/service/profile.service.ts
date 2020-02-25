@@ -16,8 +16,10 @@ export class ProfileService {
    return this.get(url)
   }
 
-  saveBasicDetails(){
+  saveBasicDetails(data){
     let url= this.baseUrl+ "save/basicDetails"
+
+    return this.post(url, data)
   }
 
   getPersonalDetails(){
@@ -31,6 +33,31 @@ export class ProfileService {
     let url= this.baseUrl+"save/personalDetails"
 
     return this.post(url, data)
+  }
+
+  getEducationalDetails(){
+    let url= this.baseUrl+"get/educationalDetails"
+
+    return this.get(url)
+  }
+
+  saveEducationalDetails(data){
+    let url= this.baseUrl+"save/educationalDetails"
+
+    return this.post(url, data)
+  }
+
+  getProfessionalDetails(){
+    let url= this.baseUrl+"get/professionalDetails"
+
+    return this.get(url);
+
+  }
+
+  saveProfessionalDetails(data){
+    let url= this.baseUrl+"save/professionalDetails"
+
+    return this.post(url,data);
   }
 
   get(url){

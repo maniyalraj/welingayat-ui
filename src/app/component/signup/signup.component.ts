@@ -26,7 +26,8 @@ export class SignupComponent implements OnInit {
       "username":this.email,
       "email":this.email,
       "password":this.password,
-      "name":this.firstname+" "+this.lastname,
+      "firstName":this.firstname,
+      "lastName":this.lastname,
       "contact":this.contact
     }
     this.signupService.signup(userData).subscribe(result=>{

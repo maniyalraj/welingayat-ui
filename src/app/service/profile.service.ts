@@ -81,6 +81,34 @@ export class ProfileService {
     return this.post(url,data);
   }
 
+
+  getMedicalDetails(){
+    let url= this.baseUrl+"get/medicalDetails"
+
+
+    return this.get(url);
+  }
+
+  saveMedicalDetails(data){
+    let url= this.baseUrl+"save/medicalDetails"
+    
+    return this.post(url, data);
+  }
+
+  getAdditionalDetails(){
+    let url= this.baseUrl+"get/additionalDetails"
+
+
+    return this.get(url);
+
+  }
+
+  saveAdditionalDetails(data){
+    let url= this.baseUrl+"save/additionalDetails"
+    
+    return this.post(url, data);
+  }
+
   get(url){
     return this.httpClient.get(url);
   }

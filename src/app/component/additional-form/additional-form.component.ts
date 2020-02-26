@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { ProfileService } from 'src/app/service/profile.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-additional-form',
@@ -6,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./additional-form.component.css']
 })
 export class AdditionalFormComponent implements OnInit {
-
+  @Output() changeTabEvent = new EventEmitter<string>();
 
   isSameAsCurrent:boolean=false;
 
@@ -21,9 +23,28 @@ export class AdditionalFormComponent implements OnInit {
   permanentAddressCity:string;
   permanentAddressPin:number;
 
-  constructor() { }
+  constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
+
+    this.profileService.getAdditionalDetails().subscribe(result=>{
+      this.spinner.hide();
+      this.currentAddressCity = result["currentAddressCity"]
+      this.currentAddressLine1 = result["currentAddressLine1"]
+      this.currentAddressLine2 = result["currentAddressLine2"]
+      this.currentAddressPin = result["currentAddressPin"]
+
+      this.permanentAddressCity = result["permanentAddressCity"]
+      this.permanentAddressLine1 = result["permanentAddressLine1"]
+      this.permanentAddressLine2 = result["permanentAddressLine2"]
+      this.permanentAddressPin = result["permanentAddressPin"]
+
+    },error=>{
+      this.spinner.hide();
+      
+      console.log(error);
+    })
   }
 
   checkAndCopy()
@@ -44,6 +65,30 @@ export class AdditionalFormComponent implements OnInit {
       this.permanentAddressCity = null;
       this.permanentAddressPin = null;
     }
+  }
+
+  saveAndNext(){
+
+    let obj = {
+      "currentAddressCity":this.currentAddressCity,
+      "currentAddressLine1":this.currentAddressLine1,
+      "currentAddressLine2":this.currentAddressLine2,
+      "currentAddressPin":this.currentAddressPin,
+
+      "permanentAddressCity":this.permanentAddressCity,
+      "permanentAddressLine1":this.permanentAddressLine1,
+      "permanentAddressLine2":this.permanentAddressLine2,
+      "permanentAddressPin":this.permanentAddressPin,
+
+
+    }
+
+    this.profileService.saveAdditionalDetails(obj).subscribe(result=>{
+      console.log(result)
+    },error=>{
+      console.log(error)
+    })
+
   }
 
 }

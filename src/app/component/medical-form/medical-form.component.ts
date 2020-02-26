@@ -1,4 +1,6 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { ProfileService } from 'src/app/service/profile.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-medical-form',
@@ -13,12 +15,37 @@ export class MedicalFormComponent implements OnInit {
   isDisabled:boolean=false;
   typeOfDisability:string;
 
-  constructor() { }
+  constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+   
+    this.spinner.show();
+
+    this.profileService.getMedicalDetails().subscribe(result=>{
+      this.spinner.hide();
+      this.bloodGroup = result["bloodGroup"],
+      this.isDisabled = result["isDisabled"],
+      this.typeOfDisability = result["typeOfDisability"]
+    },error=>{
+      this.spinner.hide();
+
+      console.log(error)
+    })
+
   }
 
   saveAndNext(){
+
+    let obj ={
+      "bloodGroup":this.bloodGroup,
+      "isDisabled":this.isDisabled,
+      "typeOfDisability":this.typeOfDisability
+    }
+
+    this.profileService.saveMedicalDetails(obj).subscribe(result=>{},error=>{
+      console.log(error)
+    })
+
     this.changeTabEvent.emit()
   }
 

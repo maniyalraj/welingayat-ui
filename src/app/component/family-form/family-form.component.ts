@@ -11,30 +11,46 @@ export class FamilyFormComponent implements OnInit {
 
   @Output() changeTabEvent = new EventEmitter<string>();
 
-  relations=[];
-  
-  title:string="TITLE_SELECTED";
-  firstName:string;
-  middleName:string;
-  lastName:string;
-  relation:string="RELATION_SELECTED";
-  profession:string="JOB_TYPE_SELECTED";
-  additionalDescription:string;
+  relations = [];
+
+  title: string = "TITLE_SELECTED";
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  relation: string = "RELATION_SELECTED";
+  profession: string = "JOB_TYPE_SELECTED";
+  additionalDescription: string;
 
   relationMap = {
-    "RELATION_FATHER":"Father",
-    "RELATION_MOTHER":"Mother",
-    "RELATION_SIBLING":"Sibling",
-    "RELATION_MATERNAL":"Maternal",
-    "RELATION_PATERNAL":"Paternal"
+    "RELATION_FATHER": "Father",
+    "RELATION_MOTHER": "Mother",
+    "RELATION_SIBLING": "Sibling",
+    "RELATION_MATERNAL": "Maternal",
+    "RELATION_PATERNAL": "Paternal"
+  }
+
+  inverseRelationMap = {
+    "Father": "RELATION_FATHER",
+    "Mother": "RELATION_MOTHER",
+    "Sibling": "RELATION_SIBLING",
+    "Maternal": "RELATION_MATERNAL",
+    "Paternal": "RELATION_PATERNAL"
+
   }
 
   professionMap = {
-    "JOB_TYPE_SALARIED":"Salaried",
-    "JOB_TYPE_BUSINESS":"Business",
-    "JOB_TYPE_PROFESSIONAL":"Professional",
-    "JOB_TYPE_RETIRED":"Retired",
+    "JOB_TYPE_SALARIED": "Salaried",
+    "JOB_TYPE_BUSINESS": "Business",
+    "JOB_TYPE_PROFESSIONAL": "Professional",
+    "JOB_TYPE_RETIRED": "Retired",
 
+  }
+
+  inverseProfessionMap = {
+    "Salaried":"JOB_TYPE_SALARIED",
+    "Business": "JOB_TYPE_BUSINESS",
+    "Professional": "JOB_TYPE_PROFESSIONAL",
+    "Retired":"JOB_TYPE_RETIRED"
   }
 
   constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
@@ -43,16 +59,15 @@ export class FamilyFormComponent implements OnInit {
 
     this.spinner.show();
 
-    this.profileService.getFamilyDetails().subscribe(result=>{
+    this.profileService.getFamilyDetails().subscribe((result: any) => {
       this.spinner.hide();
-      
-      for(let r of result)
-      {
+
+      for (let r of result) {
         r.relation = this.relationMap[r.relation]
         r.profession = this.professionMap[r.profession]
         this.relations.push(r)
       }
-    },error=>{
+    }, error => {
       this.spinner.hide()
       console.log(error)
     })
@@ -70,24 +85,30 @@ export class FamilyFormComponent implements OnInit {
 
   }
 
-  addRelation(){
-    this.relations.push({
-      "title":this.title,
-      "firstName":this.firstName,
-      "middleName":this.middleName,
-      "lastName":this.lastName,
-      "relation":this.relation,
-      "profession":this.profession,
-      "additionalDescription":this.additionalDescription
+  addRelation() {
+    let obj = {
+      "title": this.title,
+      "firstName": this.firstName,
+      "middleName": this.middleName,
+      "lastName": this.lastName,
+      "relation": this.relation,
+      "profession": this.profession,
+      "additionalDescription": this.additionalDescription
+    }
+
+    this.profileService.saveFamilyDetails(obj).subscribe(result=>{
+      this.relations.push(obj);
+      this.resetDefaults();
+    },error=>{
+      console.log(error)
     })
 
-    this.resetDefaults();
 
   }
 
-  resetDefaults(){
-    this.title="TITLE_SELECTED",
-    this.firstName = null;
+  resetDefaults() {
+    this.title = "TITLE_SELECTED",
+      this.firstName = null;
     this.middleName = null;
     this.lastName = null;
     this.relation = "RELATION_SELECTED"
@@ -96,37 +117,27 @@ export class FamilyFormComponent implements OnInit {
 
   }
 
-  removeRelation(rel){
-
+  removeRelation(rel) {
     const index: number = this.relations.indexOf(rel);
+   
     if (index !== -1) {
+      rel.relation = this.inverseRelationMap[rel.relation]
+      rel.profession = this.inverseProfessionMap[rel.profession]
+      this.profileService.deleteFamilyDetails(rel).subscribe(result => {
         this.relations.splice(index, 1);
-    } 
-
-    this.relations.reduce(rel)
-  }
-
-  saveAndNext(){
-
-    let obj= JSON.stringify(this.relations);
-    console.log(obj);
-
-    for(let rel of this.relations){
-      this.profileService.saveFamilyDetails(rel).subscribe(result=>{
-        this.changeTabEvent.emit();
-        
-      },error=>{
+      }, error => {
         console.log(error)
       })
-
     }
-   
-
- 
   }
 
-  skipAndNext(){
+  saveAndNext() {
+
     this.changeTabEvent.emit();
   }
-  
+
+  skipAndNext() {
+    this.changeTabEvent.emit();
+  }
+
 }

@@ -75,6 +75,12 @@ export class ProfileService {
     return this.post(url, data);
   }
 
+  deleteFamilyDetails(data){
+    let url= this.baseUrl+"delete/userFamilyDetails"
+
+    return this.post(url,data);
+  }
+
   get(url){
     return this.httpClient.get(url);
   }
@@ -82,5 +88,6 @@ export class ProfileService {
   post(url, data){
     return this.httpClient.post(url, data);
   }
+
 
 }

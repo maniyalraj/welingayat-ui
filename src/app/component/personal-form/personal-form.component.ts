@@ -21,7 +21,7 @@ export class PersonalFormComponent implements OnInit {
   familyType:string = "FAMILY_TYPE_SELECTED";
 
   alertMessage:string;
-  staticAlertClosed = false;
+  staticAlertClosed = true;
   alertType:string="danger";
 
   constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
@@ -53,7 +53,7 @@ export class PersonalFormComponent implements OnInit {
 
   showAlert(type, message){
         this.alertMessage=message;
-        this.alertType = "danger"
+        this.alertType = type
         setTimeout(() => this.staticAlertClosed = true, 4000);
   }
 

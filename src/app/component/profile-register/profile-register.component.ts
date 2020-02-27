@@ -8,6 +8,7 @@ import { ProfileService } from 'src/app/service/profile.service';
   styleUrls: ['./profile-register.component.css']
 })
 export class ProfileRegisterComponent implements OnInit {
+  
 
   firstName: String;
   lastName: String;

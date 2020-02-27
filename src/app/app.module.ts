@@ -35,6 +35,9 @@ import { MedicalFormComponent } from './component/medical-form/medical-form.comp
 import { AdditionalFormComponent } from './component/additional-form/additional-form.component';
 
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ProfilePicComponent } from './component/profile-pic/profile-pic.component';
+
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ProfessionalFormComponent,
     FamilyFormComponent,
     MedicalFormComponent,
-    AdditionalFormComponent
+    AdditionalFormComponent,
+    ProfilePicComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     SectionsModule,
     NouisliderModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ImageCropperModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}],
   bootstrap: [AppComponent]

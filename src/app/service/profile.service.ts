@@ -8,6 +8,7 @@ import {environment} from "../../environments/environment"
 export class ProfileService {
 
   baseUrl = environment.serverUrl+ "api/user/"
+  baseImageUrl = environment.serverUrl+"api/"
   constructor(private httpClient: HttpClient) { }
 
   getUserBasicDetails(){
@@ -107,6 +108,20 @@ export class ProfileService {
     let url= this.baseUrl+"save/additionalDetails"
     
     return this.post(url, data);
+  }
+
+  getUserProfileUrl()
+  {
+    let url = this.baseImageUrl+ "get/profileImage"
+
+    return this.get(url);
+  }
+
+  saveUserProfileImage(data)
+  {
+    let url = this.baseImageUrl+"save/profileImage"
+
+    return this.post(url,data);
   }
 
   get(url){

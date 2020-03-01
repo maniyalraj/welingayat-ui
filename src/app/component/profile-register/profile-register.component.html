@@ -30,7 +30,8 @@
                 </a> -->
                 <div class="card-profile-image">
       
-                  <img [src]="croppedImage" class="rounded-circle" />
+                  <img [src]="croppedImage" class="rounded-circle" [hidden]="userImagePresent=='false'"/>
+                  <img [src]="profileImageUrl" class="rounded-circle" [hidden]="userImagePresent=='true'"/>
               </div>
               <!-- </div> -->
             </div>
@@ -45,32 +46,23 @@
                 <!-- <div>
                     <span class="heading">22</span>
                     <span class="description">Friends</span>
-                  </div>
+                  </div> -->
                   <div>
                     <span class="heading">10</span>
                     <span class="description">Photos</span>
                   </div>
-                  <div>
+                  <!-- <div>
                     <span class="heading">89</span>
                     <span class="description">Comments</span>
-                  </div> -->
+                  </div>  -->
               </div>
             </div>
           </div>
           <div class="text-center mt-5 mb-5">
             <h3>{{firstName}}, {{lastName}}<span class="font-weight-light">, 27</span></h3>
-            <!-- <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Bucharest, Romania</div>
-              <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer</div>
-              <div><i class="ni education_hat mr-2"></i>University of Computer Science</div> -->
+            
           </div>
-          <!-- <div class="mt-5 py-5 border-top text-center">
-              <div class="row justify-content-center">
-                <div class="col-lg-9">
-                  <p>An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</p>
-                  <a href="#">Show more</a>
-                </div>
-              </div>
-            </div> -->
+          
           <div class="col-lg-12 order-lg-1">
             <ngb-tabset [justify]="'center'" #t="ngbTabset" class="custom-tab-content flex-column flex-md-row" type="pills">
               <ngb-tab id="basic">
@@ -170,18 +162,31 @@
     <div class="modal-body">
       <input type="file" (change)="fileChangeEvent($event)" />
 
-      <image-cropper  [hidden]="!showCropper" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3" format="png"
-          (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
-          (loadImageFailed)="loadImageFailed()"></image-cropper>
-      <div class="form-group">
-          <button class="btn btn-primary" (click)="crop()">Crop</button>
-      </div>
+      <image-cropper #imgCropper  
+      [hidden]="!showCropper" 
+      [imageChangedEvent]="imageChangedEvent" 
+      [maintainAspectRatio]="true" 
+      [aspectRatio]="1 / 1" 
+      [containWithinAspectRatio] = "true"
+      [cropperMinWidth]="180"
+      format="png"
+      (imageCropped)="imageCropped($event)" 
+      (imageLoaded)="imageLoaded()" 
+      (cropperReady)="cropperReady()"
+      (loadImageFailed)="loadImageFailed()"></image-cropper>
+      <!-- <div class="form-group">
+          <button class="btn btn-primary"  data-dismiss="modal" (click)="c('Close click')">Crop</button>
+          <button class="btn btn-primary" (click)="rotate()">Rotate</button>
+      </div> -->
       
       
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="c('Close click')">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
+      <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="c('Close click')">Crop</button> -->
+      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="uploadImage();c('Close click')">Upload</button>
+      
+      <!-- <button type="button" class="btn btn-primary">Crop</button> -->
+
     </div>
   </div>
 </ng-template>

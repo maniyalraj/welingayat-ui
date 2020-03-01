@@ -37,9 +37,11 @@ export class ProfilePicComponent implements OnInit {
     }
 
     crop(){
-      
-      this.imageCropper.crop();
-      this.showCropper=false;
+      setTimeout(function(){
+        this.imageCropper.crop();
+        this.showCropper=false;
+       
+      },1000)
      
     }
 

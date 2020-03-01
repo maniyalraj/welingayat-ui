@@ -3,3 +3,7 @@
         padding-right: 1rem !important;
     }
 }
+
+.profile-page .card-profile .card-profile-image img{
+    height: 180px;
+}

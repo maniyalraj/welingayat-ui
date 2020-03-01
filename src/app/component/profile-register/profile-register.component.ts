@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProfileService } from 'src/app/service/profile.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { ImageCropperComponent, ImageCroppedEvent } from 'ngx-image-cropper';
+import { ImageCropperComponent, ImageCroppedEvent, ImageTransform} from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-profile-register',
@@ -17,8 +17,17 @@ export class ProfileRegisterComponent implements OnInit {
 
   closeResult: string;
 
-  @ViewChild(ImageCropperComponent, null) 
+  initialRotate:number=0;
+
+  userImagePresent:boolean=false;
+  profileImageUrl:String="";
+
+  @ViewChild('imgCropper', {read:ImageCropperComponent,static:true})
   imageCropper: ImageCropperComponent;
+
+  @ViewChild('classic3',null)
+  modal: NgbModal;
+
 
   showCropper:boolean=false;
 
@@ -43,11 +52,14 @@ export class ProfileRegisterComponent implements OnInit {
     }
 
     crop(){
-      
       this.imageCropper.crop();
       this.showCropper=false;
       this.modalService.dismissAll();
-     
+    }
+
+    rotate(){
+      this.initialRotate +=1;
+      this.imageCropper.transform = {'rotate':this.initialRotate}
     }
 
   constructor(private profileService: ProfileService, private modalService: NgbModal) { }
@@ -59,6 +71,20 @@ export class ProfileRegisterComponent implements OnInit {
         this.lastName=result["lastName"];
     },error=>{
       // alert("Some error occured: "+error)
+    })
+
+    this.profileService.getUserProfileUrl().subscribe(result=>{
+
+      if(result["imageUrl"]=="" || result["imageUrl"]==null){
+        this.userImagePresent=false;
+      }
+      else{
+        this.userImagePresent=false;
+        this.profileImageUrl = result["imageUrl"];
+      }
+      
+    },error=>{
+      console.log(error);
     })
   }
 
@@ -92,6 +118,36 @@ private getDismissReason(reason: any): string {
     } else {
         return  'with: $reason';
     }
+
+
+}
+
+private dataURItoBlob(dataURI) {
+  dataURI = dataURI.split(",")[1];
+  const byteString = window.atob(dataURI);
+  const arrayBuffer = new ArrayBuffer(byteString.length);
+  const int8Array = new Uint8Array(arrayBuffer);
+  for (let i = 0; i < byteString.length; i++) {
+    int8Array[i] = byteString.charCodeAt(i);
+  }
+  const blob = new Blob([int8Array], { type: 'image/png' });    
+  return blob;
+}
+
+private uploadImage(){
+
+  var formData:any = new FormData();
+
+  formData.append("file",this.dataURItoBlob(this.croppedImage))
+
+  this.profileService.saveUserProfileImage(formData).subscribe(result=>{
+    this.profileImageUrl=result["message"]
+    console.log(result);
+    this.modal.dismissAll();
+  },error=>{
+    console.log(error);
+  })
+
 }
 
   

@@ -38,6 +38,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ProfilePicComponent } from './component/profile-pic/profile-pic.component';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgbdModalContent } from './component/sections/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     NgxSpinnerModule,
     ImageCropperModule
   ],
+  entryComponents: [NgbdModalContent],
   providers: [{provide: HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })

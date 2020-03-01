@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { ProfileService } from 'src/app/service/profile.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ImageCropperComponent, ImageCroppedEvent, ImageTransform} from 'ngx-image-cropper';
+import { NgxImageCompressService } from 'ngx-image-compress';
+
+import {appConstats} from '../../constants';
 
 @Component({
   selector: 'app-profile-register',
@@ -22,6 +25,8 @@ export class ProfileRegisterComponent implements OnInit {
   userImagePresent:boolean=false;
   profileImageUrl:String="";
 
+  imageBase64:any=appConstats.blankProfilePicBase64;
+
   @ViewChild('imgCropper', {read:ImageCropperComponent,static:true})
   imageCropper: ImageCropperComponent;
 
@@ -33,9 +38,29 @@ export class ProfileRegisterComponent implements OnInit {
 
   imageChangedEvent: any = '';
     croppedImage: any = '';
+
+    uploadAndCompress(){
+      this.imageCompressor.uploadFile().then(({image, orientation}) => {
+    
+        // this.imgResultBeforeCompress = image;
+        console.warn('Size in bytes was:', this.imageCompressor.byteCount(image));
+        
+        this.imageCompressor.compressFile(image, orientation, 75, 50).then(
+          result => {
+            // console.log(result);
+            this.imageLoaded()
+            this.imageBase64=result;
+            // this.imgResultAfterCompress = result;
+            console.warn('Size in bytes is now:', this.imageCompressor.byteCount(result));
+          }
+        );
+        
+      });
+    }
     
     fileChangeEvent(event: any): void {
-        this.imageChangedEvent = event;
+      // this.imageChangedEvent = event;
+
     }
     imageCropped(event: ImageCroppedEvent) {
         this.croppedImage = event.base64;
@@ -62,7 +87,7 @@ export class ProfileRegisterComponent implements OnInit {
       this.imageCropper.transform = {'rotate':this.initialRotate}
     }
 
-  constructor(private profileService: ProfileService, private modalService: NgbModal) { }
+  constructor(private profileService: ProfileService, private modalService: NgbModal, private imageCompressor: NgxImageCompressService) { }
 
   ngOnInit() {
     this.profileService.getUserBasicDetails().subscribe(result=>{

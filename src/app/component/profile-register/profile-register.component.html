@@ -160,10 +160,12 @@
       </button>
     </div>
     <div class="modal-body">
-      <input type="file" (change)="fileChangeEvent($event)" />
+      <!-- <input type="file" (change)="fileChangeEvent($event)" [(ngModel)]="profileImage" /> -->
 
-      <image-cropper #imgCropper  
-      [hidden]="!showCropper" 
+      <button (click)="uploadAndCompress()">Load Image</button>
+
+      <image-cropper #imgCropper   
+      [imageBase64]="imageBase64"
       [imageChangedEvent]="imageChangedEvent" 
       [maintainAspectRatio]="true" 
       [aspectRatio]="1 / 1" 

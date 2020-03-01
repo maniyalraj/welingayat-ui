@@ -40,6 +40,8 @@ import { ProfilePicComponent } from './component/profile-pic/profile-pic.compone
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgbdModalContent } from './component/sections/modal/modal.component';
 
+import {NgxImageCompressService} from 'ngx-image-compress';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +83,7 @@ import { NgbdModalContent } from './component/sections/modal/modal.component';
     ImageCropperModule
   ],
   entryComponents: [NgbdModalContent],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}, NgxImageCompressService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

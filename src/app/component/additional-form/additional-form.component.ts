@@ -30,15 +30,15 @@ export class AdditionalFormComponent implements OnInit {
 
     this.profileService.getAdditionalDetails().subscribe(result=>{
       this.spinner.hide();
-      this.currentAddressCity = result["currentAddressCity"]
+      this.currentAddressCity = result["currentCity"]
       this.currentAddressLine1 = result["currentAddressLine1"]
       this.currentAddressLine2 = result["currentAddressLine2"]
-      this.currentAddressPin = result["currentAddressPin"]
+      this.currentAddressPin = result["currentPinCode"]
 
-      this.permanentAddressCity = result["permanentAddressCity"]
+      this.permanentAddressCity = result["permanentCity"]
       this.permanentAddressLine1 = result["permanentAddressLine1"]
       this.permanentAddressLine2 = result["permanentAddressLine2"]
-      this.permanentAddressPin = result["permanentAddressPin"]
+      this.permanentAddressPin = result["permanentPinCode"]
 
     },error=>{
       this.spinner.hide();
@@ -70,15 +70,15 @@ export class AdditionalFormComponent implements OnInit {
   saveAndNext(){
 
     let obj = {
-      "currentAddressCity":this.currentAddressCity,
+      "currentCity":this.currentAddressCity,
       "currentAddressLine1":this.currentAddressLine1,
       "currentAddressLine2":this.currentAddressLine2,
-      "currentAddressPin":this.currentAddressPin,
+      "currentPinCode":this.currentAddressPin,
 
-      "permanentAddressCity":this.permanentAddressCity,
+      "permanentCity":this.permanentAddressCity,
       "permanentAddressLine1":this.permanentAddressLine1,
       "permanentAddressLine2":this.permanentAddressLine2,
-      "permanentAddressPin":this.permanentAddressPin,
+      "permanentPinCode":this.permanentAddressPin,
 
 
     }

@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   // serverUrl:"https://lingayat-test.herokuapp.com/",
-  serverUrl:"http://localhost:8080/"
+  // serverUrl:"http://localhost:8080/"
   // serverUrl:"https://lingayat-route-secured-lingayat-opeshift-project.apps.us-east-1.starter.openshift-online.com/"
-  // serverUrl:"https://lingayat-openshift-route-lingayat-opeshift-project.apps.us-east-1.starter.openshift-online.com/"
+  serverUrl:"https://lingayat-openshift-route-lingayat-opeshift-project.apps.us-east-1.starter.openshift-online.com/"
 
 
 };

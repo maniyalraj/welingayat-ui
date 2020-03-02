@@ -34,7 +34,7 @@ export class PersonalFormComponent implements OnInit {
       this.spinner.hide()
       this.gender=result["gender"]
       let d = new Date(result["dob"]);
-      this.dob={"year":d.getFullYear(),"month":d.getMonth()+1,"day":d.getDate()}
+      this.dob=d;
       this.placeOfBirth=result["placeOfBirth"]
       this.heightInCms=result["heightInCms"]
       this.weightInKgs=result["weightInKgs"]
@@ -59,7 +59,7 @@ export class PersonalFormComponent implements OnInit {
 
   saveAndNext(){
 
-    let date = new Date(this.dob["year"]+"-"+this.dob["month"]+"-"+this.dob["day"]).toISOString().split('T')[0]
+    let date = new Date(this.dob).toISOString().split('T')[0]
 
     let obj= {
         "gender":this.gender,

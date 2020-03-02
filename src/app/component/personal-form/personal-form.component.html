@@ -25,8 +25,10 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                     </div>
-                    <input class="form-control datepicker" placeholder="Date of Birth" name="dp" [(ngModel)]="dob"
-                        ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+                    <!-- <input class="form-control datepicker" placeholder="Date of Birth" name="dp" [(ngModel)]="dob"
+                        ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" /> -->
+                        <input class="form-control datepicker" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" [(ngModel)]="dob">
+                        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                 </div>
             </div>
         </div>
@@ -103,7 +105,7 @@
         <div class="text-center col-sm-6 col-lg-4">
             <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save and Next</button>
         </div>
-        <div class="text-center col-4">
+        <div class="text-center col-sm-6 col-lg-4">
             <button type="button" class="btn btn-primary my-4" (click)="skipAndNext()">Skip and Next</button>
         </div>
     </div>

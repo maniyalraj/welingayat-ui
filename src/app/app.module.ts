@@ -42,6 +42,8 @@ import { NgbdModalContent } from './component/sections/modal/modal.component';
 
 import {NgxImageCompressService} from 'ngx-image-compress';
 
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +82,9 @@ import {NgxImageCompressService} from 'ngx-image-compress';
     NouisliderModule,
     HttpClientModule,
     NgxSpinnerModule,
-    ImageCropperModule
+    ImageCropperModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
   entryComponents: [NgbdModalContent],
   providers: [{provide: HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}, NgxImageCompressService],

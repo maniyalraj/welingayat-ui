@@ -43,6 +43,8 @@ import { NgbdModalContent } from './component/sections/modal/modal.component';
 import {NgxImageCompressService} from 'ngx-image-compress';
 
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { ViewProfilesComponent } from './component/view-profiles/view-profiles.component';
+import { MinimumViewComponent } from './component/minimum-view/minimum-view.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     FamilyFormComponent,
     MedicalFormComponent,
     AdditionalFormComponent,
-    ProfilePicComponent
+    ProfilePicComponent,
+    ViewProfilesComponent,
+    MinimumViewComponent
   ],
   imports: [
     BrowserModule,

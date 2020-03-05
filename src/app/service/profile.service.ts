@@ -124,6 +124,13 @@ export class ProfileService {
     return this.post(url,data);
   }
 
+  getAllUsers()
+  {
+    let url = this.baseImageUrl+"getAllUsers"
+
+    return this.get(url);
+  }
+
   get(url){
     return this.httpClient.get(url);
   }

@@ -26,35 +26,66 @@
 
                 <div class="card col-lg-10 card-profile  shadow mt--300">
                     <div class="row" style="padding:10px">
+                        <ng-container *ngFor="let user of allusers">
                         <div class="col-md-6" style="margin-bottom:15px; padding:0px">
                             <div class="box-shadow shadow">
                                 <div class="row" style="padding:10px; margin-right:0px; margin-left:0px">
-                                        <div class="col-4" style="padding:2px">
-                                            <div class="card-img-left">
-                                                <img class="img img-thumbnail rounded"
-                                                    src="http://res.cloudinary.com/dz7rf4dd8/image/upload/v1583144531/n7rmhs4aitceeysxfslm.png">
+
+                                    <div class="col-4" style="padding:2px">
+                                        <div class="card-img-left">
+                                            <!-- <img class="img img-thumbnail rounded"
+                                                    src="http://res.cloudinary.com/dz7rf4dd8/image/upload/v1583144531/n7rmhs4aitceeysxfslm.png"> -->
+                                            <img class="img img-thumbnail rounded" src={{user.imageUrl}} />
+                                        </div>
+                                    </div>
+                                    <div class="col-8" style="padding:2px">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h5 class="text-truncate">{{user.firstName}} {{user.middleName}} {{user.lastName}}</h5>
                                             </div>
                                         </div>
-                                        <div class="col-8" style="padding:2px">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h5 class="text-truncate">FirstName MiddleName LastName</h5>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                Height: {{user.heightInCms}} cms
                                             </div>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    Gender: Male    
-                                                </div>
-                                                <div class="col-6">
-                                                    Age:25
-                                                </div>
+                                            <div class="col-6">
+                                                Weight: {{user.weightInKgs}} kgs
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                Age: {{user.age}} yrs
+                                            </div>
+                                            <div class="col-6">
+                                                {{user.maritalStatus}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 text-truncate" data-toggle="tooltip"
+                                                title="{{user.jobRole}}">
+                                                Job : {{user.jobRole}}
+                                            </div>
+                                            
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 text-truncate">
+                                                Qualification: {{user.qualification}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                Salary: {{user.monthlyIncome}} Rs
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
+                        </ng-container>
 
-                        
+
                     </div>
                 </div>
             </div>

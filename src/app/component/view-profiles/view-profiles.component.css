@@ -1,28 +1,43 @@
-.text-ellipsis{
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-h5 {font-size:0.9rem;}
+h5 {  font-size:0.9rem;}
+.text {  font-size:0.75rem;}
 
 /* Small devices (landscape phones, 544px and up) */
 @media (min-width: 544px) {  
     h5 {font-size:1rem;} /*1rem = 16px*/
+    .text {  font-size:0.75rem;}
   }
    
   /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
   @media (min-width: 768px) {  
     h5 {font-size:1rem;} /*1rem = 16px*/
+    .text {  font-size:0.75rem;}
   }
    
   /* Large devices (desktops, 992px and up) */
   @media (min-width: 992px) { 
     h5 {font-size:1rem;} /*1rem = 16px*/
+    .text {  font-size:0.75rem;}
   }
    
   /* Extra large devices (large desktops, 1200px and up) */
   @media (min-width: 1200px) {  
     h5 {font-size:1.5rem;} /*1rem = 16px*/    
+    .text {  font-size:1rem;}
   }
    
+.filter-header{
+  border-bottom: 1px dashed gray;
+}
+
+.filter-header h5{
+  
+  font-size: 1.25rem;
+}
+
+.filter{
+  padding: 5px;
+}
+
+.row{
+  margin:1px;
+}

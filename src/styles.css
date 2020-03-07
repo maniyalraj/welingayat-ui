@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~ng-pick-datetime/assets/style/picker.min.css";
 
-body { margin: 10px 10px 0px 10px; font-family: 'Open Sans', "Helvetica Neue", sans-serif; }
+body { margin: 10px 10px 0px 10px; font-family: 'Lato', sans-serif !important }
 
 ngb-datepicker {
     border-radius: .375rem!important;

@@ -1,37 +1,40 @@
-h5 {  font-size:0.9rem;}
+h5 {  font-size:0.9rem; line-height: 1; margin-bottom: 0px;}
 .text {  font-size:0.75rem;}
 
 /* Small devices (landscape phones, 544px and up) */
 @media (min-width: 544px) {  
-    h5 {font-size:1rem;} /*1rem = 16px*/
+    h5 {font-size:1rem; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem;}
   }
    
   /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
   @media (min-width: 768px) {  
-    h5 {font-size:1rem;} /*1rem = 16px*/
+    h5 {font-size:1rem; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem;}
   }
    
   /* Large devices (desktops, 992px and up) */
   @media (min-width: 992px) { 
-    h5 {font-size:1rem;} /*1rem = 16px*/
+    h5 {font-size:1rem; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem;}
   }
    
   /* Extra large devices (large desktops, 1200px and up) */
   @media (min-width: 1200px) {  
-    h5 {font-size:1.5rem;} /*1rem = 16px*/    
-    .text {  font-size:1rem;}
+    h5 {font-size:1.5rem; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/    
+    .text {  font-size:0.9rem;}
   }
    
 .filter-header{
   border-bottom: 1px dashed gray;
+  margin-top:5px;
 }
 
 .filter-header h5{
   
-  font-size: 1.25rem;
+  font-size: 1.15rem;
+  line-height: 0;
+  text-transform: uppercase;
 }
 
 .filter{
@@ -40,4 +43,23 @@ h5 {  font-size:0.9rem;}
 
 .row{
   margin:1px;
+}
+
+.clear-filter{
+  color:gray;
+}
+
+.icon-control {
+  margin-top: 6px;
+  float: right;
+  font-size: 80%
+}
+
+.card{
+  margin-top:15px
+}
+
+.profile-page{
+  background: rgb(147,0,159);
+background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47%, rgba(213,226,255,1) 100%);
 }

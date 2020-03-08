@@ -1,38 +1,68 @@
 <main class="profile-page">
-    <section class="section-profile-cover section-shaped my-0">
-        <!-- Circles background -->
-        <div class="shape shape-style-1 shape-primary alpha-4">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="separator separator-bottom separator-skew">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
-                xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-            </svg>
-        </div>
-    </section>
+    
     <section class="section">
-        <div class="container" style="max-width: 95%;">
+        <div class="container" style="max-width: 100%;">
+            
             <div class="row">
-                <div class=" col-md-2 d-none d-lg-block mt--300">
-                    <div class="card shadow h-100">
+                <div class=" col-lg-3 d-lg-block nomt--300 pl-1 pr-1" style="margin-top:15px">
+                    <div class="card shadow h-100" style="margin-top:0px">
                         <div class="row">
-                            <div class="col-md-12 filter-header">
-                                <h5 class="d-inline"> Filters </h5><span class="float-right"> clear filters </span>
+                            <div class="col-12 nomt--300 pt-2 pb-2 d-block d-lg-none" data-toggle="collapse" data-target="#filter_box" data-abc="true"
+                            aria-expanded="false">
+                                <h5 class="d-inline" class="collapsed"> Filters <i
+                                        class="icon-control fa fa-chevron-down"></i></h5>
+                            </div>
+                            <div class="col-md-12 d-none d-lg-block filter-header pt-2 pb-2">
+                                <h5 class="d-inline"> Filters </h5><span class="float-right clear-filter"> clear filters
+                                </span>
+                            </div>
+                            <div class="col-md-12 d-lg-block filter-body pt-2 pb-2 collapse " id="filter_box">
+                                <article class="filter-group">
+                                    <header>
+                                        <a href="#" data-toggle="collapse" data-target="#filter1" data-abc="true" aria-expanded="false"
+                                            class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
+                                            <h6 class="title">Categories </h6>
+                                        </a> </header>
+                                    <div class="collapse" id="filter1">
+                                        <div class="">
+                                            <ul class="list-menu">
+                                                <li><a href="#" data-abc="true">Electronics </a></li>
+                                                <li><a href="#" data-abc="true">Watches </a></li>
+                                                <li><a href="#" data-abc="true">Laptops </a></li>
+                                                <li><a href="#" data-abc="true">Clothes </a></li>
+                                                <li><a href="#" data-abc="true">Accessories </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="filter-group">
+                                    <header>
+                                        <a href="#" data-toggle="collapse" data-target="#filter2"
+                                            data-abc="true" aria-expanded="false" class="collapsed"> <i
+                                                class="icon-control fa fa-chevron-down"></i>
+                                            <h6 class="title">Categories </h6>
+                                        </a> </header>
+                                    <div class="collapse" id="filter2">
+                                        <div class="">
+                                            <ul class="list-menu">
+                                                <li><a href="#" data-abc="true">Electronics </a></li>
+                                                <li><a href="#" data-abc="true">Watches </a></li>
+                                                <li><a href="#" data-abc="true">Laptops </a></li>
+                                                <li><a href="#" data-abc="true">Clothes </a></li>
+                                                <li><a href="#" data-abc="true">Accessories </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </article>
                             </div>
                         </div>
 
                     </div>
                 </div>
 
-                <div class="card col-lg-10 card-profile  shadow mt--300">
-                    <div class="row" style="padding:10px">
+                <div class="col-lg-9" style="margin-top:15px">
+                    <div class=" card row  card-profile  shadow nomt--300"
+                        style="padding:10px; margin-top:0px; flex-direction: row;">
                         <ng-container *ngFor="let user of allusers">
                             <div class="col-md-6" style="margin-bottom:15px; padding:0px">
                                 <div class="box-shadow shadow " style="margin-right:10px">
@@ -40,9 +70,7 @@
 
                                         <div class="col-4" style="padding:2px">
                                             <div class="card-img-left">
-                                                <!-- <img class="img img-thumbnail rounded"
-                                                    src="http://res.cloudinary.com/dz7rf4dd8/image/upload/v1583144531/n7rmhs4aitceeysxfslm.png"> -->
-                                                <img class="img img-thumbnail rounded" src={{user.imageUrl}} />
+                                                <img class="img img-thumbnail rounded" [src]="user.imageUrl" />
                                             </div>
                                         </div>
                                         <div class="col-8" style="padding:2px">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/service/profile.service';
 import { MapServiceService } from 'src/app/service/map-service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-view-profiles',
@@ -25,9 +26,11 @@ export class ViewProfilesComponent implements OnInit {
 
   allusers = []
 
-  constructor(private profileService: ProfileService, private mapService: MapServiceService) { }
+  constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+
+    this.spinner.show();
 
     this.profileService.getAllUsers().subscribe((result:any)=>{
 
@@ -38,10 +41,15 @@ export class ViewProfilesComponent implements OnInit {
         }
         r["maritalStatus"] = this.mapService.getMaritalStatusString(r["maritalStatus"]);
         this.allusers.push(r)
+        
       }
+
+      this.spinner.hide()
       
 
-    },error=>{})
+    },error=>{
+      this.spinner.hide()
+    })
   }
 
   calculateAge(date)

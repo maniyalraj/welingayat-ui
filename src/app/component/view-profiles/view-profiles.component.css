@@ -63,3 +63,23 @@ h5 {  font-size:0.9rem; line-height: 1; margin-bottom: 0px;}
   background: rgb(147,0,159);
 background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47%, rgba(213,226,255,1) 100%);
 }
+
+.custom-slider .ng5-slider .ng5-slider-pointer {
+  width: 8px;
+  height: 16px;
+  top: auto; /* to remove the default positioning */
+  bottom: 0;
+  background-color: #333;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-color: #333;
+}
+
+.ng5-slider .ng5-slider-pointer:after {
+  display: none;
+}
+
+.custom-slider .ng5-slider .ng5-slider-pointer.ng5-slider-active {
+  background: white;
+  
+}

@@ -1,58 +1,76 @@
 <main class="profile-page">
-    
+
     <section class="section">
         <div class="container" style="max-width: 100%;">
-            
+
             <div class="row">
                 <div class=" col-lg-3 d-lg-block nomt--300 pl-1 pr-1" style="margin-top:15px">
                     <div class="card shadow h-100" style="margin-top:0px">
+
                         <div class="row">
-                            <div class="col-12 nomt--300 pt-2 pb-2 d-block d-lg-none" data-toggle="collapse" data-target="#filter_box" data-abc="true"
-                            aria-expanded="false">
-                                <h5 class="d-inline" class="collapsed"> Filters <i
-                                        class="icon-control fa fa-chevron-down"></i></h5>
+                            <div class="col-12 nomt--300 pt-2 pb-2 d-block d-lg-none" data-toggle="collapse"
+                                data-target="#filter_box" data-abc="true" aria-expanded="false">
+                                <h5 class="d-inline" class="collapsed">
+                                    Filters
+                                    <i class="icon-control fa fa-chevron-down"></i>
+                                </h5>
                             </div>
                             <div class="col-md-12 d-none d-lg-block filter-header pt-2 pb-2">
-                                <h5 class="d-inline"> Filters </h5><span class="float-right clear-filter"> clear filters
+                                <h5 class="d-inline">
+                                    Filters
+                                </h5>
+                                <span class="float-right clear-filter">
+                                    clear filters
                                 </span>
                             </div>
                             <div class="col-md-12 d-lg-block filter-body pt-2 pb-2 collapse " id="filter_box">
                                 <article class="filter-group">
                                     <header>
-                                        <a href="#" data-toggle="collapse" data-target="#filter1" data-abc="true" aria-expanded="false"
-                                            class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
-                                            <h6 class="title">Categories </h6>
-                                        </a> </header>
-                                    <div class="collapse" id="filter1">
-                                        <div class="">
-                                            <ul class="list-menu">
-                                                <li><a href="#" data-abc="true">Electronics </a></li>
-                                                <li><a href="#" data-abc="true">Watches </a></li>
-                                                <li><a href="#" data-abc="true">Laptops </a></li>
-                                                <li><a href="#" data-abc="true">Clothes </a></li>
-                                                <li><a href="#" data-abc="true">Accessories </a></li>
-                                            </ul>
+
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input class="custom-control-input" id="heightFilter" type="checkbox"
+                                                [(ngModel)]="heightFilter">
+                                            <label class="custom-control-label" for="heightFilter">
+
+                                                <h6 class="title">Height (cms)
+                                                </h6>
+                                            </label>
                                         </div>
+                                        <div class="custom-slider" [hidden]="!heightFilter">
+                                            <ng5-slider [formControl]="heightControl" [options]="heightOptions">
+                                            </ng5-slider>
+                                        </div>
+
+                                    </header>
+                                    <div class="col-12">
+
                                     </div>
+                                    <!-- <div class="collapse" id="filter1">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
                                 </article>
                                 <article class="filter-group">
                                     <header>
-                                        <a href="#" data-toggle="collapse" data-target="#filter2"
-                                            data-abc="true" aria-expanded="false" class="collapsed"> <i
-                                                class="icon-control fa fa-chevron-down"></i>
-                                            <h6 class="title">Categories </h6>
-                                        </a> </header>
-                                    <div class="collapse" id="filter2">
-                                        <div class="">
-                                            <ul class="list-menu">
-                                                <li><a href="#" data-abc="true">Electronics </a></li>
-                                                <li><a href="#" data-abc="true">Watches </a></li>
-                                                <li><a href="#" data-abc="true">Laptops </a></li>
-                                                <li><a href="#" data-abc="true">Clothes </a></li>
-                                                <li><a href="#" data-abc="true">Accessories </a></li>
-                                            </ul>
+
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input class="custom-control-input" id="ageFilter" type="checkbox"
+                                                [(ngModel)]="ageFilter">
+                                            <label class="custom-control-label" for="ageFilter">
+
+                                                <h6 class="title">Age (years)
+                                                </h6>
+                                            </label>
                                         </div>
+                                        <div class="custom-slider" [hidden]="!ageFilter">
+                                            <ng5-slider [formControl]="ageFilterControl" [options]="ageFilterOptions">
+                                            </ng5-slider>
+                                        </div>
+
+                                    </header>
+                                    <div class="col-12">
+
                                     </div>
+                                    <!-- <div class="collapse" id="filter1">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
                                 </article>
                             </div>
                         </div>
@@ -76,17 +94,20 @@
                                         <div class="col-8" style="padding:2px">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <h5 class="text-truncate">{{user.firstName}} {{user.middleName}}
+                                                    <h5 class="text-truncate">{{user.firstName}}
+                                                        {{user.middleName}}
                                                         {{user.lastName}}</h5>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-6 text pr-0">
-                                                    <span class="d-none d-md-inline">Height:</span> {{user.heightInCms}}
+                                                    <span class="d-none d-md-inline">Height:</span>
+                                                    {{user.heightInCms}}
                                                     cms
                                                 </div>
                                                 <div class="col-6 text">
-                                                    <span class="d-none d-md-inline">Weight:</span> {{user.weightInKgs}}
+                                                    <span class="d-none d-md-inline">Weight:</span>
+                                                    {{user.weightInKgs}}
                                                     kgs
                                                 </div>
                                             </div>
@@ -95,14 +116,17 @@
                                                     {{user.maritalStatus}}
                                                 </div>
                                                 <div class="col-6 text pr-0">
-                                                    Age: {{user.age}} yrs
+                                                    Age:
+                                                    {{user.age}}
+                                                    yrs
                                                 </div>
 
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 text-truncate text pr-0" data-toggle="tooltip"
                                                     title="{{user.jobRole}}">
-                                                    Job : {{user.jobRole}}
+                                                    Job :
+                                                    {{user.jobRole}}
                                                 </div>
 
 
@@ -110,12 +134,15 @@
                                             <div class="row">
                                                 <div class="col-12 text-truncate text pr-0">
                                                     <span class="d-none d-md-inline">Qualification:
-                                                    </span>{{user.qualification}}
+                                                    </span>
+                                                    {{user.qualification}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 text pr-0">
-                                                    Salary: {{user.monthlyIncome}} Rs
+                                                    Salary:
+                                                    {{user.monthlyIncome}}
+                                                    Rs
                                                 </div>
                                             </div>
                                         </div>
@@ -133,6 +160,8 @@
     </section>
 </main>
 
-<ngx-spinner bdOpacity=0.2 bdColor="#333" size="large" color="#fff" type="ball-fussion" [fullScreen]="true">
-    <p style="color: white"> Loading... </p>
-  </ngx-spinner>
+<ngx-spinner bdOpacity="0.2" bdColor="#333" size="large" color="#fff" type="ball-fussion" [fullScreen]="true">
+    <p style="color: white">
+        Loading...
+    </p>
+</ngx-spinner>

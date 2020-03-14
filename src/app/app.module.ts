@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/header/header.component';
@@ -14,13 +14,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { LoginComponent } from './component/login/login.component';
-import {NavbarComponent} from './component/navbar/navbar.component'
-import {SectionsModule} from './component/sections/sections.module'
-import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatInputModule} from '@angular/material/input'
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NavbarComponent } from './component/navbar/navbar.component'
+import { SectionsModule } from './component/sections/sections.module'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {NouisliderModule} from "ng2-nouislider";
+import { NouisliderModule } from "ng2-nouislider";
 import { SignupComponent } from './component/signup/signup.component'
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -40,11 +40,13 @@ import { ProfilePicComponent } from './component/profile-pic/profile-pic.compone
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgbdModalContent } from './component/sections/modal/modal.component';
 
-import {NgxImageCompressService} from 'ngx-image-compress';
+import { NgxImageCompressService } from 'ngx-image-compress';
 
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ViewProfilesComponent } from './component/view-profiles/view-profiles.component';
 import { MinimumViewComponent } from './component/minimum-view/minimum-view.component';
+
+import { Ng5SliderModule } from 'ng5-slider';
 
 @NgModule({
   declarations: [
@@ -89,9 +91,10 @@ import { MinimumViewComponent } from './component/minimum-view/minimum-view.comp
     ImageCropperModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    Ng5SliderModule
   ],
   entryComponents: [NgbdModalContent],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}, NgxImageCompressService],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }, NgxImageCompressService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

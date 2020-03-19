@@ -45,7 +45,8 @@ export class ViewProfilesComponent implements OnInit {
 
     this.spinner.show();
 
-    this.profileService.getAllUsers().subscribe((result: any) => {
+
+    this.profileService.getAllUsers(this.getFilters()).subscribe((result: any) => {
 
       for (let r of result.content) {
         r.age = this.calculateAge(r.userPersonalDetails.dob)
@@ -75,9 +76,51 @@ export class ViewProfilesComponent implements OnInit {
   }
 
   applyFilter() {
-    console.log(this.heightControl)
-    console.log(this.ageFilterControl)
+    this.profileService.getAllUsers(this.getFilters()).subscribe((result: any) => {
+      this.allusers = []
+      for (let r of result.content) {
+        r.age = this.calculateAge(r.userPersonalDetails.dob)
+        if (r.userImages.imageUrl == null) {
+          r.userImages.imageUrl = "../../assets/images/blank-profile-picture.png"
+        }
+        r.userPersonalDetails.maritalStatus = this.mapService.getMaritalStatusString(r.userPersonalDetails.maritalStatus);
+        this.allusers.push(r)
+
+      }
+
+      this.spinner.hide()
+
+
+    }, error => {
+      this.spinner.hide()
+    })
 
   }
+
+  getFilters() {
+    let filter = {
+      "maxHeight": "0",
+      "maxAge": "0"
+    }
+    if (this.heightFilter) {
+      filter["minHeight"] = this.heightControl.value[0]
+      filter["maxHeight"] = this.heightControl.value[1]
+    }
+    else {
+      filter["maxHeight"] = "0"
+    }
+
+    if (this.ageFilter) {
+
+      filter["minAge"] = this.ageFilterControl.value[0]
+      filter["maxAge"] = this.ageFilterControl.value[1]
+    }
+    else {
+      filter["maxAge"] = "0"
+    }
+    return filter;
+  }
+
+
 
 }

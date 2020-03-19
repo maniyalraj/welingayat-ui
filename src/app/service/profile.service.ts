@@ -121,10 +121,10 @@ export class ProfileService {
     return this.post(url, data);
   }
 
-  getAllUsers() {
+  getAllUsers(data) {
     let url = this.baseImageUrl + "getAllUsers"
 
-    return this.post(url, {});
+    return this.post(url, data);
   }
 
   get(url) {

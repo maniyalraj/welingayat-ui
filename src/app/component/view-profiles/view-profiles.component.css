@@ -73,6 +73,7 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   border-color: #333;
+  z-index:2
 }
 
 .ng5-slider .ng5-slider-pointer:after {

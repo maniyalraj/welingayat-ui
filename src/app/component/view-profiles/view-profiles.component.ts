@@ -15,9 +15,9 @@ import { FormControl } from '@angular/forms';
 export class ViewProfilesComponent implements OnInit {
 
 
-  heightControl: FormControl = new FormControl([20, 80]);
+  heightControl: FormControl = new FormControl([150, 180]);
   heightOptions: Options = {
-    floor: 0,
+    floor: 90,
     ceil: 250
   };
 
@@ -25,7 +25,7 @@ export class ViewProfilesComponent implements OnInit {
 
   ageFilter: boolean = false
 
-  ageFilterControl: FormControl = new FormControl([20, 55]);
+  ageFilterControl: FormControl = new FormControl([20, 40]);
 
   ageFilterOptions: Options = {
     floor: 16,
@@ -47,12 +47,12 @@ export class ViewProfilesComponent implements OnInit {
 
     this.profileService.getAllUsers().subscribe((result: any) => {
 
-      for (let r of result) {
-        r["age"] = this.calculateAge(r["dob"])
-        if (r["imageUrl"] == null) {
-          r["imageUrl"] = "../../assets/images/blank-profile-picture.png"
+      for (let r of result.content) {
+        r.age = this.calculateAge(r.userPersonalDetails.dob)
+        if (r.userImages.imageUrl == null) {
+          r.userImages.imageUrl = "../../assets/images/blank-profile-picture.png"
         }
-        r["maritalStatus"] = this.mapService.getMaritalStatusString(r["maritalStatus"]);
+        r.userPersonalDetails.maritalStatus = this.mapService.getMaritalStatusString(r.userPersonalDetails.maritalStatus);
         this.allusers.push(r)
 
       }
@@ -72,6 +72,12 @@ export class ViewProfilesComponent implements OnInit {
     let timeDiff = Math.abs(Date.now() - new Date(date).getTime());
     let age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
     return age;
+  }
+
+  applyFilter() {
+    console.log(this.heightControl)
+    console.log(this.ageFilterControl)
+
   }
 
 }

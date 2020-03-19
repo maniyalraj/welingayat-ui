@@ -1,6 +1,7 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProfileService } from 'src/app/service/profile.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { EnumServiceService } from 'src/app/service/enum-service.service';
 
 @Component({
   selector: 'app-educational-form',
@@ -11,21 +12,23 @@ export class EducationalFormComponent implements OnInit {
 
   @Output() changeTabEvent = new EventEmitter<string>();
 
-  qualification:string="QUALIFICATION_SELECT"
-  otherQualification:string
-  nameOfInstitute:string
+  qualification: string = "QUALIFICATION_SELECT"
+  otherQualification: string
+  nameOfInstitute: string
 
-  constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
+  constructor(private profileService: ProfileService, private enumService: EnumServiceService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+
+
     this.spinner.show()
 
-    this.profileService.getEducationalDetails().subscribe(result=>{
+    this.profileService.getEducationalDetails().subscribe(result => {
       this.spinner.hide()
-      this.qualification = result["qualification"] != ""?result["qualification"] :"QUALIFICATION_SELECT";
-      this.otherQualification = result["other_qualification"] != ""?result["other_qualification"] :null;
-      this.nameOfInstitute =  result["institute"] != ""?result["institute"] :null;
-    },error=>{
+      this.qualification = result["qualification"] != "" ? result["qualification"] : "QUALIFICATION_SELECT";
+      this.otherQualification = result["other_qualification"] != "" ? result["other_qualification"] : null;
+      this.nameOfInstitute = result["institute"] != "" ? result["institute"] : null;
+    }, error => {
       this.spinner.hide()
       console.log(error)
     })
@@ -33,28 +36,28 @@ export class EducationalFormComponent implements OnInit {
   }
 
 
-  saveAndNext(){
-    let obj={
-      "qualification":this.qualification != "QUALIFICATION_SELECT"?this.qualification:"",
-      "other_qualification":this.otherQualification,
-      "institute":this.nameOfInstitute
+  saveAndNext() {
+    let obj = {
+      "qualification": this.qualification != "QUALIFICATION_SELECT" ? this.qualification : "",
+      "other_qualification": this.otherQualification,
+      "institute": this.nameOfInstitute
     }
 
-    this.profileService.saveEducationalDetails(obj).subscribe(result=>{
+    this.profileService.saveEducationalDetails(obj).subscribe(result => {
 
       console.log(result);
 
       this.changeTabEvent.emit();
 
-    },error=>{
+    }, error => {
       console.log(error)
     })
   }
 
-  skipAndNext(){
+  skipAndNext() {
     this.changeTabEvent.emit();
   }
 
-  
+
 
 }

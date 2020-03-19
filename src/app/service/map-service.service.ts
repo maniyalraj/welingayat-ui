@@ -6,15 +6,19 @@ import { Injectable } from '@angular/core';
 export class MapServiceService {
 
   maritalStatusMap = {
-    "MARITAL_STATUS_SINGLE":"Single"
+    "MARITAL_STATUS_SINGLE": "Single"
   }
 
   inverseMaritalStatusMap = {
-    "MARITAL_STATUS_SINGLE":"Single"
+    "MARITAL_STATUS_SINGLE": "Single"
   }
 
-  getMaritalStatusString(maritalStatus)
-  {
+  qualtificationMap = {
+    "QUALIFICATION_HSC": "HSC",
+
+  }
+
+  getMaritalStatusString(maritalStatus) {
     return this.maritalStatusMap[maritalStatus]
   }
 

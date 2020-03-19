@@ -4,6 +4,9 @@
             <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
                 <select class="browser-default custom-select" [(ngModel)]="bloodGroup">
                     <option selected value="BLOOD_GROUP_SELECTED">Select Blood Group</option>
+                    <!-- <ng-container *ngFor="let bgOptions of bloodGroupOptions">
+                        <option value="{{bgOptions.key}}">{{bgOptions.value}}</option>
+                    </ng-container> -->
                     <option value="BLOOD_GROUP_A_POS">A+</option>
                     <option value="BLOOD_GROUP_A_NEG">A-</option>
                     <option value="BLOOD_GROUP_B_POS">B+</option>

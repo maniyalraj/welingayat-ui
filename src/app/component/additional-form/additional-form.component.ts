@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProfileService } from 'src/app/service/profile.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -10,26 +10,26 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class AdditionalFormComponent implements OnInit {
   @Output() changeTabEvent = new EventEmitter<string>();
 
-  isSameAsCurrent:boolean=false;
+  isSameAsCurrent: boolean = false;
 
-  currentAddressLine1:string;
-  currentAddressLine2:string;
-  currentAddressCity:string;
-  currentAddressPin:number;
+  currentAddressLine1: string;
+  currentAddressLine2: string;
+  currentAddressCity: string;
+  currentAddressPin: number;
 
 
-  permanentAddressLine1:string;
-  permanentAddressLine2:string;
-  permanentAddressCity:string;
-  permanentAddressPin:number;
+  permanentAddressLine1: string;
+  permanentAddressLine2: string;
+  permanentAddressCity: string;
+  permanentAddressPin: number;
 
   constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.spinner.show();
+    this.spinner.show('loading');
 
-    this.profileService.getAdditionalDetails().subscribe(result=>{
-      this.spinner.hide();
+    this.profileService.getAdditionalDetails().subscribe(result => {
+      this.spinner.hide("loading");
       this.currentAddressCity = result["currentCity"]
       this.currentAddressLine1 = result["currentAddressLine1"]
       this.currentAddressLine2 = result["currentAddressLine2"]
@@ -40,16 +40,15 @@ export class AdditionalFormComponent implements OnInit {
       this.permanentAddressLine2 = result["permanentAddressLine2"]
       this.permanentAddressPin = result["permanentPinCode"]
 
-    },error=>{
-      this.spinner.hide();
-      
+    }, error => {
+      this.spinner.hide("loading");
+
       console.log(error);
     })
   }
 
-  checkAndCopy()
-  {
-    if(this.isSameAsCurrent == false){
+  checkAndCopy() {
+    if (this.isSameAsCurrent == false) {
 
       this.permanentAddressLine1 = this.currentAddressLine1;
       this.permanentAddressLine2 = this.currentAddressLine2;
@@ -58,8 +57,7 @@ export class AdditionalFormComponent implements OnInit {
 
 
     }
-    else
-    {
+    else {
       this.permanentAddressLine1 = null;
       this.permanentAddressLine2 = null;
       this.permanentAddressCity = null;
@@ -67,26 +65,28 @@ export class AdditionalFormComponent implements OnInit {
     }
   }
 
-  saveAndNext(){
+  saveAndNext() {
 
     let obj = {
-      "currentCity":this.currentAddressCity,
-      "currentAddressLine1":this.currentAddressLine1,
-      "currentAddressLine2":this.currentAddressLine2,
-      "currentPinCode":this.currentAddressPin,
+      "currentCity": this.currentAddressCity,
+      "currentAddressLine1": this.currentAddressLine1,
+      "currentAddressLine2": this.currentAddressLine2,
+      "currentPinCode": this.currentAddressPin,
 
-      "permanentCity":this.permanentAddressCity,
-      "permanentAddressLine1":this.permanentAddressLine1,
-      "permanentAddressLine2":this.permanentAddressLine2,
-      "permanentPinCode":this.permanentAddressPin,
+      "permanentCity": this.permanentAddressCity,
+      "permanentAddressLine1": this.permanentAddressLine1,
+      "permanentAddressLine2": this.permanentAddressLine2,
+      "permanentPinCode": this.permanentAddressPin,
 
 
     }
-
-    this.profileService.saveAdditionalDetails(obj).subscribe(result=>{
+    this.spinner.show("saving")
+    this.profileService.saveAdditionalDetails(obj).subscribe(result => {
       console.log(result)
-    },error=>{
+      this.spinner.hide("saving")
+    }, error => {
       console.log(error)
+      this.spinner.hide("saving")
     })
 
   }

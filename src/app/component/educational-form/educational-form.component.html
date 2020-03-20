@@ -4,9 +4,9 @@
             <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
                 <select class="browser-default custom-select" [(ngModel)]="qualification">
                     <option selected value="QUALIFICATION_SELECT">Qualification</option>
-                    <option value="QUALIFICATION_HSC">HSC</option>
-                    <option value="QUALIFICATION_BSC">BSC</option>
-                    <option value="QUALIFICATION_OTHER">Other</option>
+                    <ng-container *ngFor="let qualification of qualificationMap">
+                        <option value="{{qualification.key}}">{{qualification.value}}</option>
+                    </ng-container>
                 </select>
             </div>
         </div>

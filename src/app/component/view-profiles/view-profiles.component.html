@@ -1,7 +1,7 @@
-<main class="profile-page">
+<main class="profile-page" style="min-height: 100vh;">
 
     <section class="section">
-        <div class="container" style="max-width: 100%;">
+        <div class="container" style="max-width: 100%; margin:1px; padding:1px">
 
             <div class="row">
                 <div class=" col-lg-3 d-lg-block nomt--300 pl-1 pr-1" style="margin-top:15px">
@@ -72,6 +72,38 @@
                                     <!-- <div class="collapse" id="filter1">
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </div> -->
                                 </article>
+                                <article class="filter-group">
+                                    <header>
+
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input class="custom-control-input" id="salaryFilter" type="checkbox"
+                                                [(ngModel)]="salaryFilter">
+                                            <label class="custom-control-label" for="salaryFilter">
+
+                                                <h6 class="title">Monthly Salary (Rs)
+                                                </h6>
+                                            </label>
+                                        </div>
+                                        <div [hidden]="!salaryFilter">
+                                            <div class="form-group mb-3" [ngClass]="{'focused':focus_salary===true}">
+                                                <div class="input-group input-group-alternative">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-inr"></i></span>
+                                                    </div>
+                                                    <input class="form-control" [(ngModel)]="minSalary" name="minSalary"
+                                                        placeholder="Minimum Salary" type="number"
+                                                        (focus)="focus_salary=true" (blur)="focus_salary=false">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </header>
+                                    <div class="col-12">
+
+                                    </div>
+                                    <!-- <div class="collapse" id="filter1">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
+                                </article>
                                 <div class="text-center col-sm-6 col-lg-12">
                                     <button type="button" class="btn btn-primary my-4" (click)="applyFilter()">Apply
                                         Filter</button>
@@ -82,7 +114,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-9" style="margin-top:15px">
+                <div class="col-lg-9" style="margin-top:15px; padding:0px">
                     <div class=" card row  card-profile  shadow nomt--300"
                         style="padding:10px; margin-top:0px; flex-direction: row;">
                         <ng-container *ngFor="let user of allusers">
@@ -99,26 +131,27 @@
                                         <div class="col-8" style="padding:2px">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <h5 class="text-truncate">{{user.firstName}}
+                                                    <h5 class="text-truncate">{{user.lastName}}
+                                                        {{user.firstName}}
                                                         {{user.middleName}}
-                                                        {{user.lastName}}</h5>
+                                                    </h5>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-6 text pr-0">
                                                     <span class="d-none d-md-inline">Height:</span>
-                                                    {{user.userPersonalDetails.heightInCms}}
+                                                    {{user.userPersonalDetails?.heightInCms}}
                                                     cms
                                                 </div>
                                                 <div class="col-6 text">
                                                     <span class="d-none d-md-inline">Weight:</span>
-                                                    {{user.userPersonalDetails.weightInKgs}}
+                                                    {{user.userPersonalDetails?.weightInKgs}}
                                                     kgs
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-6 text">
-                                                    {{user.userPersonalDetails.maritalStatus}}
+                                                    {{user.userPersonalDetails?.maritalStatus}}
                                                 </div>
                                                 <div class="col-6 text pr-0">
                                                     Age:
@@ -131,7 +164,7 @@
                                                 <div class="col-12 text-truncate text pr-0" data-toggle="tooltip"
                                                     title="{{user.jobRole}}">
                                                     Job :
-                                                    {{user.userProfessionalDetails.jobRole}}
+                                                    {{user.userProfessionalDetails?.jobRole}}
                                                 </div>
 
 
@@ -140,13 +173,13 @@
                                                 <div class="col-12 text-truncate text pr-0">
                                                     <span class="d-none d-md-inline">Qualification:
                                                     </span>
-                                                    {{user.userEducationalDetails.qualification}}
+                                                    {{user.userEducationalDetails?.qualification}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 text pr-0">
                                                     Salary:
-                                                    {{user.userProfessionalDetails.monthlyIncome}}
+                                                    {{user.userProfessionalDetails?.monthlyIncome}}
                                                     Rs
                                                 </div>
                                             </div>
@@ -165,7 +198,8 @@
     </section>
 </main>
 
-<ngx-spinner bdOpacity="0.2" bdColor="#333" size="large" color="#fff" type="ball-fussion" [fullScreen]="true">
+<ngx-spinner bdOpacity="0.2" bdColor="#333" size="large" color="#fff" type="ball-fussion" [fullScreen]="true"
+    name="loading">
     <p style="color: white">
         Loading...
     </p>

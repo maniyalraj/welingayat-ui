@@ -23,54 +23,34 @@
       <div class="card card-profile shadow mt--300">
         <div class="px-4">
           <div class="row justify-content-center">
-            <div class="col-lg-3 order-lg-2">
-              <!-- <div class="card-profile-image"> -->
-                <!-- <a href="#">
-                  <img src="../assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
-                </a> -->
-                <div class="card-profile-image">
-      
-                  <img [src]="croppedImage" class="rounded-circle" [hidden]="userImagePresent=='false'"/>
-                  <img [src]="profileImageUrl" class="rounded-circle" [hidden]="userImagePresent=='true'"/>
+            <div class="col-lg-12">
+
+              <div class="card-profile-image">
+
+                <img [src]="croppedImage" class="rounded-circle" [hidden]="userImagePresent=='false'"
+                  (click)="open(classic3,'','')" />
+                <img [src]="profileImageUrl" class="rounded-circle" [hidden]="userImagePresent=='true'"
+                  (click)="open(classic3,'','')" />
               </div>
-              <!-- </div> -->
+
             </div>
-            <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
-              <div class="card-profile-actions py-4 mt-lg-0">
-                <a class="btn btn-sm btn-info mr-4" (click)="open(classic3,'','')">Edit</a>
-                <a href="#" class="btn btn-sm btn-default float-right disabled">Message</a>
-              </div>
-            </div>
-            <div class="col-lg-4 order-lg-1">
-              <div class="card-profile-stats d-flex justify-content-center">  
-                <!-- <div>
-                    <span class="heading">22</span>
-                    <span class="description">Friends</span>
-                  </div> -->
-                  <div>
-                    <span class="heading">10</span>
-                    <span class="description">Photos</span>
-                  </div>
-                  <!-- <div>
-                    <span class="heading">89</span>
-                    <span class="description">Comments</span>
-                  </div>  -->
-              </div>
-            </div>
+
           </div>
-          <div class="text-center mt-5 mb-5">
-            <h3>{{firstName}}, {{lastName}}<span class="font-weight-light">, 27</span></h3>
-            
+          <div class="col-lg-12"></div>
+          <div class=" col-lg-12 text-center" style="margin-top:125px">
+            <h3>{{firstName}}, {{lastName}}</h3>
+
           </div>
-          
+
           <div class="col-lg-12 order-lg-1">
-            <ngb-tabset [justify]="'center'" #t="ngbTabset" class="custom-tab-content flex-column flex-md-row" type="pills">
+            <ngb-tabset [justify]="'center'" #t="ngbTabset" class="custom-tab-content flex-column flex-md-row"
+              type="pills">
               <ngb-tab id="basic">
                 <ng-template ngbTabTitle>
                   Basic
                 </ng-template>
                 <ng-template ngbTabContent>
-                  <div class="card-body px-lg-5 py-lg-5"> 
+                  <div class="card-body px-lg-5 py-lg-5">
                     <app-basic-form (changeTabEvent)="t.select('personal')"></app-basic-form>
                   </div>
                 </ng-template>
@@ -112,7 +92,7 @@
                 </ng-template>
                 <ng-template ngbTabContent>
                   <!-- <div class="card-body px-lg-5 py-lg-5"> -->
-                    <app-family-form (changeTabEvent)="t.select('medical')"></app-family-form>
+                  <app-family-form (changeTabEvent)="t.select('medical')"></app-family-form>
                   <!-- </div> -->
                 </ng-template>
               </ngb-tab>
@@ -146,10 +126,15 @@
   </section>
 </main>
 
-<ngx-spinner bdOpacity=0.2 bdColor="#333" size="large" color="#fff" type="ball-fussion" [fullScreen]="true">
+<ngx-spinner bdOpacity=0.2 bdColor="#333" size="large" color="#fff" type="ball-fussion" [fullScreen]="true"
+  name="loading">
   <p style="color: white"> Loading... </p>
 </ngx-spinner>
 
+<ngx-spinner bdOpacity=0.2 bdColor="#333" size="medium" color="#fff" type="square-loader" [fullScreen]="true"
+  name="saving">
+  <p style="color: white"> Saving... </p>
+</ngx-spinner>
 
 <ng-template #classic3 let-c="close" let-d="dismiss">
   <div class="modal-content">
@@ -164,29 +149,22 @@
 
       <button (click)="uploadAndCompress()">Load Image</button>
 
-      <image-cropper #imgCropper   
-      [imageBase64]="imageBase64"
-      [imageChangedEvent]="imageChangedEvent" 
-      [maintainAspectRatio]="true" 
-      [aspectRatio]="1 / 1" 
-      [containWithinAspectRatio] = "true"
-      [cropperMinWidth]="180"
-      format="jpeg"
-      (imageCropped)="imageCropped($event)" 
-      (imageLoaded)="imageLoaded()" 
-      (cropperReady)="cropperReady()"
-      (loadImageFailed)="loadImageFailed()"></image-cropper>
+      <image-cropper #imgCropper [imageBase64]="imageBase64" [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true" [aspectRatio]="1 / 1" [containWithinAspectRatio]="true" [cropperMinWidth]="180"
+        format="jpeg" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+        (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
       <!-- <div class="form-group">
           <button class="btn btn-primary"  data-dismiss="modal" (click)="c('Close click')">Crop</button>
           <button class="btn btn-primary" (click)="rotate()">Rotate</button>
       </div> -->
-      
-      
+
+
     </div>
     <div class="modal-footer">
       <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="c('Close click')">Crop</button> -->
-      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="uploadImage();c('Close click')">Upload</button>
-      
+      <button type="button" class="btn btn-primary" data-dismiss="modal"
+        (click)="uploadImage();c('Close click')">Upload</button>
+
       <!-- <button type="button" class="btn btn-primary">Crop</button> -->
 
     </div>

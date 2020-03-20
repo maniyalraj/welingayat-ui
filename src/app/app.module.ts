@@ -35,7 +35,6 @@ import { MedicalFormComponent } from './component/medical-form/medical-form.comp
 import { AdditionalFormComponent } from './component/additional-form/additional-form.component';
 
 import { NgxSpinnerModule } from "ngx-spinner";
-import { ProfilePicComponent } from './component/profile-pic/profile-pic.component';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgbdModalContent } from './component/sections/modal/modal.component';
@@ -65,7 +64,6 @@ import { Ng5SliderModule } from 'ng5-slider';
     FamilyFormComponent,
     MedicalFormComponent,
     AdditionalFormComponent,
-    ProfilePicComponent,
     ViewProfilesComponent,
     MinimumViewComponent
   ],

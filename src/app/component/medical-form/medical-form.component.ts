@@ -21,35 +21,18 @@ export class MedicalFormComponent implements OnInit {
 
   ngOnInit() {
 
-    this.spinner.show();
-
-    // this.enumService.getEnumValues("BloodGroup").subscribe((result: any) => {
-    //   this.bloodGroupOptions = []
-
-    //   for (let k of Object.keys(result)) {
-    //     this.bloodGroupOptions.push({ "key": k, "value": result[k] })
-    // }
+    this.spinner.show('loading');
 
     this.profileService.getMedicalDetails().subscribe(result => {
-      this.spinner.hide();
+      this.spinner.hide('loading');
       this.bloodGroup = result["bloodGroup"],
         this.isDisabled = result["isDisabled"],
         this.typeOfDisability = result["typeOfDisability"]
     }, error => {
-      this.spinner.hide();
+      this.spinner.hide('loading');
 
       console.log(error)
     })
-
-    // }, error => {
-    //   this.spinner.hide();
-
-    // })
-
-
-
-
-
   }
 
   saveAndNext() {
@@ -59,12 +42,16 @@ export class MedicalFormComponent implements OnInit {
       "isDisabled": this.isDisabled,
       "typeOfDisability": this.typeOfDisability
     }
-
-    this.profileService.saveMedicalDetails(obj).subscribe(result => { }, error => {
+    this.spinner.show('saving')
+    this.profileService.saveMedicalDetails(obj).subscribe(result => {
+      this.spinner.hide('saving')
+      this.changeTabEvent.emit()
+    }, error => {
+      this.spinner.hide('saving')
       console.log(error)
     })
 
-    this.changeTabEvent.emit()
+
   }
 
   skipAndNext() {

@@ -47,20 +47,20 @@ export class FamilyFormComponent implements OnInit {
   }
 
   inverseProfessionMap = {
-    "Salaried":"JOB_TYPE_SALARIED",
+    "Salaried": "JOB_TYPE_SALARIED",
     "Business": "JOB_TYPE_BUSINESS",
     "Professional": "JOB_TYPE_PROFESSIONAL",
-    "Retired":"JOB_TYPE_RETIRED"
+    "Retired": "JOB_TYPE_RETIRED"
   }
 
   constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
 
-    this.spinner.show();
+    this.spinner.show('loading');
 
     this.profileService.getFamilyDetails().subscribe((result: any) => {
-      this.spinner.hide();
+      this.spinner.hide('loading');
 
       for (let r of result) {
         r.relation = this.relationMap[r.relation]
@@ -68,18 +68,10 @@ export class FamilyFormComponent implements OnInit {
         this.relations.push(r)
       }
     }, error => {
-      this.spinner.hide()
+      this.spinner.hide('loading')
       console.log(error)
     })
-    // this.relations.push({
-    //   "title":"Mr.",
-    //   "firstName":"Chandrakant",
-    //   "middleName":"Sannveerbhadrappa",
-    //   "lastName":"Maniyal",
-    //   "relation":"Father",
-    //   "profession":"Business",
-    //   "additionalDesc":"Owns a land in Belgaum"
-    // })
+
 
     this.resetDefaults();
 
@@ -96,10 +88,14 @@ export class FamilyFormComponent implements OnInit {
       "additionalDescription": this.additionalDescription
     }
 
-    this.profileService.saveFamilyDetails(obj).subscribe(result=>{
+    this.spinner.show('saving');
+    this.profileService.saveFamilyDetails(obj).subscribe(result => {
+      this.spinner.hide('saving');
       this.relations.push(obj);
       this.resetDefaults();
-    },error=>{
+    }, error => {
+      this.spinner.hide('saving');
+
       console.log(error)
     })
 
@@ -119,7 +115,7 @@ export class FamilyFormComponent implements OnInit {
 
   removeRelation(rel) {
     const index: number = this.relations.indexOf(rel);
-   
+
     if (index !== -1) {
       rel.relation = this.inverseRelationMap[rel.relation]
       rel.profession = this.inverseProfessionMap[rel.profession]

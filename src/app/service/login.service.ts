@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
-import {environment} from "../../environments/environment"
+import { HttpClient } from '@angular/common/http'
+import { environment } from "../../environments/environment"
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -9,28 +9,27 @@ import { BehaviorSubject } from 'rxjs';
 export class LoginService {
 
   url: string;
-  private isLoggedIn = new BehaviorSubject<Boolean>(false);
+  private isLoggedIn = new BehaviorSubject<boolean>(false);
   loggedInState$ = this.isLoggedIn.asObservable();
 
   constructor(private httpClient: HttpClient) {
     this.url = environment.serverUrl + "api/auth/signin";
   }
-  
-  login(userData){
+
+  login(userData) {
     let url = this.url
     return this.post(url, userData)
   }
 
-  get(url){
+  get(url) {
     return this.httpClient.get(url);
   }
 
-  post(url, data){
+  post(url, data) {
     return this.httpClient.post(url, data);
   }
 
-  changeLoginState(status:Boolean)
-  {
+  changeLoginState(status: boolean) {
     this.isLoggedIn.next(status);
   }
 

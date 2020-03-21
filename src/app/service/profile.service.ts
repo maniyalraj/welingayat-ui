@@ -122,7 +122,7 @@ export class ProfileService {
   }
 
   getAllUsers(data) {
-    let url = this.baseImageUrl + "getAllUsers"
+    let url = this.baseImageUrl + "getAllUsers?page=0&size=20"
 
     return this.post(url, data);
   }

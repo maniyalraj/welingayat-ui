@@ -31,7 +31,12 @@ export class ViewProfilesComponent implements OnInit {
   salaryFilter: boolean = false
   minSalary: any;
 
+  qualificationFilter: boolean = false
+  qualificationArray: any;
+
   allusers = []
+  qualificationMap: any;
+
 
   constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService) { }
 
@@ -41,6 +46,9 @@ export class ViewProfilesComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.qualificationMap = this.mapService.qualtificationMap;
+
 
     this.spinner.show('loading');
 
@@ -87,7 +95,8 @@ export class ViewProfilesComponent implements OnInit {
     let filter = {
       "maxHeight": "0",
       "maxAge": "0",
-      "minSalary": "0"
+      "minSalary": "0",
+      "qualification": null
     }
     if (this.heightFilter) {
       filter["minHeight"] = this.heightControl.value[0]
@@ -112,6 +121,14 @@ export class ViewProfilesComponent implements OnInit {
     else {
       filter["minSalary"] = "0"
     }
+
+    if (this.qualificationFilter) {
+      filter["qualification"] = this.qualificationArray
+    }
+    else {
+      filter["qualification"] = null
+    }
+
     return filter;
   }
 
@@ -134,6 +151,13 @@ export class ViewProfilesComponent implements OnInit {
       this.allusers.push(r)
 
     }
+  }
+
+  clearFilters() {
+    this.heightFilter = false
+    this.ageFilter = false
+    this.salaryFilter = false
+    this.qualificationFilter = false
   }
 
 

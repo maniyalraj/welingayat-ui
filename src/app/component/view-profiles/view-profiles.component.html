@@ -19,7 +19,8 @@
                                 <h5 class="d-inline">
                                     Filters
                                 </h5>
-                                <span class="float-right clear-filter">
+                                <span class="float-right clear-filter" style="cursor: pointer;"
+                                    (click)="clearFilters()">
                                     clear filters
                                 </span>
                             </div>
@@ -42,11 +43,6 @@
                                         </div>
 
                                     </header>
-                                    <div class="col-12">
-
-                                    </div>
-                                    <!-- <div class="collapse" id="filter1">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
                                 </article>
                                 <article class="filter-group">
                                     <header>
@@ -66,15 +62,9 @@
                                         </div>
 
                                     </header>
-                                    <div class="col-12">
-
-                                    </div>
-                                    <!-- <div class="collapse" id="filter1">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
                                 </article>
                                 <article class="filter-group">
                                     <header>
-
                                         <div class="custom-control custom-checkbox mb-3">
                                             <input class="custom-control-input" id="salaryFilter" type="checkbox"
                                                 [(ngModel)]="salaryFilter">
@@ -98,11 +88,31 @@
                                         </div>
 
                                     </header>
-                                    <div class="col-12">
+                                </article>
+                                <article class="filter-group">
+                                    <header>
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input class="custom-control-input" id="qualificationFilter" type="checkbox"
+                                                [(ngModel)]="qualificationFilter">
+                                            <label class="custom-control-label" for="qualificationFilter">
 
-                                    </div>
-                                    <!-- <div class="collapse" id="filter1">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
+                                                <h6 class="title">Qualification
+                                                </h6>
+                                            </label>
+                                        </div>
+                                        <div [hidden]="!qualificationFilter">
+                                            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                                                <select class="browser-default custom-select"
+                                                    [(ngModel)]="qualificationArray" multiple>
+                                                    <ng-container *ngFor="let qualification of qualificationMap">
+                                                        <option value="{{qualification.key}}">{{qualification.value}}
+                                                        </option>
+                                                    </ng-container>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </header>
                                 </article>
                                 <div class="text-center col-sm-6 col-lg-12">
                                     <button type="button" class="btn btn-primary my-4" (click)="applyFilter()">Apply
@@ -113,8 +123,14 @@
 
                     </div>
                 </div>
+                <div class="col-lg-9" style="margin-top:15px; padding:0px" [hidden]="allusers.length !=0">
+                    <div class=" card row  card-profile  shadow nomt--300"
+                        style="padding:10px; margin-top:0px; flex-direction: row; height:400px">
 
-                <div class="col-lg-9" style="margin-top:15px; padding:0px">
+                        <h1> <i class="fa fa-meh-o" aria-hidden="true"></i> No Users found.. Try adjusting filters</h1>
+                    </div>
+                </div>
+                <div class="col-lg-9" style="margin-top:15px; padding:0px" [hidden]="allusers.length ==0">
                     <div class=" card row  card-profile  shadow nomt--300"
                         style="padding:10px; margin-top:0px; flex-direction: row;">
                         <ng-container *ngFor="let user of allusers">

@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {LoginService} from "../../service/login.service"
+import { LoginService } from "../../service/login.service"
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -9,29 +10,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
-  private usernameOrEmail:string;
+
+  private usernameOrEmail: string;
   private password: string;
 
   @Output() loggedIn: EventEmitter<any> = new EventEmitter();
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }
 
-  login(){
+  login() {
     let userdata = {
-      "usernameOrEmail":this.usernameOrEmail,
+      "usernameOrEmail": this.usernameOrEmail,
       "password": this.password
     }
-    this.loginService.login(userdata).subscribe(result=>{
+
+    this.spinner.show('loading');
+
+    this.loginService.login(userdata).subscribe(result => {
       console.log(result);
+      this.spinner.hide('loading');
       localStorage.setItem("accessToken", result["accessToken"]);
       // alert("Login Success");
       this.loginService.changeLoginState(true);
       this.router.navigate(["/profile"]);
-    },error=>{
+    }, error => {
+      this.spinner.hide('loading')
       console.log(error);
       alert(error.error.message)
     });

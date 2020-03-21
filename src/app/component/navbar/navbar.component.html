@@ -28,29 +28,35 @@
       <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
         <li class="nav-item dropdown no-caret">
           <a [routerLink]="['/home']" class="nav-link">
-            <i class="fa fa-home d-lg-none"></i>
+            <i class="fa fa-home"></i>
             <span class="nav-link-inner--text">Home</span>
           </a>
         </li>
         <li class="nav-item dropdown no-caret">
           <a [routerLink]="['/viewProfiles']" class="nav-link">
-            <i class="fa fa-search d-lg-none"></i>
+            <i class="fa fa-search"></i>
             <span class="nav-link-inner--text">Find Matches</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown no-caret" [hidden]="!isLoggedIn">
+          <a [routerLink]="['/profile']" class="nav-link">
+            <i class="fa fa-search"></i>
+            <span class="nav-link-inner--text">My Profile</span>
           </a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-        <li class="nav-item" *ngIf="isLoggedIn">
+        <li class="nav-item" [hidden]="!isLoggedIn" (click)="logout()">
           <a class="nav-link nav-link-icon">
             <span class="nav-link-inner--text d-lg-none">Logout</span>
           </a>
         </li>
-        <li class="nav-item" *ngIf="!isLoggedIn">
+        <li class="nav-item" [hidden]="isLoggedIn">
           <a class="nav-link nav-link-icon">
             <span class="nav-link-inner--text d-lg-none">Sign in / Sign up</span>
           </a>
         </li>
-        <li class="nav-item d-none d-lg-block ml-lg-4" *ngIf="!isLoggedIn">
+        <li [hidden]="isLoggedIn" class="nav-item d-none d-lg-block ml-lg-4">
           <a [routerLink]="['/login']" class="btn btn-neutral btn-icon">
             <span class="btn-inner--icon">
               <i class="fa fa-sign-in mr-2"></i>
@@ -58,7 +64,7 @@
             <span class="nav-link-inner--text">Sign up / Login</span>
           </a>
         </li>
-        <li class="nav-item d-none d-lg-block ml-lg-4" *ngIf="isLoggedIn" (click)="logout()">
+        <li [hidden]="!isLoggedIn" class="nav-item d-none d-lg-block ml-lg-4" (click)="logout()">
           <a class="btn btn-neutral btn-icon">
             <span class="btn-inner--icon">
               <i class="fa fa-sign-out mr-2"></i>

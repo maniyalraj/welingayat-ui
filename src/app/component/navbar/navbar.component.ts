@@ -14,45 +14,48 @@ export class NavbarComponent implements OnInit {
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
 
-    private isLoggedIn: Boolean = false;
-    subscription:Subscription;
+    private isLoggedIn: boolean = false;
+    subscription: Subscription;
 
     constructor(public location: Location, private router: Router, private loginService: LoginService) {
     }
 
     ngOnInit() {
 
-        this.isLoggedIn = this.checkIsLoggedIn() != null ? true:false;
+        this.isLoggedIn = this.checkIsLoggedIn() != null ? true : false;
 
         this.subscription = this.loginService.loggedInState$
-       .subscribe(item => this.isLoggedIn = item);
+            .subscribe(item => {
+                this.isLoggedIn = item
+                this.isLoggedIn = this.checkIsLoggedIn() != null ? true : false;
+            });
 
-      this.router.events.subscribe((event) => {
-        this.isCollapsed = true;
-        if (event instanceof NavigationStart) {
-           if (event.url != this.lastPoppedUrl)
-               this.yScrollStack.push(window.scrollY);
-       } else if (event instanceof NavigationEnd) {
-           if (event.url == this.lastPoppedUrl) {
-               this.lastPoppedUrl = undefined;
-               window.scrollTo(0, this.yScrollStack.pop());
-           } else
-               window.scrollTo(0, 0);
-       }
-     });
-     this.location.subscribe((ev:PopStateEvent) => {
-         this.lastPoppedUrl = ev.url;
-     });
+        this.router.events.subscribe((event) => {
+            this.isCollapsed = true;
+            if (event instanceof NavigationStart) {
+                if (event.url != this.lastPoppedUrl)
+                    this.yScrollStack.push(window.scrollY);
+            } else if (event instanceof NavigationEnd) {
+                if (event.url == this.lastPoppedUrl) {
+                    this.lastPoppedUrl = undefined;
+                    window.scrollTo(0, this.yScrollStack.pop());
+                } else
+                    window.scrollTo(0, 0);
+            }
+        });
+        this.location.subscribe((ev: PopStateEvent) => {
+            this.lastPoppedUrl = ev.url;
+        });
     }
 
-    checkIsLoggedIn(){
+    checkIsLoggedIn() {
         return localStorage.getItem("accessToken");
     }
 
     isHome() {
         var titlee = this.location.prepareExternalUrl(this.location.path());
 
-        if( titlee === '#/home' ) {
+        if (titlee === '#/home') {
             return true;
         }
         else {
@@ -61,15 +64,15 @@ export class NavbarComponent implements OnInit {
     }
     isDocumentation() {
         var titlee = this.location.prepareExternalUrl(this.location.path());
-        if( titlee === '#/documentation' ) {
+        if (titlee === '#/documentation') {
             return true;
         }
         else {
             return false;
         }
     }
-    
-    logout(){
+
+    logout() {
         localStorage.removeItem("accessToken");
         this.isLoggedIn = false;
         this.router.navigate(["/home"]);

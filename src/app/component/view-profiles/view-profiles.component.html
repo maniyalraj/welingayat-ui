@@ -29,6 +29,45 @@
                                     <header>
 
                                         <div class="custom-control custom-checkbox mb-3">
+                                            <input class="custom-control-input" id="nameFilter" type="checkbox"
+                                                [(ngModel)]="nameFilter">
+                                            <label class="custom-control-label" for="nameFilter">
+
+                                                <h6 class="title">Filter by Name
+                                                </h6>
+                                            </label>
+                                        </div>
+                                        <div [hidden]="!nameFilter">
+                                            <div class="form-group mb-3" [ngClass]="{'focused':focus_fn===true}">
+                                                <div class="input-group input-group-alternative">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i
+                                                                class="fa fa-address-book"></i></span>
+                                                    </div>
+                                                    <input class="form-control" [(ngModel)]="firstName" name="firstName"
+                                                        placeholder="First Name" type="text" (focus)="focus_fn=true"
+                                                        (blur)="focus_fn=false">
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-3" [ngClass]="{'focused':focus_ln===true}">
+                                                <div class="input-group input-group-alternative">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i
+                                                                class="fa fa-address-book"></i></span>
+                                                    </div>
+                                                    <input class="form-control" [(ngModel)]="lastName" name="lastName"
+                                                        placeholder="Last Name" type="text" (focus)="focus_ln=true"
+                                                        (blur)="focus_ln=false">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </header>
+                                </article>
+                                <article class="filter-group">
+                                    <header>
+
+                                        <div class="custom-control custom-checkbox mb-3">
                                             <input class="custom-control-input" id="heightFilter" type="checkbox"
                                                 [(ngModel)]="heightFilter">
                                             <label class="custom-control-label" for="heightFilter">
@@ -96,7 +135,8 @@
                                                 [(ngModel)]="qualificationFilter">
                                             <label class="custom-control-label" for="qualificationFilter">
 
-                                                <h6 class="title">Qualification
+                                                <h6 class="title">Qualification <span class="d-none d-lg-block">(Ctrl +
+                                                        click for multi select)</span>
                                                 </h6>
                                             </label>
                                         </div>
@@ -109,6 +149,57 @@
                                                         </option>
                                                     </ng-container>
                                                 </select>
+                                            </div>
+                                        </div>
+
+                                    </header>
+                                </article>
+                                <article class="filter-group">
+                                    <header>
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input class="custom-control-input" id="jobTypeFilter" type="checkbox"
+                                                [(ngModel)]="jobTypeFilter">
+                                            <label class="custom-control-label" for="jobTypeFilter">
+
+                                                <h6 class="title">Job Type</h6>
+                                            </label>
+                                        </div>
+                                        <div [hidden]="!jobTypeFilter">
+                                            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                                                <select class="browser-default custom-select" [(ngModel)]="jobTypeArray"
+                                                    multiple>
+                                                    <ng-container *ngFor="let jobType of jobTypeMap">
+                                                        <option value="{{jobType.key}}">{{jobType.value}}
+                                                        </option>
+                                                    </ng-container>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </header>
+                                </article>
+                                <article class="filter-group">
+                                    <header>
+
+                                        <div class="custom-control custom-checkbox mb-3">
+                                            <input class="custom-control-input" id="cityFilter" type="checkbox"
+                                                [(ngModel)]="cityFilter">
+                                            <label class="custom-control-label" for="cityFilter">
+
+                                                <h6 class="title">Filter by City Name or PIN
+                                                </h6>
+                                            </label>
+                                        </div>
+                                        <div [hidden]="!cityFilter">
+                                            <div class="form-group mb-3" [ngClass]="{'focused':focus_city===true}">
+                                                <div class="input-group input-group-alternative">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-city"></i></span>
+                                                    </div>
+                                                    <input class="form-control" [(ngModel)]="cityNameOrPin"
+                                                        name="cityNameOrPin" placeholder="City Name or PIN Code"
+                                                        type="text" (focus)="focus_city=true" (blur)="focus_city=false">
+                                                </div>
                                             </div>
                                         </div>
 

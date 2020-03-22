@@ -34,8 +34,19 @@ export class ViewProfilesComponent implements OnInit {
   qualificationFilter: boolean = false
   qualificationArray: any;
 
+  nameFilter: boolean = false
+  firstName = ""
+  lastName = ""
+
+  jobTypeFilter: boolean = false
+  jobTypeArray: any;
+
+  cityFilter: boolean = false
+  cityNameOrPin = ""
+
   allusers = []
   qualificationMap: any;
+  jobTypeMap: any;
 
 
   constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService) { }
@@ -48,7 +59,7 @@ export class ViewProfilesComponent implements OnInit {
   ngOnInit() {
 
     this.qualificationMap = this.mapService.qualtificationMap;
-
+    this.jobTypeMap = this.mapService.jobTypeMap;
 
     this.spinner.show('loading');
 
@@ -96,8 +107,13 @@ export class ViewProfilesComponent implements OnInit {
       "maxHeight": "0",
       "maxAge": "0",
       "minSalary": "0",
-      "qualification": null
+      "qualification": null,
+      "firstName": "",
+      "lastName": "",
+      "jobType": null,
+      "cityNameOrPin": ""
     }
+
     if (this.heightFilter) {
       filter["minHeight"] = this.heightControl.value[0]
       filter["maxHeight"] = this.heightControl.value[1]
@@ -129,6 +145,39 @@ export class ViewProfilesComponent implements OnInit {
       filter["qualification"] = null
     }
 
+    if (this.nameFilter) {
+      if (this.firstName != "") {
+        filter["firstName"] = "%" + this.firstName + "%"
+      }
+      if (this.lastName != "") {
+        filter["lastName"] = "%" + this.lastName + "%"
+      }
+
+    }
+    else {
+      filter["firstName"] = ""
+      filter["lastName"] = ""
+    }
+
+    if (this.jobTypeFilter) {
+      filter["jobType"] = this.jobTypeArray
+    }
+    else {
+      filter["jobType"] = null
+    }
+
+    if (this.cityFilter) {
+      if (isNaN(this.cityNameOrPin)) {
+        filter["cityNameOrPin"] = "%" + this.cityNameOrPin + "%"
+      }
+      else {
+        filter["cityNameOrPin"] = this.cityNameOrPin
+      }
+
+    } else {
+      filter["cityNameOrPin"] = ""
+    }
+
     return filter;
   }
 
@@ -158,6 +207,9 @@ export class ViewProfilesComponent implements OnInit {
     this.ageFilter = false
     this.salaryFilter = false
     this.qualificationFilter = false
+    this.jobTypeFilter = false
+    this.nameFilter = false
+    this.cityFilter = false
   }
 
 

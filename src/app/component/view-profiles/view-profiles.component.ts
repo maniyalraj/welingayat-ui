@@ -167,7 +167,7 @@ export class ViewProfilesComponent implements OnInit {
     }
 
     if (this.cityFilter) {
-      if (isNaN(this.cityNameOrPin)) {
+      if (isNaN(this.cityNameOrPin as any)) {
         filter["cityNameOrPin"] = "%" + this.cityNameOrPin + "%"
       }
       else {

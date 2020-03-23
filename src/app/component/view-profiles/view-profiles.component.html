@@ -284,10 +284,15 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-12 text pr-0">
+                                                <div class="col-9 text pr-0">
                                                     Salary:
                                                     {{user.userProfessionalDetails?.monthlyIncome}}
                                                     Rs
+                                                </div>
+                                                <div class="col-3">
+                                                    <button class="btn btn-primary"
+                                                        (click)="open(classic3,'',''); quickView(user)"> Quick
+                                                        View</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -311,3 +316,24 @@
         Loading...
     </p>
 </ngx-spinner>
+
+<ng-template #classic3 let-c="close" let-d="dismiss">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 class="modal-title" id="modal-title-default">{{selectedUser.firstName}},{{selectedUser.lastName}}</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+
+
+
+        </div>
+        <div class="modal-footer">
+
+
+        </div>
+    </div>
+</ng-template>

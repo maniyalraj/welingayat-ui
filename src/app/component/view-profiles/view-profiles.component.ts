@@ -4,6 +4,7 @@ import { MapServiceService } from 'src/app/service/map-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Options } from 'ng5-slider'
 import { FormControl } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -48,8 +49,10 @@ export class ViewProfilesComponent implements OnInit {
   qualificationMap: any;
   jobTypeMap: any;
 
+  selectedUser: any;
+  closeResult: any;
 
-  constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService) { }
+  constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService, private modalService: NgbModal) { }
 
 
   ngAfterViewInit() {
@@ -210,6 +213,33 @@ export class ViewProfilesComponent implements OnInit {
     this.jobTypeFilter = false
     this.nameFilter = false
     this.cityFilter = false
+  }
+
+  quickView(user) {
+    this.selectedUser = user
+  }
+
+
+  open(content, type, modalDimension) {
+    if (modalDimension === 'sm' && type === 'modal_mini') {
+      this.modalService.open(content, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
+        this.closeResult = 'Closed with: $result';
+      }, (reason) => {
+        this.closeResult = 'Dismissed $this.getDismissReason(reason)';
+      });
+    } else if (modalDimension === '' && type === 'Notification') {
+      this.modalService.open(content, { windowClass: 'modal-danger', centered: true }).result.then((result) => {
+        this.closeResult = 'Closed with: $result';
+      }, (reason) => {
+        this.closeResult = 'Dismissed $this.getDismissReason(reason)';
+      });
+    } else {
+      this.modalService.open(content, { centered: true }).result.then((result) => {
+        this.closeResult = 'Closed with: $result';
+      }, (reason) => {
+        this.closeResult = 'Dismissed $this.getDismissReason(reason)';
+      });
+    }
   }
 
 

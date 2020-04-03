@@ -59,10 +59,10 @@ h5 {  font-size:0.9rem; line-height: 1; margin-bottom: 0px;}
   margin-top:15px
 }
 
-.profile-page{
+/* .profile-page{
   background: rgb(147,0,159);
 background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47%, rgba(213,226,255,1) 100%);
-}
+} */
 
 .custom-slider .ng5-slider .ng5-slider-pointer {
   width: 8px;
@@ -83,4 +83,14 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
 .custom-slider .ng5-slider .ng5-slider-pointer.ng5-slider-active {
   background: white;
   
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.user-card
+{
+  background: white !important;
+  border-radius:5px;
 }

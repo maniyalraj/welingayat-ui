@@ -1,15 +1,30 @@
 h5 {  font-size:1rem; line-height: 1; margin-bottom: 0px;}
 .text {  font-size:0.75rem; white-space: nowrap;}
 .search-view-image{
-  max-width: 100%;
+  max-width: 100px;
+  max-height: 100px;
 }
+
+.padding-sm-zero{
+  padding: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important
+}
+
 /* Small devices (landscape phones, 544px and up) */
 @media screen and (min-width: 544px) {  
     h5 {font-size:1rem ; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem; white-space: nowrap;}
     .search-view-image{
-      max-width: 100%;
+      max-width: 100px;
+      max-height: 100px;
     }
+    .padding-sm-zero{
+      padding: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important
+    }
+
   }
    
   /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -17,7 +32,13 @@ h5 {  font-size:1rem; line-height: 1; margin-bottom: 0px;}
     h5 {font-size:1rem; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem; white-space: nowrap;}
     .search-view-image{
-      max-width: 100%;
+      max-width: 100px;
+  max-height: 100px;
+    }
+    .padding-sm-zero{
+      padding: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important
     }
   }
    
@@ -27,6 +48,10 @@ h5 {  font-size:1rem; line-height: 1; margin-bottom: 0px;}
     .text {  font-size:0.75rem; white-space: nowrap;}
     .search-view-image{
       max-width: 200px;
+      max-height: 200px;
+    }
+    .padding-md{
+      padding:10px; padding-top:0px; 
     }
   }
    
@@ -36,6 +61,10 @@ h5 {  font-size:1rem; line-height: 1; margin-bottom: 0px;}
     .text {  font-size:0.9rem; white-space: nowrap;}
     .search-view-image{
       max-width: 200px;
+      max-height: 200px;
+    }
+    .padding-md{
+      padding:10px; padding-top:0px; 
     }
   }
    

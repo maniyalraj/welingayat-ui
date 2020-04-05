@@ -1,6 +1,8 @@
 h5 {  font-size:1rem; line-height: 1; margin-bottom: 0px;}
 .text {  font-size:0.75rem; white-space: nowrap;}
-
+.search-view-image{
+  max-width: 100%;
+}
 /* Small devices (landscape phones, 544px and up) */
 @media screen and (min-width: 544px) {  
     h5 {font-size:1rem ; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
@@ -11,6 +13,9 @@ h5 {  font-size:1rem; line-height: 1; margin-bottom: 0px;}
   @media screen and (min-width: 768px) {  
     h5 {font-size:1rem; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem; white-space: nowrap;}
+    .search-view-image{
+      max-width: 200px;
+    }
   }
    
   /* Large devices (desktops, 992px and up) */
@@ -92,5 +97,6 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
 .user-card
 {
   background: white !important;
-  border-radius:5px;
+  border-radius:25px;
 }
+

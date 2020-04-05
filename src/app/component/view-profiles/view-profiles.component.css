@@ -7,6 +7,9 @@ h5 {  font-size:1rem; line-height: 1; margin-bottom: 0px;}
 @media screen and (min-width: 544px) {  
     h5 {font-size:1rem ; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem; white-space: nowrap;}
+    .search-view-image{
+      max-width: 100%;
+    }
   }
    
   /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -14,7 +17,7 @@ h5 {  font-size:1rem; line-height: 1; margin-bottom: 0px;}
     h5 {font-size:1rem; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem; white-space: nowrap;}
     .search-view-image{
-      max-width: 200px;
+      max-width: 100%;
     }
   }
    
@@ -22,12 +25,18 @@ h5 {  font-size:1rem; line-height: 1; margin-bottom: 0px;}
   @media (min-width: 992px) { 
     h5 {font-size:1rem; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem; white-space: nowrap;}
+    .search-view-image{
+      max-width: 200px;
+    }
   }
    
   /* Extra large devices (large desktops, 1200px and up) */
   @media (min-width: 1200px) {  
     h5 {font-size:1.5rem; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/    
     .text {  font-size:0.9rem; white-space: nowrap;}
+    .search-view-image{
+      max-width: 200px;
+    }
   }
    
 .filter-header{

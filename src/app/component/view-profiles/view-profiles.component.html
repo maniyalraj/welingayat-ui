@@ -10,15 +10,15 @@
                         <div class="row" style="background:white; border-radius:5px">
                             <div class="col-12 nomt--300 pt-2 pb-2 d-block d-lg-none" data-toggle="collapse"
                                 data-target="#filter_box" data-abc="true" aria-expanded="false">
-                                <h5 class="d-inline" class="collapsed">
+                                <h6 class="d-inline" class="collapsed">
                                     Filters
                                     <i class="icon-control fa fa-chevron-down"></i>
-                                </h5>
+                                </h6>
                             </div>
                             <div class="col-md-12 d-none d-lg-block filter-header pt-2 pb-2">
-                                <h5 class="d-inline">
+                                <h6 class="d-inline">
                                     Filters
-                                </h5>
+                                </h6>
                                 <span class="float-right clear-filter" style="cursor: pointer;"
                                     (click)="clearFilters()">
                                     clear filters
@@ -229,16 +229,16 @@
                                 <div class="box-shadow shadow " style="margin-left:10px; margin-right:10px">
                                     <div class="row user-card" style="padding:10px; margin-right:0px; margin-left:0px">
 
-                                        <div class="col-4 col-md-12 d-flex justify-content-center" style="padding:2px">
+                                        <div class="col-12 d-flex justify-content-center" style="padding:2px">
                                            
                                                 <img class="img img-thumbnail rounded rounded-circle search-view-image"
                                                     [src]="user.userImages.imageUrl"/>
                                             
                                         </div>
-                                        <div class="col-8 col-md-12" style="padding:2px">
+                                        <div class="col-12" style="padding:2px">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <h5 class="text-truncate">{{user.lastName}}
+                                                    <h5 class="text-truncate text-center">{{user.lastName}}
                                                         {{user.firstName}}
                                                         {{user.middleName}}
                                                     </h5>

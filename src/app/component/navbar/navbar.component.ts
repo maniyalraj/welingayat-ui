@@ -76,5 +76,6 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem("accessToken");
         this.isLoggedIn = false;
         this.router.navigate(["/home"]);
+        this.loginService.changeLoginState(false);
     }
 }

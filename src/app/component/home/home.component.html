@@ -18,18 +18,28 @@
       <div class="container shape-container d-flex align-items-center py-lg">
         <div class="col px-0">
           <div class="row align-items-center justify-content-center">
-            <div class="col-lg-6 text-center">
-              <p class="h1 text-white"> VeerShaiv Lingayat Community Thane </p>
+            <div class="col-12 text-center">
+              <p class="h1 text-white" style="text-transform: uppercase; letter-spacing: 5px; font-weight: bold;"> VeerShaiv Lingayat Thane </p>
               <p class="lead text-white">
                 Welcomes all lingayat to come and join
               </p>
-              <p class="lead text-white">
-                Please <span> <strong> <u><a [routerLink]="['/signup']" class="text-white ">sign up</a> </u>
-                  </strong></span> to create your profile or <span> <strong> <u> <a [routerLink]="['/login']"
-                        class="text-white ">login</a></u></strong> </span> to view
-              </p>
-
             </div>
+            <div [hidden]="isLoggedIn">
+              <a [routerLink]="['/login']" class="btn btn-neutral btn-icon">
+                <span class="btn-inner--icon">
+                  <i class="fa fa-sign-in mr-2"></i>
+                </span>
+                <span class="nav-link-inner--text"> Login</span>
+              </a>
+              <a [routerLink]="['/signup']" class="btn btn-neutral btn-icon">
+                <span class="btn-inner--icon">
+                  <i class="fa fa-sign-in mr-2"></i>
+                </span>
+                <span class="nav-link-inner--text"> Register</span>
+              </a>
+            </div>
+
+            
           </div>
         </div>
       </div>

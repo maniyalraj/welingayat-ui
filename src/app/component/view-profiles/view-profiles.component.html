@@ -246,25 +246,21 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-6 text pr-0">
-                                                    <span class="d-none d-md-inline">Height:</span>
+                                                    <span class="d-md-inline">Height:</span>
                                                     {{user.userPersonalDetails?.heightInCms}}
                                                     cms
                                                 </div>
-                                                <div class="col-6 text">
-                                                    <span class="d-none d-md-inline">Weight:</span>
-                                                    {{user.userPersonalDetails?.weightInKgs}}
-                                                    kgs
+                                                <div class="col-6 text text-right">
+                                                    {{user.age}}, {{user.userPersonalDetails?.maritalStatus}}
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-6 text">
-                                                    {{user.userPersonalDetails?.maritalStatus}}
+                                                <div class="col-12 text">
+                                                    <span class="d-md-inline">Weight:</span>
+                                                    {{user.userPersonalDetails?.weightInKgs}}
+                                                    kgs
                                                 </div>
-                                                <div class="col-6 text pr-0">
-                                                    Age:
-                                                    {{user.age}}
-                                                    yrs
-                                                </div>
+                                                
 
                                             </div>
                                             <div class="row">
@@ -278,7 +274,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 text-truncate text pr-0">
-                                                    <span class="d-none d-md-inline">Qualification:
+                                                    <span class="d-md-inline">Qualification:
                                                     </span>
                                                     {{user.userEducationalDetails?.qualification}}
                                                 </div>

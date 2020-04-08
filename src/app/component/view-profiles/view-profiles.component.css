@@ -1,6 +1,6 @@
 h5 {  
   font-size:1.3rem; 
-  line-height: 1; 
+  line-height: inherit; 
   margin-bottom: 0px;
   font-weight: bold;
 
@@ -19,7 +19,7 @@ h5 {
 
 /* Small devices (landscape phones, 544px and up) */
 @media screen and (min-width: 544px) {  
-    h5 {font-size:1.3rem ; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
+    h5 {font-size:1.3rem ; margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem; white-space: nowrap;}
     .search-view-image{
       max-width: 200px;
@@ -35,7 +35,7 @@ h5 {
    
   /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
   @media screen and (min-width: 768px) {  
-    h5 {font-size:1.3rem; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
+    h5 {font-size:1.3rem;  margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem; white-space: nowrap;}
     .search-view-image{
       max-width: 200px;
@@ -50,7 +50,7 @@ h5 {
    
   /* Large devices (desktops, 992px and up) */
   @media (min-width: 992px) { 
-    h5 {font-size:1.3rem; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/
+    h5 {font-size:1.3rem;  margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem; white-space: nowrap;}
     .search-view-image{
       max-width: 200px;
@@ -63,7 +63,7 @@ h5 {
    
   /* Extra large devices (large desktops, 1200px and up) */
   @media (min-width: 1200px) {  
-    h5 {font-size:1.5rem; line-height: 1; margin-bottom: 0px;} /*1rem = 16px*/    
+    h5 {font-size:1.5rem;  margin-bottom: 0px;} /*1rem = 16px*/    
     .text {  font-size:0.9rem; white-space: nowrap;}
     .search-view-image{
       max-width: 200px;

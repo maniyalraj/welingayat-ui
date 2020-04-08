@@ -195,9 +195,18 @@ export class ViewProfilesComponent implements OnInit {
       if (r.userImages == null || r.userImages.imageUrl == null) {
         r.userImages = { "imageUrl": "../../assets/images/blank-profile-picture.png" }
       }
+
+      this.mapService.qualtificationMap
+      
       if (r.userEducationalDetails != null && r.userEducationalDetails.qualification == "QUALIFICATION_OTHER") {
         r.userEducationalDetails.qualification = r.userEducationalDetails.other_qualification
       }
+      
+      if(r.userEducationalDetails.qualification){
+        r.userEducationalDetails.qualification = r.userEducationalDetails.qualification.replace("QUALIFICATION_","")
+      }
+      
+
 
 
       this.allusers.push(r)

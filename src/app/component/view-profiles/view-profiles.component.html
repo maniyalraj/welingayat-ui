@@ -225,15 +225,17 @@
                     <div class="row nomt--300 padding-sm-zero padding-md"
                         style="margin-top:0px; flex-direction: row ; background: none;">
                         <ng-container *ngFor="let user of allusers">
-                            <div class="col-md-4 padding-sm-zero" style="margin-bottom:15px; padding:0px; padding-left:10px; padding-right:10px ">
+                            <div class="col-md-4 padding-sm-zero"
+                                style="margin-bottom:15px; padding:0px; padding-left:10px; padding-right:10px ">
                                 <div class="" style="margin-left:10px; margin-right:10px">
-                                    <div class="row user-card box-shadow shadow " style="padding:10px; margin-right:0px; margin-left:0px">
+                                    <div class="row user-card box-shadow shadow "
+                                        style="padding:10px; margin-right:0px; margin-left:0px">
 
                                         <div class="col-12 d-flex justify-content-center" style="padding:2px">
-                                           
-                                                <img class="img img-thumbnail rounded rounded-circle search-view-image"
-                                                    [src]="user.userImages.imageUrl"/>
-                                            
+
+                                            <img class="img img-thumbnail rounded rounded-circle search-view-image"
+                                                [src]="user.userImages.imageUrl" />
+
                                         </div>
                                         <div class="col-12" style="padding:2px">
                                             <div class="row">
@@ -246,7 +248,10 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-6 text pr-0">
-                                                    <span class="d-md-inline">Height:</span>
+                                                    <span class="d-md-inline">
+                                                        <div class="icon-div"><i class="fas fa-arrows-alt-v"></i></div>
+                                                        Height:
+                                                    </span>
                                                     {{user.userPersonalDetails?.heightInCms}}
                                                     cms
                                                 </div>
@@ -256,17 +261,21 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 text">
-                                                    <span class="d-md-inline">Weight:</span>
+                                                    <span class="d-md-inline"> 
+                                                        <div class="icon-div"><i class="fas fa-weight"></i></div>
+                                                        Weight:</span>
                                                     {{user.userPersonalDetails?.weightInKgs}}
                                                     kgs
                                                 </div>
-                                                
+
 
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 text-truncate text pr-0" data-toggle="tooltip"
                                                     title="{{user.jobRole}}">
-                                                    Job :
+                                                    <span class="d-md-inline">
+                                                        <div class="icon-div"><i class="fas fa-briefcase"></i></div>
+                                                        Job :</span>
                                                     {{user.userProfessionalDetails?.jobRole}}
                                                 </div>
 
@@ -274,14 +283,18 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 text-truncate text pr-0">
-                                                    <span class="d-md-inline">Qualification:
+                                                    <span class="d-md-inline">
+                                                        <div class="icon-div"><i
+                                                            class="fas fa-university"></i></div>Qualification:
                                                     </span>
                                                     {{user.userEducationalDetails?.qualification}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-9 text pr-0">
-                                                    Salary:
+                                                    <span class="d-md-inline">
+                                                        <div class="icon-div"><i class="fas fa-rupee-sign"></i></div>
+                                                        Salary:</span>
                                                     {{user.userProfessionalDetails?.monthlyIncome}}
                                                     Rs
                                                 </div>

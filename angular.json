@@ -27,9 +27,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "node_modules/argon-design-system-free/assets/scss/argon.scss",
-              "node_modules/argon-design-system-free/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css",
-              "node_modules/argon-design-system-free/assets/vendor/nucleo/css/nucleo.css",
-              "node_modules/argon-design-system-free/assets/vendor/nucleo/css/nucleo-svg.css"
+              "node_modules/argon-design-system-free/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css"
 
             ],
             "scripts": [          

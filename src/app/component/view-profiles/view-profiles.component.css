@@ -145,3 +145,18 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
   border: 1.5px solid #0986fa;
 }
 
+
+.icon-div{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    /* background-color: grey; */
+    border-radius: 100%;
+    color:#127fee;
+    /* padding: 5px; */
+    margin-right: 5px;
+    font-size:small
+   
+}

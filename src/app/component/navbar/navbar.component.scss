@@ -1,3 +1,38 @@
 [hidden]{
     display: none !important;
 }
+
+.navbar-brand img{
+    height:40px
+}
+
+.navbar-brand p{
+    font-weight: bold;
+}
+
+.collapse-brand a{
+    font-weight: bold;
+    color: black !important;
+}
+
+.container{
+    z-index: 10;
+}
+
+.navbar-transparent{
+    position: relative !important;
+}
+
+.wave-container{
+    width: 100%;
+    z-index: 9;
+    left:0;
+    top:0;
+    position: absolute;
+}
+
+.wave-container svg{
+    height: 125px;
+    width: 100%;
+    
+}

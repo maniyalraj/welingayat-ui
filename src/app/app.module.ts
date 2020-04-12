@@ -47,6 +47,8 @@ import { MinimumViewComponent } from './component/minimum-view/minimum-view.comp
 
 import { Ng5SliderModule } from 'ng5-slider';
 
+import { HeadroomModule } from '@ctrl/ngx-headroom';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +91,8 @@ import { Ng5SliderModule } from 'ng5-slider';
     ImageCropperModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    HeadroomModule
   ],
   entryComponents: [NgbdModalContent],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }, NgxImageCompressService],

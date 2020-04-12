@@ -141,6 +141,7 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
 .user-card
 {
   background: white !important;
-  border-radius:25px;
+  border-radius:2rem;
+  border: 1px solid #0986fa;
 }
 

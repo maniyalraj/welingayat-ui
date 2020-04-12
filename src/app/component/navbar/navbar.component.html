@@ -1,78 +1,112 @@
+<ngx-headroom>
+  <!-- 
 <nav id="navbar-main"
-  class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
-  <div class="container">
-    <a class="navbar-brand mr-lg-5" [routerLink]="['/home']">
-      <img src="./assets/img/brand/argon-white.png">
-    </a>
-    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
-      [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse" id="navbar_global" [ngbCollapse]="isCollapsed">
-      <div class="navbar-collapse-header">
-        <div class="row">
-          <div class="col-6 collapse-brand">
-            <a [routerLink]="['/home']">
-              <img src="./assets/img/brand/blue.png">
-            </a>
-          </div>
-          <div class="col-6 collapse-close">
-            <button type="button" class="navbar-toggler" (click)="isCollapsed = !isCollapsed"
-              [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
-              <span></span>
-              <span></span>
-            </button>
+  class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned"> -->
+
+
+  <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light">
+    <div class="container">
+
+      <a class="navbar-brand mr-lg-5" [routerLink]="['/home']">
+        <!-- <img src="./assets/img/brand/argon-white.png"> -->
+        <img src="./assets/img/brand/lingayat-logo.svg" />
+        VEERSHAIV LINGAYAT
+      </a>
+
+      <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-collapse collapse" id="navbar_global" [ngbCollapse]="isCollapsed">
+
+        <div class="navbar-collapse-header">
+
+          <div class="row">
+
+            <div class="col-10 collapse-brand">
+              <a [routerLink]="['/home']">
+                <!-- <img src="./assets/img/brand/blue.png"> -->
+                <img src="./assets/img/brand/lingayat-logo.svg" />
+                VEERSHAIV LINGAYAT
+              </a>
+            </div>
+
+            <div class="col-2 collapse-close">
+              <button type="button" class="navbar-toggler" (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+
           </div>
         </div>
+
+        <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+          <li class="nav-item dropdown no-caret">
+            <a [routerLink]="['/home']" class="nav-link">
+              <i class="fa fa-home"></i>
+              <span class="nav-link-inner--text">Home</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown no-caret">
+            <a [routerLink]="['/viewProfiles']" class="nav-link">
+              <i class="fa fa-search"></i>
+              <span class="nav-link-inner--text">Find Matches</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown no-caret" [hidden]="!isLoggedIn">
+            <a [routerLink]="['/profile']" class="nav-link">
+              <i class="fa fa-search"></i>
+              <span class="nav-link-inner--text">My Profile</span>
+            </a>
+          </li>
+        </ul>
+
+        
+        <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+          <li class="nav-item" [hidden]="!isLoggedIn" (click)="logout()">
+            <a class="nav-link nav-link-icon">
+              <span class="nav-link-inner--text d-lg-none">Logout</span>
+            </a>
+          </li>
+          <li class="nav-item" [hidden]="isLoggedIn">
+            <a class="nav-link nav-link-icon" [routerLink]="['/login']">
+              <span class="nav-link-inner--text d-lg-none">Sign in / Sign up</span>
+            </a>
+          </li>
+          <li [hidden]="isLoggedIn" class="nav-item d-none d-lg-block ml-lg-4">
+            <a [routerLink]="['/login']" class="btn btn-neutral btn-icon">
+              <span class="btn-inner--icon">
+                <i class="fa fa-sign-in mr-2"></i>
+              </span>
+              <span class="nav-link-inner--text">Sign up / Login</span>
+            </a>
+          </li>
+          <li [hidden]="!isLoggedIn" class="nav-item d-none d-lg-block ml-lg-4" (click)="logout()">
+            <a class="btn btn-neutral btn-icon">
+              <span class="btn-inner--icon">
+                <i class="fa fa-sign-out mr-2"></i>
+              </span>
+              <span class="nav-link-inner--text">Logout</span>
+            </a>
+          </li>
+        </ul>
       </div>
-      <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-        <li class="nav-item dropdown no-caret">
-          <a [routerLink]="['/home']" class="nav-link">
-            <i class="fa fa-home"></i>
-            <span class="nav-link-inner--text">Home</span>
-          </a>
-        </li>
-        <li class="nav-item dropdown no-caret">
-          <a [routerLink]="['/viewProfiles']" class="nav-link">
-            <i class="fa fa-search"></i>
-            <span class="nav-link-inner--text">Find Matches</span>
-          </a>
-        </li>
-        <li class="nav-item dropdown no-caret" [hidden]="!isLoggedIn">
-          <a [routerLink]="['/profile']" class="nav-link">
-            <i class="fa fa-search"></i>
-            <span class="nav-link-inner--text">My Profile</span>
-          </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-        <li class="nav-item" [hidden]="!isLoggedIn" (click)="logout()">
-          <a class="nav-link nav-link-icon">
-            <span class="nav-link-inner--text d-lg-none">Logout</span>
-          </a>
-        </li>
-        <li class="nav-item" [hidden]="isLoggedIn">
-          <a class="nav-link nav-link-icon" [routerLink]="['/login']">
-            <span class="nav-link-inner--text d-lg-none">Sign in / Sign up</span>
-          </a>
-        </li>
-        <li [hidden]="isLoggedIn" class="nav-item d-none d-lg-block ml-lg-4">
-          <a [routerLink]="['/login']" class="btn btn-neutral btn-icon">
-            <span class="btn-inner--icon">
-              <i class="fa fa-sign-in mr-2"></i>
-            </span>
-            <span class="nav-link-inner--text">Sign up / Login</span>
-          </a>
-        </li>
-        <li [hidden]="!isLoggedIn" class="nav-item d-none d-lg-block ml-lg-4" (click)="logout()">
-          <a class="btn btn-neutral btn-icon">
-            <span class="btn-inner--icon">
-              <i class="fa fa-sign-out mr-2"></i>
-            </span>
-            <span class="nav-link-inner--text">Logout</span>
-          </a>
-        </li>
-      </ul>
+
     </div>
-  </div>
-</nav>
+    <!-- Generated by https://smooth.ie/blogs/news/svg-wavey-transitions-between-sections -->
+    <div class="wave-container">
+      
+      <svg viewBox="0 0 500 150" preserveAspectRatio="none" shape-rendering="auto">
+        <path d="M-5.36,103.13 C102.99,21.20 484.47,138.64 555.01,50.81 L500.00,0.00 L0.00,0.00 Z"
+          style="stroke: none; fill: #08f;"></path>
+      </svg>
+
+    </div>
+
+
+  </nav>
+
+</ngx-headroom>

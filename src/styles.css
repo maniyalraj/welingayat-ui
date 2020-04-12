@@ -45,4 +45,5 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
 .section{
     padding-top: 1rem !important;
+    z-index:0
 }

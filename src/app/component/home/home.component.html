@@ -4,19 +4,41 @@
     <section class="section section-lg section-hero section-shaped">
 
 
-      <div class="container d-flex align-items-center">
-        <div class="row">
+      <div class="container">
+        <div class="row d-flex align-items-center">
           <div class="col-12 col-md-6">
-            <p class="h1 text-center" style="text-transform: uppercase; letter-spacing: 5px; font-weight: bold;">
-              VeerShaiv Lingayat Thane </p>
+
+            <h1 class="text-center" style="text-transform: uppercase; letter-spacing: 5px; font-weight: bold;"> VeerShaiv Lingayat Thane </h1>
+
+            <!-- <p class="h1 text-center" >
+               </p> -->
 
             <p class="lead text-center">
               Welcomes all lingayat to come and join
             </p>
+
+            <div [hidden]="isLoggedIn">
+              <a [routerLink]="['/login']" class="btn btn-neutral btn-icon">
+                <span class="btn-inner--icon">
+                  <i class="fa fa-sign-in mr-2"></i>
+                </span>
+                <span class="nav-link-inner--text"> Login</span>
+              </a>
+              <a [routerLink]="['/signup']" class="btn btn-neutral btn-icon">
+                <span class="btn-inner--icon">
+                  <i class="fa fa-sign-in mr-2"></i>
+                </span>
+                <span class="nav-link-inner--text"> Register</span>
+              </a>
+            </div>
+
           </div>
 
           <div class="col-12 col-md-6">
-            <app-signup></app-signup>
+
+            <img  class="hero-img" src="./assets/img/background/couple.jpg">
+
+            <!-- <app-signup></app-signup> -->
           </div>
         </div>
       </div>

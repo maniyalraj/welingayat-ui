@@ -8,7 +8,7 @@
         <div class="row d-flex align-items-center">
           <div class="col-12 col-md-6">
 
-            <h1 style="text-transform: capitalize; font-weight: bold;"> 
+            <h1 style="text-transform: capitalize; font-weight: bold;">
               Your own lingayat matrimony
             </h1>
 
@@ -36,13 +36,51 @@
 
           </div>
 
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-6 flex">
 
-            <img  class="hero-img" src="./assets/img/background/couple.jpg">
+            <img class="hero-img" src="./assets/img/background/couple.jpg">
 
             <!-- <app-signup></app-signup> -->
           </div>
         </div>
+      </div>
+
+    </section>
+    <section class="section section-lg section-counter">
+
+
+      <div class="container" inViewport
+      [inViewportOptions]="{ threshold: [0] }"
+      (inViewportAction)="onIntersection($event)">
+        <div class="row">
+          <div class="col-md-4 flex counter-container">
+            <div class="counter flex">
+            <h1 [countUp]="totalUsers">0</h1>
+            </div>
+            <div class="counter-text">
+              <i class="fas fa-male"></i><i class="fas fa-female"></i> Total Users
+          </div>
+          </div>
+
+          <div class="col-md-4 flex counter-container" >
+            <div class="counter flex">
+            <h1 [countUp]="maleUsers">0</h1>
+            </div>
+            <div class="counter-text">
+              <i class="fas fa-male"></i> Male Users
+          </div>
+          </div>
+
+          <div class="col-md-4 flex counter-container">
+            <div class="counter flex">
+            <h1 [countUp]="femaleUsers">0</h1>
+            </div>
+            <div class="counter-text">
+              <i class="fas fa-female"></i> Female Users
+          </div>
+          </div>
+        </div>
+
       </div>
 
     </section>

@@ -49,6 +49,10 @@ import { Ng5SliderModule } from 'ng5-slider';
 
 import { HeadroomModule } from '@ctrl/ngx-headroom';
 
+import { CountUpModule } from 'ngx-countup';
+
+import { InViewportModule } from 'ng-in-viewport';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +96,9 @@ import { HeadroomModule } from '@ctrl/ngx-headroom';
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     Ng5SliderModule,
-    HeadroomModule
+    HeadroomModule,
+    CountUpModule,
+    InViewportModule
   ],
   entryComponents: [NgbdModalContent],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }, NgxImageCompressService],

@@ -8,23 +8,25 @@
         <div class="row d-flex align-items-center">
           <div class="col-12 col-md-6">
 
-            <h1 class="text-center" style="text-transform: uppercase; letter-spacing: 5px; font-weight: bold;"> VeerShaiv Lingayat Thane </h1>
+            <h1 style="text-transform: capitalize; font-weight: bold;"> 
+              Your own lingayat matrimony
+            </h1>
 
             <!-- <p class="h1 text-center" >
                </p> -->
 
-            <p class="lead text-center">
+            <p class="lead">
               Welcomes all lingayat to come and join
             </p>
 
-            <div [hidden]="isLoggedIn">
-              <a [routerLink]="['/login']" class="btn btn-neutral btn-icon">
+            <div [hidden]="isLoggedIn" style="display: flex; justify-content: space-between;">
+              <a [routerLink]="['/login']" class="btn btn-neutral btn-icon animate-btn">
                 <span class="btn-inner--icon">
                   <i class="fa fa-sign-in mr-2"></i>
                 </span>
                 <span class="nav-link-inner--text"> Login</span>
               </a>
-              <a [routerLink]="['/signup']" class="btn btn-neutral btn-icon">
+              <a [routerLink]="['/signup']" class="btn btn-neutral btn-icon animate-btn">
                 <span class="btn-inner--icon">
                   <i class="fa fa-sign-in mr-2"></i>
                 </span>
@@ -42,37 +44,6 @@
           </div>
         </div>
       </div>
-
-
-      <!-- <div class="container shape-container d-flex align-items-center py-lg">
-        <div class="col px-0">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-12 text-center">
-              <p class="h1" style="text-transform: uppercase; letter-spacing: 5px; font-weight: bold;">
-                VeerShaiv Lingayat Thane </p>
-              <p class="lead">
-                Welcomes all lingayat to come and join
-              </p>
-            </div>
-            <div [hidden]="isLoggedIn">
-              <a [routerLink]="['/login']" class="btn btn-neutral btn-icon">
-                <span class="btn-inner--icon">
-                  <i class="fa fa-sign-in mr-2"></i>
-                </span>
-                <span class="nav-link-inner--text"> Login</span>
-              </a>
-              <a [routerLink]="['/signup']" class="btn btn-neutral btn-icon">
-                <span class="btn-inner--icon">
-                  <i class="fa fa-sign-in mr-2"></i>
-                </span>
-                <span class="nav-link-inner--text"> Register</span>
-              </a>
-            </div> 
-
-
-  </div>
-  </div>
-  </div>-->
 
     </section>
   </div>

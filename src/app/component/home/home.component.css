@@ -1,5 +1,17 @@
 .hero-img{
-
+    margin: 5px;
     height: 100%;
     width: 100%;
+    margin-top:20px;
+}
+
+.animate-btn:hover span i{
+    color: #0986fa;
+    transform: translateX(5px);
+    transition: all 0.2s ease-in  !important;
+}
+
+.animate-btn{
+    color: #0986fa;
+    border: 1px solid;
 }

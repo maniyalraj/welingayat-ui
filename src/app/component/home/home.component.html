@@ -19,19 +19,23 @@
               Welcomes all lingayat to come and join
             </p>
 
-            <div [hidden]="isLoggedIn" style="display: flex; justify-content: space-between;">
+            <div class="wow pulse" data-wow-delay="1s" [hidden]="isLoggedIn" style="display: flex; justify-content: space-between;">
+              
               <a [routerLink]="['/login']" class="btn btn-neutral btn-icon animate-btn">
                 <span class="btn-inner--icon">
                   <i class="fa fa-sign-in mr-2"></i>
                 </span>
                 <span class="nav-link-inner--text"> Login</span>
               </a>
-              <a [routerLink]="['/signup']" class="btn btn-neutral btn-icon animate-btn">
+            
+              
+              <a [routerLink]="['/signup']" class="btn btn-neutral btn-icon animate-btn" >
                 <span class="btn-inner--icon">
                   <i class="fa fa-sign-in mr-2"></i>
                 </span>
-                <span class="nav-link-inner--text"> Register</span>
+                <span class="nav-link-inner--text" > Register</span>
               </a>
+              
             </div>
 
           </div>
@@ -49,9 +53,9 @@
     <section class="section section-lg section-counter">
 
 
-      <div class="container" inViewport
+      <div class="container wow fadeInUp" inViewport
       [inViewportOptions]="{ threshold: [0] }"
-      (inViewportAction)="onIntersection($event)">
+      (inViewportAction)="onIntersection($event)" data-wow-delay="0.1s">
         <div class="row">
           <div class="col-md-4 flex counter-container">
             <div class="counter flex">

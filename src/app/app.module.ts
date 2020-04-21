@@ -53,6 +53,8 @@ import { CountUpModule } from 'ngx-countup';
 
 import { InViewportModule } from 'ng-in-viewport';
 
+import { NgwWowModule } from 'ngx-wow';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,7 +100,8 @@ import { InViewportModule } from 'ng-in-viewport';
     Ng5SliderModule,
     HeadroomModule,
     CountUpModule,
-    InViewportModule
+    InViewportModule,
+    NgwWowModule
   ],
   entryComponents: [NgbdModalContent],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }, NgxImageCompressService],

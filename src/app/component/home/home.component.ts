@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription, Observable, Observer } from 'rxjs';
 import { LoginService } from 'src/app/service/login.service';
+import { NgwWowService } from 'ngx-wow';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +17,8 @@ export class HomeComponent implements OnInit {
   private femaleUsers=0;
   
   
-  constructor( private loginService: LoginService) {
- 
+  constructor( private loginService: LoginService, private wowService: NgwWowService) {
+  this.wowService.init()
    }
 
   ngOnInit() {

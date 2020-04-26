@@ -34,8 +34,7 @@
             "scripts": [          
               "node_modules/argon-design-system-free/assets/vendor/jquery/jquery.min.js",
               "node_modules/argon-design-system-free/assets/vendor/popper/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",   
-              "node_modules/argon-design-system-free/assets/js/argon.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/argon-design-system-free/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js",
               "node_modules/wowjs/dist/wow.js"
             ]

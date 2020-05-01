@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription, Observable, Observer } from 'rxjs';
 import { LoginService } from 'src/app/service/login.service';
 import { NgwWowService } from 'ngx-wow';
+import { ProfileService } from 'src/app/service/profile.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
   private femaleUsers=0;
   
   
-  constructor( private loginService: LoginService, private wowService: NgwWowService) {
+  constructor( private loginService: LoginService, private wowService: NgwWowService, private profileService: ProfileService) {
   this.wowService.init()
    }
 
@@ -29,6 +30,9 @@ export class HomeComponent implements OnInit {
                 this.isLoggedIn = item
                 this.isLoggedIn = this.checkIsLoggedIn() != null ? true : false;
             });
+
+
+       
   }
 
   checkIsLoggedIn() {
@@ -38,9 +42,15 @@ export class HomeComponent implements OnInit {
 public onIntersection({target, visible}){
   
   if(visible){
-    this.totalUsers=200;
-    this.maleUsers=90;
-    this.femaleUsers=110;
+    this.profileService.getUserCountByGender().subscribe((result:any)=>{
+      console.log(result);
+      this.maleUsers=result.filter(c => c.gender == "GENDER_MALE")[0].count
+      this.femaleUsers=result.filter(c => c.gender == "GENDER_FEMALE")[0].count
+      this.totalUsers = this.maleUsers + this.femaleUsers
+  },error=>{
+    console.error(error);
+    
+  })
   }
     
   

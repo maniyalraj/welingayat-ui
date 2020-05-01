@@ -121,6 +121,12 @@ export class ProfileService {
     return this.post(url, data);
   }
 
+  getUserCountByGender(){
+    let url = this.baseImageUrl + "noauth/getUserCount" 
+
+    return this.get(url);
+  }
+
   getAllUsers(data) {
     let url = this.baseImageUrl + "getAllUsers?page=0&size=20"
 

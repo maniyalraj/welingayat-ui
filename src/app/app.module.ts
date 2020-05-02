@@ -55,6 +55,8 @@ import { InViewportModule } from 'ng-in-viewport';
 
 import { NgwWowModule } from 'ngx-wow';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,7 +103,8 @@ import { NgwWowModule } from 'ngx-wow';
     HeadroomModule,
     CountUpModule,
     InViewportModule,
-    NgwWowModule
+    NgwWowModule,
+    NgxPaginationModule
   ],
   entryComponents: [NgbdModalContent],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }, NgxImageCompressService],

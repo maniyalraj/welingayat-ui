@@ -160,3 +160,7 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
     font-size:small
    
 }
+
+.ngx-pagination{
+  padding: 0  !important;
+}

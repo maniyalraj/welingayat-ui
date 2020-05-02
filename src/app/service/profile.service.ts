@@ -127,8 +127,8 @@ export class ProfileService {
     return this.get(url);
   }
 
-  getAllUsers(data) {
-    let url = this.baseImageUrl + "getAllUsers?page=0&size=20"
+  getAllUsers(data, page, size) {
+    let url = this.baseImageUrl + "getAllUsers?page="+page+"&size="+size
 
     return this.post(url, data);
   }

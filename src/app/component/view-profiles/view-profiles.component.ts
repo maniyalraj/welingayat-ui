@@ -52,6 +52,11 @@ export class ViewProfilesComponent implements OnInit {
   selectedUser: any;
   closeResult: any;
 
+  page=0;
+  size=9;
+  totalElements=100;
+  p:number = 1;
+
   constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService, private modalService: NgbModal) { }
 
 
@@ -67,9 +72,10 @@ export class ViewProfilesComponent implements OnInit {
     this.spinner.show('loading');
 
 
-    this.profileService.getAllUsers(this.getFilters()).subscribe((result: any) => {
+    this.profileService.getAllUsers(this.getFilters(), this.page , this.size).subscribe((result: any) => {
 
       this.populateUsers(result.content);
+      this.totalElements = result.totalElements
 
       this.spinner.hide('loading')
 
@@ -212,6 +218,27 @@ export class ViewProfilesComponent implements OnInit {
       this.allusers.push(r)
 
     }
+  }
+
+  getPage(event){
+
+    this.spinner.show('loading')
+    this.p = event;
+
+    this.profileService.getAllUsers(this.getFilters(), event-1 , this.size).subscribe((result: any) => {
+
+      this.populateUsers(result.content);
+      this.totalElements = result.totalElements
+
+      this.spinner.hide('loading')
+      window.scroll(0,0)
+
+
+    }, error => {
+      this.spinner.hide('loading')
+      window.scroll(0,0)
+    })
+    
   }
 
   clearFilters() {

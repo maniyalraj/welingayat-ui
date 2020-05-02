@@ -98,7 +98,7 @@ export class ViewProfilesComponent implements OnInit {
 
     this.spinner.show('loading')
 
-    this.profileService.getAllUsers(this.getFilters()).subscribe((result: any) => {
+    this.profileService.getAllUsers(this.getFilters(), this.page, this.size).subscribe((result: any) => {
 
       this.populateUsers(result.content)
 
@@ -224,8 +224,9 @@ export class ViewProfilesComponent implements OnInit {
 
     this.spinner.show('loading')
     this.p = event;
+    this.page =event -1
 
-    this.profileService.getAllUsers(this.getFilters(), event-1 , this.size).subscribe((result: any) => {
+    this.profileService.getAllUsers(this.getFilters(), this.page , this.size).subscribe((result: any) => {
 
       this.populateUsers(result.content);
       this.totalElements = result.totalElements

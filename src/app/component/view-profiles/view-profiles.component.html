@@ -4,7 +4,7 @@
         <div class="container" style="max-width: 100%; margin:1px; padding:1px">
 
             <div class="row">
-                <div class=" col-lg-3 d-lg-block nomt--300 pl-1 pr-1" style="margin-top:15px">
+                <div class=" col-lg-3 d-lg-block pl-1 pr-1" style="margin-top:15px">
                     <div class="h-100" style="margin-top:0px; background:none">
 
                         <div class="row user-card box-shadow shadow" style="background:white; border-radius:1rem">
@@ -222,10 +222,10 @@
                     </div>
                 </div>
                 <div class="col-lg-9" style="margin-top:15px; padding:0px; " [hidden]="allusers.length ==0">
-                   
-                    <div class="row nomt--300 padding-sm-zero padding-md"
+
+                    <div class="row padding-sm-zero padding-md"
                         style="margin-top:0px; flex-direction: row ; background: none;">
-                        
+
                         <ng-container *ngFor="let user of allusers | paginate: { itemsPerPage: size, currentPage: p, totalItems:totalElements }">
                             <div class="col-md-4 padding-sm-zero"
                                 style="margin-bottom:15px; padding:0px; padding-left:10px; padding-right:10px ">
@@ -263,7 +263,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 text">
-                                                    <span class="d-md-inline"> 
+                                                    <span class="d-md-inline">
                                                         <div class="icon-div"><i class="fas fa-weight"></i></div>
                                                         Weight:</span>
                                                     {{user.userPersonalDetails?.weightInKgs}}
@@ -318,7 +318,7 @@
                             </div>
                         </ng-container>
 
-                       
+
                     </div>
                     <div class="flex" style="width:100%">
                         <pagination-controls (pageChange)="getPage($event)"></pagination-controls>

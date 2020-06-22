@@ -4,7 +4,7 @@
     <section class="section section-lg section-hero section-shaped">
 
 
-      <div class="container">
+      <div class="container" style="background-color: #ffffff;">
         <div class="row flex align-items-center">
           <div class="col-12 col-md-6">
 
@@ -19,41 +19,46 @@
               Welcomes all lingayat to come and join
             </p>
 
-            <div class="wow pulse" data-wow-delay="1s" [hidden]="isLoggedIn" style="display: flex; justify-content: space-between;">
-              
+            <div class="wow pulse" data-wow-delay="1s" [hidden]="isLoggedIn"
+              style="display: flex; justify-content: space-between;">
+
               <a [routerLink]="['/login']" class="btn btn-neutral btn-icon animate-btn">
                 <span class="btn-inner--icon">
                   <i class="fa fa-sign-in mr-2"></i>
                 </span>
                 <span class="nav-link-inner--text"> Login</span>
               </a>
-            
-              
-              <a [routerLink]="['/signup']" class="btn btn-neutral btn-icon animate-btn" >
+
+
+              <a [routerLink]="['/signup']" class="btn btn-neutral btn-icon animate-btn">
                 <span class="btn-inner--icon">
                   <i class="fa fa-sign-in mr-2"></i>
                 </span>
-                <span class="nav-link-inner--text" > Register</span>
+                <span class="nav-link-inner--text"> Register</span>
               </a>
-              
+
             </div>
 
-            <div class="wow pulse" data-wow-delay="1s" [hidden]="!isLoggedIn" style="display: flex; justify-content: center;">
-              <a [routerLink]="['/viewProfiles']" class="btn btn-neutral btn-icon animate-btn" >
+            <div class="wow pulse" data-wow-delay="1s" [hidden]="!isLoggedIn"
+              style="display: flex; justify-content: center;">
+              <a [routerLink]="['/viewProfiles']" class="btn btn-neutral btn-icon animate-btn">
                 <span class="btn-inner--icon">
                   <i class="fa fa-search mr-2"></i>
                 </span>
-                <span class="nav-link-inner--text" >Find my match</span>
+                <span class="nav-link-inner--text">Find my match</span>
               </a>
             </div>
 
+
           </div>
 
-          <div class="col-12 col-md-6 flex" class="wow fadeInRight" data-wow-delay="0.3s" >
+          <div class="col-12 col-md-6 flex" class="wow fadeInRight" data-wow-delay="0.3s">
 
-            <img class="hero-img" src="./assets/img/background/couple.jpg">
-
-            <!-- <app-signup></app-signup> -->
+            <!-- <img class="hero-img" src="./assets/img/background/couple.jpg"> -->
+            <img class="hero-img" src="./assets/img/background/NewHero.png">
+            <!-- <div>
+              <app-signup></app-signup>
+            </div> -->
           </div>
         </div>
       </div>
@@ -62,38 +67,37 @@
     <section class="section section-lg section-counter">
 
 
-      <div class="container wow fadeInUp" inViewport
-      [inViewportOptions]="{ threshold: [0] }"
-      (inViewportAction)="onIntersection($event)" data-wow-delay="0.1s">
+      <div class="container wow fadeInUp" inViewport [inViewportOptions]="{ threshold: [0] }"
+        (inViewportAction)="onIntersection($event)" data-wow-delay="0.1s">
         <div class="row">
           <div class="col-md-4 flex counter-container">
             <div class="counter flex">
-            <h1 [countUp]="totalUsers">0</h1>
+              <h1 [countUp]="totalUsers">0</h1>
             </div>
             <div class="counter-text">
               <i class="fas fa-male"></i><i class="fas fa-female"></i> Total Users
-          </div>
+            </div>
           </div>
 
           <div class="col-md-4 flex counter-container">
             <div class="counter flex">
-            <h1 [countUp]="femaleUsers">0</h1>
+              <h1 [countUp]="femaleUsers">0</h1>
             </div>
             <div class="counter-text">
               <i class="fas fa-female"></i> Female Users
-          </div>
+            </div>
           </div>
 
-          <div class="col-md-4 flex counter-container" >
+          <div class="col-md-4 flex counter-container">
             <div class="counter flex">
-            <h1 [countUp]="maleUsers">0</h1>
+              <h1 [countUp]="maleUsers">0</h1>
             </div>
             <div class="counter-text">
               <i class="fas fa-male"></i> Male Users
-          </div>
+            </div>
           </div>
 
-          
+
         </div>
 
       </div>

@@ -23,6 +23,9 @@
     height: fit-content;
     padding: 0;
 }
+.section{
+  padding-bottom: 25px !important;
+}
 
 .section-hero{
     /* padding: 0; */

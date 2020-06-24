@@ -22,7 +22,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
     background-attachment: fixed;
     background-size: 100px;
-    color: #f55 !important;
+    color: #000 !important;
 }
 
 .datepicker-container input option {
@@ -81,6 +81,10 @@ h3{
 }
 
 h5{
+  color: #640000 !important;
+}
+
+h6{
   color: #640000 !important;
 }
 

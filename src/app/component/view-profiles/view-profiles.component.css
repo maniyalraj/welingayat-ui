@@ -142,7 +142,7 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
 {
   background: white !important;
   border-radius:2rem;
-  border: 1.5px solid #CA0000;
+  /* border: 1.5px solid #CA0000; */
 }
 
 
@@ -154,7 +154,7 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
     height: 25px;
     /* background-color: grey; */
     border-radius: 100%;
-    color:#CA0000;
+    color:#640000;
     /* padding: 5px; */
     margin-right: 5px;
     font-size:small

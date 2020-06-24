@@ -1,6 +1,6 @@
-h5 {  
-  font-size:1.3rem; 
-  line-height: inherit; 
+h5 {
+  font-size:1.3rem;
+  line-height: inherit;
   margin-bottom: 0px;
   font-weight: bold;
 
@@ -18,7 +18,7 @@ h5 {
 }
 
 /* Small devices (landscape phones, 544px and up) */
-@media screen and (min-width: 544px) {  
+@media screen and (min-width: 544px) {
     h5 {font-size:1.3rem ; margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem; white-space: nowrap;}
     .search-view-image{
@@ -32,9 +32,9 @@ h5 {
     }
 
   }
-   
+
   /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-  @media screen and (min-width: 768px) {  
+  @media screen and (min-width: 768px) {
     h5 {font-size:1.3rem;  margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem; white-space: nowrap;}
     .search-view-image{
@@ -47,9 +47,9 @@ h5 {
       padding-right: 0 !important
     }
   }
-   
+
   /* Large devices (desktops, 992px and up) */
-  @media (min-width: 992px) { 
+  @media (min-width: 992px) {
     h5 {font-size:1.3rem;  margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.75rem; white-space: nowrap;}
     .search-view-image{
@@ -57,30 +57,30 @@ h5 {
       max-height: 200px;
     }
     .padding-md{
-      padding:10px; padding-top:0px; 
+      padding:10px; padding-top:0px;
     }
   }
-   
+
   /* Extra large devices (large desktops, 1200px and up) */
-  @media (min-width: 1200px) {  
-    h5 {font-size:1.5rem;  margin-bottom: 0px;} /*1rem = 16px*/    
+  @media (min-width: 1200px) {
+    h5 {font-size:1.5rem;  margin-bottom: 0px;} /*1rem = 16px*/
     .text {  font-size:0.9rem; white-space: nowrap;}
     .search-view-image{
       max-width: 200px;
       max-height: 200px;
     }
     .padding-md{
-      padding:10px; padding-top:0px; 
+      padding:10px; padding-top:0px;
     }
   }
-   
+
 .filter-header{
   border-bottom: 1px dashed gray;
   margin-top:5px;
 }
 
 .filter-header h5{
-  
+
   font-size: 1.15rem;
   line-height: 0;
   text-transform: uppercase;
@@ -131,7 +131,7 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
 
 .custom-slider .ng5-slider .ng5-slider-pointer.ng5-slider-active {
   background: white;
-  
+
 }
 
 .pointer{
@@ -142,7 +142,7 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
 {
   background: white !important;
   border-radius:2rem;
-  border: 1.5px solid #0986fa;
+  border: 1.5px solid #CA0000;
 }
 
 
@@ -154,13 +154,22 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
     height: 25px;
     /* background-color: grey; */
     border-radius: 100%;
-    color:#127fee;
+    color:#CA0000;
     /* padding: 5px; */
     margin-right: 5px;
     font-size:small
-   
+
 }
 
 .ngx-pagination{
   padding: 0  !important;
+}
+
+.ngx-pagination .current
+{
+  background: #CA0000 !important;
+}
+
+.pagination-div{
+  background:#fff;
 }

@@ -66,7 +66,42 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   color: #CA0000 !important;
 }
 
+.btn-primary{
+  border-color: #CA0000 !important;
+  background-color: #CA0000 !important;
+  color: #FFF !important;
+}
+
 h1{
   color: #CA0000 !important;
 }
 
+h3{
+  color: #640000 !important;
+}
+
+h5{
+  color: #640000 !important;
+}
+
+.nav-pills .nav-link.active{
+  color: #fff !important;
+  background-color: #CA0000 !important;
+}
+
+.nav-pills .nav-link{
+  color: #CA0000 !important;
+}
+
+label{
+  color: #000;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before{
+  border-color: #CA0000 !important;
+  background-color: #CA0000 !important;
+}
+
+.nav-pills .nav-link{
+  margin:3px !important;
+}

@@ -23,7 +23,7 @@
             <div class="form-group">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                     </div>
                     <!-- <input class="form-control datepicker" placeholder="Date of Birth" name="dp" [(ngModel)]="dob"
                         ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" /> -->
@@ -36,7 +36,7 @@
             <div class="form-group" [ngClass]="{'focused':focus1===true}">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-sign-in"></i></span>
+                        <span class="input-group-text"><i class="fa fa-city"></i></span>
                     </div>
                     <input class="form-control" [(ngModel)]="placeOfBirth" name="placeOfBirth"
                         placeholder="Place of Birth" type="text" (focus)="focus1=true" (blur)="focus1=false">
@@ -50,7 +50,7 @@
             <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                        <span class="input-group-text"><i class="fas fa-arrows-alt-v"></i></span>
                     </div>
                     <input class="form-control" [(ngModel)]="heightInCms" name="heightInCms" placeholder="Height in Cms"
                         type="number" (focus)="focus=true" (blur)="focus=false">
@@ -61,7 +61,7 @@
             <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                        <span class="input-group-text"><i class="fas fa-weight"></i></span>
                     </div>
                     <input class="form-control" [(ngModel)]="weightInKgs" name="weightInKgs" placeholder="Weight in Kgs"
                         type="number" (focus)="focus=true" (blur)="focus=false">

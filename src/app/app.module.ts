@@ -56,6 +56,7 @@ import { InViewportModule } from 'ng-in-viewport';
 import { NgwWowModule } from 'ngx-wow';
 
 import {NgxPaginationModule} from 'ngx-pagination';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MedicalFormComponent,
     AdditionalFormComponent,
     ViewProfilesComponent,
-    MinimumViewComponent
+    MinimumViewComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

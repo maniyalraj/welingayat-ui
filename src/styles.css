@@ -109,3 +109,8 @@ label{
 .nav-pills .nav-link{
   margin:3px !important;
 }
+
+
+.form-control{
+  color: #000 !important;
+}

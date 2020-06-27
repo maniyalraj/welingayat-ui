@@ -1,0 +1,24 @@
+@media(max-width: 767.98px) {
+  .nav-pills:not(.nav-pills-circle) .nav-item {
+    padding-right: 1rem !important;
+  }
+}
+
+.profile-page .card-profile .card-profile-image img {
+  height: 180px;
+}
+
+.profile-page .card-profile {
+  margin-top: 100px;
+}
+
+.nav-item {
+  padding-right: 1rem !important;
+}
+
+.background-gray{
+  background: #efefef
+}
+
+
+

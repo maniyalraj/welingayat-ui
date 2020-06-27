@@ -52,10 +52,10 @@ export class ViewProfilesComponent implements OnInit {
   selectedUser: any;
   closeResult: any;
 
-  page=0;
-  size=9;
-  totalElements=100;
-  p:number = 1;
+  page = 0;
+  size = 9;
+  totalElements = 10;
+  p: number = 1;
 
   constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService, private modalService: NgbModal) { }
 
@@ -72,9 +72,9 @@ export class ViewProfilesComponent implements OnInit {
     this.spinner.show('loading');
 
 
-    this.profileService.getAllUsers(this.getFilters(), this.page , this.size).subscribe((result: any) => {
+    this.profileService.getAllUsers(this.getFilters(), this.page, this.size).subscribe((result: any) => {
 
-      this.populateUsers(result.content);
+      this.populateUsers(result);
       this.totalElements = result.totalElements
 
       this.spinner.hide('loading')
@@ -100,7 +100,7 @@ export class ViewProfilesComponent implements OnInit {
 
     this.profileService.getAllUsers(this.getFilters(), this.page, this.size).subscribe((result: any) => {
 
-      this.populateUsers(result.content)
+      this.populateUsers(result)
 
       this.spinner.hide('loading')
 
@@ -190,7 +190,9 @@ export class ViewProfilesComponent implements OnInit {
     return filter;
   }
 
-  populateUsers(users) {
+  populateUsers(result) {
+    let users = result.content
+    this.totalElements = result.totalElements
     this.allusers = []
     for (let r of users) {
       if (r.userPersonalDetails != null) {
@@ -203,15 +205,20 @@ export class ViewProfilesComponent implements OnInit {
       }
 
       this.mapService.qualtificationMap
-      
-      if (r.userEducationalDetails != null && r.userEducationalDetails.qualification == "QUALIFICATION_OTHER") {
-        r.userEducationalDetails.qualification = r.userEducationalDetails.other_qualification
+
+      if (r.userEducationalDetails != null) {
+        if (r.userEducationalDetails.qualification == "QUALIFICATION_OTHER") {
+          r.userEducationalDetails.qualification = r.userEducationalDetails.other_qualification
+        }
+
+
+        if (r.userEducationalDetails.qualification) {
+          r.userEducationalDetails.qualification = r.userEducationalDetails.qualification.replace("QUALIFICATION_", "")
+        }
       }
-      
-      if(r.userEducationalDetails.qualification){
-        r.userEducationalDetails.qualification = r.userEducationalDetails.qualification.replace("QUALIFICATION_","")
-      }
-      
+
+
+
 
 
 
@@ -220,26 +227,26 @@ export class ViewProfilesComponent implements OnInit {
     }
   }
 
-  getPage(event){
+  getPage(event) {
 
     this.spinner.show('loading')
     this.p = event;
-    this.page =event -1
+    this.page = event - 1
 
-    this.profileService.getAllUsers(this.getFilters(), this.page , this.size).subscribe((result: any) => {
+    this.profileService.getAllUsers(this.getFilters(), this.page, this.size).subscribe((result: any) => {
 
       this.populateUsers(result.content);
       this.totalElements = result.totalElements
 
       this.spinner.hide('loading')
-      window.scroll(0,0)
+      window.scroll(0, 0)
 
 
     }, error => {
       this.spinner.hide('loading')
-      window.scroll(0,0)
+      window.scroll(0, 0)
     })
-    
+
   }
 
   clearFilters() {

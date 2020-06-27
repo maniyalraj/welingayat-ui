@@ -235,7 +235,7 @@ export class ViewProfilesComponent implements OnInit {
 
     this.profileService.getAllUsers(this.getFilters(), this.page, this.size).subscribe((result: any) => {
 
-      this.populateUsers(result.content);
+      this.populateUsers(result);
       this.totalElements = result.totalElements
 
       this.spinner.hide('loading')
@@ -257,6 +257,8 @@ export class ViewProfilesComponent implements OnInit {
     this.jobTypeFilter = false
     this.nameFilter = false
     this.cityFilter = false
+
+    this.getPage(1);
   }
 
   quickView(user) {

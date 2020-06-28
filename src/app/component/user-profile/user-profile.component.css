@@ -20,5 +20,25 @@
   background: #efefef
 }
 
+.user-info{
+  padding-bottom: 10px;
+  border: 2px solid #C40000;
+  margin-bottom: 10px;
+}
 
+.user-info .row{
+  margin-top:25px;
+  padding-left:10px;
+}
+
+.info-label{
+  font-weight: bold;
+}
+
+.user-info-label{
+  transform: translateY(25px);
+  background: #efefef;
+  width: fit-content;
+  margin-left:10px;
+}
 

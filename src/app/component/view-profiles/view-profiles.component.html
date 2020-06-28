@@ -235,14 +235,14 @@
 
                                         <div class="col-12 d-flex justify-content-center" style="padding:2px">
 
-                                            <img class="img img-thumbnail rounded rounded-circle search-view-image"
-                                                [src]="user.userImages.imageUrl" />
+                                            <img class="img img-thumbnail rounded rounded-circle search-view-image pointer"
+                                                [src]="user.userImages.imageUrl" (click)="viewProfile(user.id)"/>
 
                                         </div>
                                         <div class="col-12" style="padding:2px">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <h5 class="text-truncate text-center">{{user.lastName}}
+                                                    <h5 class="text-truncate text-center pointer" (click)="viewProfile(user.id)">{{user.lastName}}
                                                         {{user.firstName}}
                                                         {{user.middleName}}
                                                     </h5>

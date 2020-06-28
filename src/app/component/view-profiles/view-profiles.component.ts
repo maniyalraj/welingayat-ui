@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Options } from 'ng5-slider'
 import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -57,7 +58,7 @@ export class ViewProfilesComponent implements OnInit {
   totalElements = 10;
   p: number = 1;
 
-  constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService, private modalService: NgbModal) { }
+  constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService, private modalService: NgbModal, private router: Router) { }
 
 
   ngAfterViewInit() {
@@ -259,6 +260,11 @@ export class ViewProfilesComponent implements OnInit {
     this.cityFilter = false
 
     this.getPage(1);
+  }
+
+  viewProfile(user)
+  {
+    this.router.navigate(["userProfile/"+user])
   }
 
   quickView(user) {

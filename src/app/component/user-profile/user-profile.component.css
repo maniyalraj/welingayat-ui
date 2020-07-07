@@ -17,13 +17,14 @@
 }
 
 .background-gray{
-  background: #efefef
+  background: #fff
 }
 
 .user-info{
   padding-bottom: 10px;
   border: 2px solid #C40000;
   margin-bottom: 10px;
+  box-shadow: 0px 5px 5px #8e8e8e;
 }
 
 .user-info .row{
@@ -37,7 +38,7 @@
 
 .user-info-label{
   transform: translateY(25px);
-  background: #efefef;
+  background: #fff;
   width: fit-content;
   margin-left:10px;
 }

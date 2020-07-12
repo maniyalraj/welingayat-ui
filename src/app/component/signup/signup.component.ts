@@ -17,6 +17,7 @@ export class SignupComponent implements OnInit {
   private contact: string;
   private middleName: string;
   private confirmPassword: string;
+  private gender: string = "GENDER_FEMALE";
 
   constructor(private signupService: SignupService, private router: Router) { }
 
@@ -31,7 +32,8 @@ export class SignupComponent implements OnInit {
       "firstName": this.firstname,
       "lastName": this.lastname,
       "middleName": this.middleName,
-      "contact": this.contact
+      "contact": this.contact,
+      "gender": this.gender
     }
 
     if (this.checkPassword()) {

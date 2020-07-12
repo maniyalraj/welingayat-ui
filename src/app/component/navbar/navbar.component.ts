@@ -3,6 +3,7 @@ import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/service/login.service';
+import { UserServiceService } from 'src/app/service/user-service.service';
 
 @Component({
     selector: 'app-navbar',
@@ -17,7 +18,7 @@ export class NavbarComponent implements OnInit {
     private isLoggedIn: boolean = false;
     subscription: Subscription;
 
-    constructor(public location: Location, private router: Router, private loginService: LoginService) {
+    constructor(public location: Location, private router: Router, private loginService: LoginService, private userService: UserServiceService) {
     }
 
     ngOnInit() {
@@ -46,6 +47,22 @@ export class NavbarComponent implements OnInit {
         this.location.subscribe((ev: PopStateEvent) => {
             this.lastPoppedUrl = ev.url;
         });
+
+        this.userService.getCurrentUser().subscribe((result:any)=>{
+
+          let favList = []
+
+          for(let f of result.userFavourites){
+              favList.push(f.id);
+          }
+
+          localStorage.setItem("favList", JSON.stringify(favList));
+
+        }, error=>{
+
+        })
+
+
     }
 
     checkIsLoggedIn() {

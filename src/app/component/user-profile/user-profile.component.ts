@@ -21,7 +21,7 @@ export class UserProfileComponent implements OnInit {
   countOfSiblings= 0;
 
   constructor(private route: ActivatedRoute, private userService: UserServiceService, private spinner: NgxSpinnerService) {
-    let emptyUser = this.userService.getEmptyUserObj();
+    let emptyUser = this.userService.getEmptyUserObj(null);
     this.user = {...this.user, ...emptyUser};
 
   }
@@ -41,7 +41,8 @@ export class UserProfileComponent implements OnInit {
           }
           this.profileImageUrl = result.userImages.imageUrl
 
-          this.user = {...this.user, ...result};
+          this.user =this.userService.getEmptyUserObj(result);
+
           this.user.age = this.calculateAge(result.userPersonalDetails.dob);
           this.user.userProfessionalDetails.jobType = this.user.userProfessionalDetails.jobType.replace("JOB_TYPE_","")
           this.user.userPersonalDetails.complexion = this.user.userPersonalDetails.complexion.replace("COMPLEXION_","")

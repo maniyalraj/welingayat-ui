@@ -6,6 +6,7 @@ import { Options } from 'ng5-slider'
 import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserServiceService } from 'src/app/service/user-service.service';
 
 
 @Component({
@@ -58,7 +59,7 @@ export class ViewProfilesComponent implements OnInit {
   totalElements = 10;
   p: number = 1;
 
-  constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService, private modalService: NgbModal, private router: Router) { }
+  constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService, private modalService: NgbModal, private router: Router, private userService: UserServiceService) { }
 
 
   ngAfterViewInit() {
@@ -109,6 +110,35 @@ export class ViewProfilesComponent implements OnInit {
     }, error => {
       this.spinner.hide('loading')
     })
+
+  }
+
+  toggleFavourite(user) {
+
+    let favList = JSON.parse(localStorage.getItem("favList"));
+
+    if (favList.includes(user.id)) {
+      this.userService.removeFromFav(user.id).subscribe((result) => {
+        if (result != null) {
+          favList.splice(favList.indexOf(user.id), 1);
+          localStorage.setItem("favList", JSON.stringify(favList));
+          user.isFavourite = false;
+        }
+      }, (error) => {
+        console.log(error);
+      })
+    }
+    else {
+      this.userService.addToFav(user.id).subscribe((result) => {
+        if (result != null) {
+          favList.push(user.id);
+          localStorage.setItem("favList", JSON.stringify(favList));
+          user.isFavourite = true;
+        }
+      }, (error) => {
+        console.log(error);
+      })
+    }
 
   }
 
@@ -192,6 +222,9 @@ export class ViewProfilesComponent implements OnInit {
   }
 
   populateUsers(result) {
+
+    let favList: any[] = JSON.parse(localStorage.getItem("favList"));
+
     let users = result.content
     this.totalElements = result.totalElements
     this.allusers = []
@@ -218,10 +251,9 @@ export class ViewProfilesComponent implements OnInit {
         }
       }
 
-
-
-
-
+      if (favList.includes(r.id)) {
+        r["isFavourite"] = true;
+      }
 
       this.allusers.push(r)
 
@@ -262,9 +294,8 @@ export class ViewProfilesComponent implements OnInit {
     this.getPage(1);
   }
 
-  viewProfile(user)
-  {
-    this.router.navigate(["userProfile/"+user])
+  viewProfile(user) {
+    this.router.navigate(["userProfile/" + user])
   }
 
   quickView(user) {

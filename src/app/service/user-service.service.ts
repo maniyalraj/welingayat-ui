@@ -18,9 +18,71 @@ export class UserServiceService {
     return this.get(url)
   }
 
-  getEmptyUserObj()
+  getCurrentUser()
   {
-    return this.emptyUser;
+    let url = this.baseUrl+"user/me";
+
+    return this.get(url)
+  }
+
+  addToFav(id)
+  {
+    let url = this.baseUrl+"user/save/favourite";
+
+    return this.post(url, id);
+  }
+
+  removeFromFav(id)
+  {
+    let url = this.baseUrl+"user/remove/favourite";
+
+    return this.post(url, id);
+  }
+
+  getEmptyUserObj(user)
+  {
+
+    if(user == null)
+    {
+      return this.emptyUser;
+    }
+
+    if(user.userAdditionalDetails == null)
+    {
+      user.userAdditionalDetails = this.emptyUser.userAdditionalDetails;
+    }
+
+    if(user.userEducationalDetails == null)
+    {
+      user.userEducationalDetails = this.emptyUser.userEducationalDetails;
+    }
+
+    if(user.userFamilyDetails == null)
+    {
+      user.userFamilyDetails = this.emptyUser.userFamilyDetails;
+    }
+
+    if(user.userImages == null)
+    {
+      user.userImages = this.emptyUser.userImages;
+    }
+
+    if(user.userMedicalDetails == null)
+    {
+      user.userMedicalDetails = this.emptyUser.userMedicalDetails;
+    }
+
+    if(user.userPersonalDetails == null)
+    {
+      user.userPersonalDetails = this.emptyUser.userPersonalDetails;
+    }
+
+    if(user.userProfessionalDetails == null)
+    {
+      user.userProfessionalDetails = this.emptyUser.userProfessionalDetails;
+    }
+
+    return user;
   }
 
   get(url) {

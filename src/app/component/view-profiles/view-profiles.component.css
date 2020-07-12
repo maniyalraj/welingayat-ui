@@ -173,3 +173,23 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
 .pagination-div{
   background:#fff;
 }
+
+
+.favourite-icon{
+  cursor: pointer;
+  position: absolute;
+  right: 25px;
+  top: 10px;
+  font-size: 25px;
+}
+
+.favourite-icon .active{
+
+  color:#fece3a;
+
+}
+
+.favourite-icon .inactive{
+  color: #949494;
+}
+

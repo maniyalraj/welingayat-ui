@@ -21,7 +21,7 @@ export class UserProfileComponent implements OnInit {
   countOfSiblings= 0;
 
   constructor(private route: ActivatedRoute, private userService: UserServiceService, private spinner: NgxSpinnerService) {
-    let emptyUser = this.userService.getEmptyUserObj(null);
+    let emptyUser = this.userService.transformUser(null);
     this.user = {...this.user, ...emptyUser};
 
   }
@@ -41,23 +41,23 @@ export class UserProfileComponent implements OnInit {
           }
           this.profileImageUrl = result.userImages.imageUrl
 
-          this.user =this.userService.getEmptyUserObj(result);
+          this.user =this.userService.transformUser(result);
 
-          this.user.age = this.calculateAge(result.userPersonalDetails.dob);
-          this.user.userProfessionalDetails.jobType = this.user.userProfessionalDetails.jobType.replace("JOB_TYPE_","")
-          this.user.userPersonalDetails.complexion = this.user.userPersonalDetails.complexion.replace("COMPLEXION_","")
-          this.user.userPersonalDetails.maritalStatus = this.user.userPersonalDetails.maritalStatus.replace("MARITAL_STATUS_","")
-          this.user.userPersonalDetails.familyType = this.user.userPersonalDetails.familyType.replace("FAMILY_TYPE_","")
+          // this.user.age = this.calculateAge(result.userPersonalDetails.dob);
+          // this.user.userProfessionalDetails.jobType = this.user.userProfessionalDetails.jobType.replace("JOB_TYPE_","")
+          // this.user.userPersonalDetails.complexion = this.user.userPersonalDetails.complexion.replace("COMPLEXION_","")
+          // this.user.userPersonalDetails.maritalStatus = this.user.userPersonalDetails.maritalStatus.replace("MARITAL_STATUS_","")
+          // this.user.userPersonalDetails.familyType = this.user.userPersonalDetails.familyType.replace("FAMILY_TYPE_","")
           // this.user.userMedicalDetails.bloodGroup = this.user.userMedicalDetails.bloodGroup.replace("BLOOD_GROUP","")
 
-          if(this.user.userEducationalDetails.qualification === "QUALIFICATION_OTHER")
-          {
-            this.user.userEducationalDetails.qualification = this.user.userEducationalDetails.otherQualification;
-          }
-          else
-          {
-            this.user.userEducationalDetails.qualification = this.user.userEducationalDetails.qualification.replace("QUALIFICATION_","")
-          }
+          // if(this.user.userEducationalDetails.qualification === "QUALIFICATION_OTHER")
+          // {
+          //   this.user.userEducationalDetails.qualification = this.user.userEducationalDetails.otherQualification;
+          // }
+          // else
+          // {
+          //   this.user.userEducationalDetails.qualification = this.user.userEducationalDetails.qualification.replace("QUALIFICATION_","")
+          // }
 
           if(this.user.userFamilyDetails != null)
           {

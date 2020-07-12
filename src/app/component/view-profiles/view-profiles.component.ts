@@ -59,6 +59,7 @@ export class ViewProfilesComponent implements OnInit {
   totalElements = 10;
   p: number = 1;
 
+
   constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService, private modalService: NgbModal, private router: Router, private userService: UserServiceService) { }
 
 
@@ -117,6 +118,8 @@ export class ViewProfilesComponent implements OnInit {
 
     let favList = JSON.parse(localStorage.getItem("favList"));
 
+    user.spin = "fa-spin";
+
     if (favList.includes(user.id)) {
       this.userService.removeFromFav(user.id).subscribe((result) => {
         if (result != null) {
@@ -124,8 +127,10 @@ export class ViewProfilesComponent implements OnInit {
           localStorage.setItem("favList", JSON.stringify(favList));
           user.isFavourite = false;
         }
+        user.spin = ""
       }, (error) => {
         console.log(error);
+        user.spin = ""
       })
     }
     else {
@@ -135,8 +140,10 @@ export class ViewProfilesComponent implements OnInit {
           localStorage.setItem("favList", JSON.stringify(favList));
           user.isFavourite = true;
         }
+        user.spin = ""
       }, (error) => {
         console.log(error);
+        user.spin = ""
       })
     }
 
@@ -229,31 +236,8 @@ export class ViewProfilesComponent implements OnInit {
     this.totalElements = result.totalElements
     this.allusers = []
     for (let r of users) {
-      if (r.userPersonalDetails != null) {
-        if (r.userPersonalDetails.dob != null) { r.age = this.calculateAge(r.userPersonalDetails.dob) }
-        if (r.userPersonalDetails.maritalStatus != null) { r.userPersonalDetails.maritalStatus = this.mapService.getMaritalStatusString(r.userPersonalDetails.maritalStatus); }
-      }
 
-      if (r.userImages == null || r.userImages.imageUrl == null) {
-        r.userImages = { "imageUrl": "../../assets/images/blank-profile-picture.png" }
-      }
-
-      this.mapService.qualtificationMap
-
-      if (r.userEducationalDetails != null) {
-        if (r.userEducationalDetails.qualification == "QUALIFICATION_OTHER") {
-          r.userEducationalDetails.qualification = r.userEducationalDetails.other_qualification
-        }
-
-
-        if (r.userEducationalDetails.qualification) {
-          r.userEducationalDetails.qualification = r.userEducationalDetails.qualification.replace("QUALIFICATION_", "")
-        }
-      }
-
-      if (favList.includes(r.id)) {
-        r["isFavourite"] = true;
-      }
+      r = this.userService.transformUser(r)
 
       this.allusers.push(r)
 

@@ -57,6 +57,7 @@ import { NgwWowModule } from 'ngx-wow';
 
 import {NgxPaginationModule} from 'ngx-pagination';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { FavouritesComponent } from './component/favourites/favourites.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { UserProfileComponent } from './component/user-profile/user-profile.comp
     AdditionalFormComponent,
     ViewProfilesComponent,
     MinimumViewComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    FavouritesComponent
   ],
   imports: [
     BrowserModule,

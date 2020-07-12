@@ -1,0 +1,130 @@
+<main class="profile-page" style="min-height: 100vh;">
+
+  <section class="section">
+    <div class="container" style="max-width: 100%; margin:1px; padding:1px">
+
+      <div class="row flex">
+
+        <div class="col-11" style="margin-top:15px; padding:0px" [hidden]="allusers.length !=0">
+          <div class=" card row  card-profile  shadow nomt--300"
+            style="padding:10px; padding-top:0px; margin-top:0px; flex-direction: row; height:400px">
+
+            <h1> <i class="fa fa-meh-o" aria-hidden="true"></i> No Users found.. Try adjusting filters</h1>
+          </div>
+        </div>
+        <div class="col-lg-9" style="margin-top:15px; padding:0px; " [hidden]="allusers.length ==0">
+
+          <div class="row padding-sm-zero padding-md" style="margin-top:0px; flex-direction: row ; background: none;">
+
+            <ng-container *ngFor="let user of allusers">
+              <div class="col-md-4 padding-sm-zero"
+                style="margin-bottom:15px; padding:0px; padding-left:10px; padding-right:10px ">
+                <div class="" style="margin-left:10px; margin-right:10px">
+                  <div class="row user-card box-shadow shadow " style="padding:10px; margin-right:0px; margin-left:0px">
+
+                    <div class="col-12 d-flex justify-content-center" style="padding:2px">
+
+                      <img class="img img-thumbnail rounded rounded-circle search-view-image pointer"
+                        [src]="user.userImages.imageUrl" (click)="viewProfile(user.id)" />
+
+                    </div>
+                    <div class="col-12" style="padding:2px">
+                      <div class="row">
+                        <div class="col-12">
+                          <h5 class="text-truncate text-center pointer" (click)="viewProfile(user.id)">{{user.lastName}}
+                            {{user.firstName}}
+                            {{user.middleName}}
+                          </h5>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6 text pr-0">
+                          <span class="d-md-inline">
+                            <div class="icon-div"><i class="fas fa-arrows-alt-v"></i></div>
+                            Height:
+                          </span>
+                          {{user.userPersonalDetails?.heightInCms}}
+                          cms
+                        </div>
+                        <div class="col-6 text text-right">
+                          {{user.age}}, {{user.userPersonalDetails?.maritalStatus}}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 text">
+                          <span class="d-md-inline">
+                            <div class="icon-div"><i class="fas fa-weight"></i></div>
+                            Weight:
+                          </span>
+                          {{user.userPersonalDetails?.weightInKgs}}
+                          kgs
+                        </div>
+
+
+                      </div>
+                      <div class="row">
+                        <div class="col-12 text-truncate text pr-0" data-toggle="tooltip" title="{{user.jobRole}}">
+                          <span class="d-md-inline">
+                            <div class="icon-div"><i class="fas fa-briefcase"></i></div>
+                            Job :
+                          </span>
+                          {{user.userProfessionalDetails?.jobRole}}
+                        </div>
+
+
+                      </div>
+                      <div class="row">
+                        <div class="col-12 text-truncate text pr-0">
+                          <span class="d-md-inline">
+                            <div class="icon-div"><i class="fas fa-university"></i></div>Qualification:
+                          </span>
+                          {{user.userEducationalDetails?.qualification}}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-9 text pr-0">
+                          <span class="d-md-inline">
+                            <div class="icon-div"><i class="fas fa-rupee-sign"></i></div>
+                            Salary:
+                          </span>
+                          {{user.userProfessionalDetails?.monthlyIncome}}
+                          Rs
+                        </div>
+                        <div class="col-3 p-0">
+                          <i class="fa fa-eye mr-2 pointer float-right" (click)="open(classic3,'',''); quickView(user)"
+                            data-toggle="tooltip" data-placement="top" title="Quick View"></i>
+                          <i class="fa fa-external-link mr-2 pointer float-right"
+                            (click)="open(classic3,'',''); quickView(user)" data-toggle="tooltip" data-placement="top"
+                            title="Visit Profile"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="favourite-icon" (click)="toggleFavourite(user)">
+                      <i class="far fa-star inactive" aria-hidden="true" [hidden]="user.isFavourite"
+                        title="Add Favourite"></i>
+                      <i class="fas fa-star active" aria-hidden="true" [hidden]="!user.isFavourite"
+                        title="Remove Favourite"></i>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<ngx-spinner bdOpacity="0.2" bdColor="#333" size="large" color="#fff" type="ball-fussion" [fullScreen]="true"
+  name="loading">
+  <p style="color: white">
+    Loading...
+  </p>
+</ngx-spinner>

@@ -39,5 +39,23 @@
 .wave-container svg{
     height: 125px;
     width: 100%;
-    
+
+}
+
+.inner-nav-ul li a{
+  color: #c40000 !important;
+}
+
+.inner-nav-ul{
+  list-style: none;
+  padding:0px;
+}
+
+
+.inner-nav-ul li {
+  padding:10px;
+}
+
+.dropdown-menu-inner{
+  padding:0px;
 }

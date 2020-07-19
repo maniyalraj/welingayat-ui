@@ -56,17 +56,39 @@
               <span class="nav-link-inner--text">Find Matches</span>
             </a>
           </li>
-          <li class="nav-item dropdown no-caret" [hidden]="!isLoggedIn">
-            <a [routerLink]="['/favourites']" class="nav-link">
-              <i class="fa fa-star"></i>
-              <span class="nav-link-inner--text">Favourites</span>
-            </a>
-          </li>
-          <li class="nav-item dropdown no-caret" [hidden]="!isLoggedIn">
+          <!-- <li class="nav-item dropdown no-caret" [hidden]="!isLoggedIn">
             <a [routerLink]="['/profile']" class="nav-link">
               <i class="fa fa-user"></i>
               <span class="nav-link-inner--text">My Profile</span>
             </a>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link" data-toggle="dropdown" role="button">
+              <i class="fa fa-user"></i>
+              <span class="nav-link-inner--text">My Profile</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-l">
+              <div class="dropdown-menu-inner">
+                <ul class="inner-nav-ul">
+                  <li>
+                      <a [routerLink]="['/favourites']">
+                        <i class="fa fa-star mr-2"></i>
+                        <span class="nav-link-inner--text">Selected</span>
+                      </a>
+
+                  </li>
+
+                  <li>
+                    <div class="media-body">
+                      <a [routerLink]="['/profile']">
+                        <i class="fa fa-user mr-2"></i>
+                        <span class="nav-link-inner--text">My Profile</span>
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
         </ul>
 

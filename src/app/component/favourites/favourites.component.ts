@@ -29,6 +29,14 @@ export class FavouritesComponent implements OnInit {
 
       }
 
+      for(let r of result.unlockedUsers)
+      {
+
+        if(!this.allusers.some((u) => u.id == r.id))
+        this.allusers.push(this.userService.transformUser(r));
+
+      }
+
       this.spinner.hide('loading');
 
 

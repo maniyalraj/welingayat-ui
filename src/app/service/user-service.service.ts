@@ -36,6 +36,14 @@ export class UserServiceService {
     return this.post(url, id);
   }
 
+  unlockUser(id){
+
+    let url = this.baseUrl + "user/unlock";
+
+    return this.post(url, id);
+
+  }
+
   transformUser(user) {
 
     let favList: any[] = JSON.parse(localStorage.getItem("favList"));

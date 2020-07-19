@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
     public isCollapsed = true;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
+    private credits = 0;
 
     private isLoggedIn: boolean = false;
     subscription: Subscription;
@@ -51,6 +52,7 @@ export class NavbarComponent implements OnInit {
         this.userService.getCurrentUser().subscribe((result:any)=>{
 
           let favList = []
+          this.credits = result.credits;
 
           for(let f of result.userFavourites){
               favList.push(f.id);

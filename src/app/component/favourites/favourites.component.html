@@ -9,7 +9,7 @@
           <div class=" card row  card-profile  shadow nomt--300 flex"
             style="padding:10px; padding-top:0px; margin-top:0px; height:400px; text-align: center;">
 
-            <h1> No favourites found, click on <i class="fa fa-star-o"></i> to mark as favourite</h1>
+            <h1> Click on <i class="fa fa-star-o pointer" [routerLink]="['/viewProfiles']"></i> to mark as favourite <br/> OR <br/> Unlock a user</h1>
           </div>
         </div>
         <div class="col-lg-9" style="margin-top:15px; padding:0px; " [hidden]="allusers.length ==0">

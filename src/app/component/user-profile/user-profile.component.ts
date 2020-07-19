@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user-profile',
@@ -20,7 +21,7 @@ export class UserProfileComponent implements OnInit {
   user ;
   countOfSiblings= 0;
 
-  constructor(private route: ActivatedRoute, private userService: UserServiceService, private spinner: NgxSpinnerService) {
+  constructor(private route: ActivatedRoute, private userService: UserServiceService, private spinner: NgxSpinnerService, private modalService: NgbModal) {
     let emptyUser = this.userService.transformUser(null);
     this.user = {...this.user, ...emptyUser};
 
@@ -94,6 +95,35 @@ export class UserProfileComponent implements OnInit {
     let timeDiff = Math.abs(Date.now() - new Date(date).getTime());
     let age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
     return age;
+  }
+
+  unlockUser()
+  {
+    this.userService.unlockUser(this.user.id).subscribe(
+      result =>{
+        this.modalService.dismissAll();
+        window.location.reload();
+      },
+      error => {
+        alert(error.error.message);
+      }
+    )
+  }
+
+  open(content, type, modalDimension) {
+    if (modalDimension === 'sm' && type === 'modal_mini') {
+      this.modalService.open(content, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
+      }, (reason) => {
+      });
+    } else if (modalDimension === '' && type === 'Notification') {
+      this.modalService.open(content, { windowClass: 'modal-danger', centered: true }).result.then((result) => {
+      }, (reason) => {
+      });
+    } else {
+      this.modalService.open(content, { centered: true }).result.then((result) => {
+      }, (reason) => {
+      });
+    }
   }
 
 }

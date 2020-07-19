@@ -11,6 +11,15 @@
                 <img [src]="profileImageUrl" class="rounded-circle" [hidden]="userImagePresent=='true'" />
               </div>
 
+              <div class="unlock" *ngIf="!user.unlocked" (click)="open(classic3,'','')">
+                <div class="btn btn-neutral">
+                  <span class="btn-inner--icon">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                  <span class="nav-link-inner--text d-none d-md-inline-block">&nbsp;Unlock</span>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -106,15 +115,15 @@
               <div class="user-info">
                 <div class="row">
 
-                  <div class="col-lg-6 col-12" >
+                  <div class="col-lg-6 col-12">
                     <span class="info-label"> Total Siblings: </span> {{countOfSiblings}}
                   </div>
-                  <div class="col-lg-6 col-12" >
+                  <div class="col-lg-6 col-12">
                     <span class="info-label"> Family Type: </span> {{user.userPersonalDetails.familyType}}
                   </div>
 
                   <div class="col-lg-6 col-12" *ngFor="let r of user.userFamilyDetails">
-                   {{r.relation}}: {{r.title}} {{r.firstName}} {{r.lastName}} ({{r.profession}})
+                    {{r.relation}}: {{r.title}} {{r.firstName}} {{r.lastName}} ({{r.profession}})
                   </div>
 
                 </div>
@@ -125,7 +134,7 @@
           </div>
         </div>
       </div>
-      </div>
+    </div>
   </section>
 </main>
 
@@ -133,3 +142,28 @@
   name="loading">
   <p style="color: white"> Loading... </p>
 </ngx-spinner>
+
+
+<ng-template #classic3 let-c="close" let-d="dismiss">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h6 class="modal-title" id="modal-title-default"> Confirm Unlock?</h6>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h4>To unlock this user, 100 credits will be consumed. Do you want to continue?</h4>
+
+      <div class="flex">
+        <div class="btn btn-neutral" (click)="unlockUser()"> Yes</div>
+        <div class="btn btn-neutral" (click)="d('Cross click')"> No</div>
+      </div>
+
+    </div>
+    <!-- <div class="modal-footer">
+
+
+    </div> -->
+  </div>
+</ng-template>

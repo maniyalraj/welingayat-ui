@@ -19,7 +19,7 @@
               Welcomes all lingayat to come and join
             </p>
 
-            <div class="wow pulse" data-wow-delay="1s" [hidden]="isLoggedIn"
+            <div class="wow pulse" data-wow-delay="0.5s" [hidden]="isLoggedIn"
               style="display: flex; justify-content: space-between;">
 
               <a [routerLink]="['/login']" class="btn btn-neutral btn-icon animate-btn">
@@ -46,7 +46,17 @@
                 </span>
                 <span class="nav-link-inner--text">Find my match</span>
               </a>
+
+              <a [routerLink]="['/favourites']" class="btn btn-neutral btn-icon animate-btn">
+                <span class="btn-inner--icon">
+                  <i class="fa fa-star mr-2"></i>
+                </span>
+                <span class="nav-link-inner--text">Favourites</span>
+              </a>
+
             </div>
+
+
 
 
           </div>

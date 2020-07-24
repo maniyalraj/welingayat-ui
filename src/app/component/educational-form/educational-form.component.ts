@@ -18,6 +18,9 @@ export class EducationalFormComponent implements OnInit {
   nameOfInstitute: string
   qualificationMap: any;
 
+  focus;
+  focus1;
+
   constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {

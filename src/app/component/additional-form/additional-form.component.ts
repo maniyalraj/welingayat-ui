@@ -23,6 +23,9 @@ export class AdditionalFormComponent implements OnInit {
   permanentAddressCity: string;
   permanentAddressPin: number;
 
+  focus;
+  focus1;
+
   constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {

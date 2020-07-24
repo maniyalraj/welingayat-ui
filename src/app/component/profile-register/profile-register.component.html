@@ -12,9 +12,9 @@
 
               <div class="card-profile-image">
 
-                <img [src]="croppedImage" class="rounded-circle" [hidden]="userImagePresent=='false'"
+                <img [src]="croppedImage" class="rounded-circle" [hidden]="userImagePresent==false"
                   (click)="open(classic3,'','')" />
-                <img [src]="profileImageUrl" class="rounded-circle" [hidden]="userImagePresent=='true'"
+                <img [src]="profileImageUrl" class="rounded-circle" [hidden]="userImagePresent==true"
                   (click)="open(classic3,'','')" />
               </div>
 

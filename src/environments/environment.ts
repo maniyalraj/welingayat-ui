@@ -5,11 +5,11 @@
 export const environment = {
   production: false,
   // serverUrl: "http://localhost:8080/"
-  serverUrl: "https://aws.welingayat.in/", 
+  serverUrl: "https://aws.welingayat.in/",
   // serverUrl: "http://ec2-34-222-19-194.us-west-2.compute.amazonaws.com:8080/"
 };
 
-/*  
+/*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *

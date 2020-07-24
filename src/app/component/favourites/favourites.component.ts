@@ -11,7 +11,11 @@ import { Router } from '@angular/router';
 export class FavouritesComponent implements OnInit {
 
 
-  private allusers: any[] = [];
+  allusers: any[] = [];
+
+  open;
+  classic3;
+  quickView;
 
   constructor(private userService: UserServiceService, private router: Router, private spinner: NgxSpinnerService) { }
 

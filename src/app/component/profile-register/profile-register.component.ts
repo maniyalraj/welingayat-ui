@@ -161,7 +161,7 @@ export class ProfileRegisterComponent implements OnInit {
     return blob;
   }
 
-  private uploadImage() {
+  uploadImage() {
 
     var formData: any = new FormData();
 

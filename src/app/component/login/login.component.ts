@@ -11,8 +11,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class LoginComponent implements OnInit {
 
-  private usernameOrEmail: string;
-  private password: string;
+  usernameOrEmail: string;
+  password: string;
+  focus;
+  focus1;
 
   @Output() loggedIn: EventEmitter<any> = new EventEmitter();
 

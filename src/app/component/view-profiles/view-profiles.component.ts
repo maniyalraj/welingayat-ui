@@ -59,6 +59,14 @@ export class ViewProfilesComponent implements OnInit {
   totalElements = 10;
   p: number = 1;
 
+  focus;
+  focus_fn;
+  focus_ln;
+  focus_salary;
+  focus_city;
+
+
+
 
   constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService, private modalService: NgbModal, private router: Router, private userService: UserServiceService) { }
 

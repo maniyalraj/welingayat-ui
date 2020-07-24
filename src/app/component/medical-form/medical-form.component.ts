@@ -16,6 +16,8 @@ export class MedicalFormComponent implements OnInit {
   bloodGroupOptions: any = []
   isDisabled: boolean = false;
   typeOfDisability: string;
+  focus;
+  focus1;
 
   constructor(private profileService: ProfileService, private enumService: EnumServiceService, private spinner: NgxSpinnerService) { }
 

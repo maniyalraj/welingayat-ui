@@ -20,6 +20,9 @@ export class FamilyFormComponent implements OnInit {
   relation: string = "RELATION_SELECTED";
   profession: string = "JOB_TYPE_SELECTED";
   additionalDescription: string;
+  isMarried;
+  focus;
+  focus1;
 
   relationMap = {
     "RELATION_FATHER": "Father",

@@ -9,15 +9,22 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  private username: string;
-  private email: string;
-  private password: string;
-  private firstname: string;
-  private lastname: string;
-  private contact: string;
-  private middleName: string;
-  private confirmPassword: string;
-  private gender: string = "GENDER_FEMALE";
+  username: string;
+  email: string;
+  password: string;
+  firstname: string;
+  lastname: string;
+  contact: string;
+  middleName: string;
+  confirmPassword: string;
+  gender: string = "GENDER_FEMALE";
+
+  focus;
+  focus1;
+  focus_firstName;
+  focus_LastName;
+  focus_Contact;
+
 
   constructor(private signupService: SignupService, private router: Router) { }
 

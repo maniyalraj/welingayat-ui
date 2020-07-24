@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  
+  isLoggedIn:boolean
 
   constructor() { }
 
   ngOnInit() {
-    var isLoggedIn:boolean = false;
+    this.isLoggedIn= false;
   }
 
 }

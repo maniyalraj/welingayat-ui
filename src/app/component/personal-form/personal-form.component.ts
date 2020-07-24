@@ -24,6 +24,9 @@ export class PersonalFormComponent implements OnInit {
   staticAlertClosed = true;
   alertType: string = "danger";
 
+  focus;
+  focus1;
+
   constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {

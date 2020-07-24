@@ -17,6 +17,9 @@ export class ProfessionalFormComponent implements OnInit {
   jobLocation: string;
   jobIndustry: string;
 
+  focus;
+  focus1;
+
   constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {

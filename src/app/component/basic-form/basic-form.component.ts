@@ -15,6 +15,9 @@ export class BasicFormComponent implements OnInit {
   lastName:string;
   contact:number;
   email:string;
+  focus;
+  focus1;
+
 
   constructor(private profileService: ProfileService) { }
 
@@ -49,8 +52,8 @@ export class BasicFormComponent implements OnInit {
     },error=>{
       console.log(error);
     })
-    
-   
+
+
   }
 
   skipAndNext(){

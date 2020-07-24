@@ -122,7 +122,7 @@ export class ProfileService {
   }
 
   getUserCountByGender(){
-    let url = this.baseImageUrl + "noauth/getUserCount" 
+    let url = this.baseImageUrl + "noauth/getUserCount"
 
     return this.get(url);
   }

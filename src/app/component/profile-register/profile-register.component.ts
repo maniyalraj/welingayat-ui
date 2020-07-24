@@ -87,7 +87,9 @@ export class ProfileRegisterComponent implements OnInit {
     this.imageCropper.transform = { 'rotate': this.initialRotate }
   }
 
-  constructor(private profileService: ProfileService, private modalService: NgbModal, private imageCompressor: NgxImageCompressService) { }
+  constructor(private profileService: ProfileService, private modalService: NgbModal, private imageCompressor: NgxImageCompressService) {
+    console.log("loaded");
+  }
 
   ngOnInit() {
     this.profileService.getUserBasicDetails().subscribe(result => {

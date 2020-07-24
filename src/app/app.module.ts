@@ -58,6 +58,7 @@ import { NgwWowModule } from 'ngx-wow';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { FavouritesComponent } from './component/favourites/favourites.component';
+import { ProfileRegisterComponentModule } from './component/profile-register/profile-register.module';
 
 @NgModule({
   declarations: [
@@ -68,14 +69,14 @@ import { FavouritesComponent } from './component/favourites/favourites.component
     LoginComponent,
     NavbarComponent,
     SignupComponent,
-    ProfileRegisterComponent,
-    BasicFormComponent,
-    PersonalFormComponent,
-    EducationalFormComponent,
-    ProfessionalFormComponent,
-    FamilyFormComponent,
-    MedicalFormComponent,
-    AdditionalFormComponent,
+    // ProfileRegisterComponent,
+    // BasicFormComponent,
+    // PersonalFormComponent,
+    // EducationalFormComponent,
+    // ProfessionalFormComponent,
+    // FamilyFormComponent,
+    // MedicalFormComponent,
+    // AdditionalFormComponent,
     ViewProfilesComponent,
     MinimumViewComponent,
     UserProfileComponent,
@@ -108,7 +109,8 @@ import { FavouritesComponent } from './component/favourites/favourites.component
     CountUpModule,
     InViewportModule,
     NgwWowModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ProfileRegisterComponentModule
   ],
   entryComponents: [NgbdModalContent],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }, NgxImageCompressService],

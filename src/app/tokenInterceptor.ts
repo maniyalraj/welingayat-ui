@@ -5,7 +5,7 @@ import { Observable  } from 'rxjs';
 export class TokenInterceptorService implements HttpInterceptor {
    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
        // All HTTP requests are going to go through this method
-       console.log('INTERCEPTOR');
+
       // We retrieve the token, if any
       const token = localStorage.getItem("accessToken");
 

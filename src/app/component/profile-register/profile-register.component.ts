@@ -88,21 +88,20 @@ export class ProfileRegisterComponent implements OnInit {
   }
 
   constructor(private profileService: ProfileService, private modalService: NgbModal, private imageCompressor: NgxImageCompressService) {
-    console.log("loaded");
+
   }
 
   ngOnInit() {
     this.profileService.getUserBasicDetails().subscribe(result => {
-      console.log(result);
       this.firstName = result["firstName"];
       this.lastName = result["lastName"];
     }, error => {
-      // alert("Some error occured: "+error)
+      console.log(error)
     })
 
     this.profileService.getUserProfileUrl().subscribe(result => {
 
-      if (result["imageUrl"] == "" || result["imageUrl"] == null) {
+      if (result == null || result["imageUrl"] == "" || result["imageUrl"] == null) {
         this.userImagePresent = false;
       }
       else {

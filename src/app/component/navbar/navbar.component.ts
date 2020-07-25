@@ -30,7 +30,24 @@ export class NavbarComponent implements OnInit {
       .subscribe(item => {
         this.isLoggedIn = item
         this.isLoggedIn = this.checkIsLoggedIn() != null ? true : false;
+
+        this.userService.getCurrentUser().subscribe((result: any) => {
+
+          let favList = []
+          this.credits = result.credits;
+
+          for (let f of result.userFavourites) {
+            favList.push(f.id);
+          }
+
+          localStorage.setItem("favList", JSON.stringify(favList));
+
+        }, error => {
+
+        })
+
       });
+
 
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;

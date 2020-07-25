@@ -43,7 +43,6 @@ export class HomeComponent implements OnInit {
 
     if (visible) {
       this.profileService.getUserCountByGender().subscribe((result: any) => {
-        console.log(result);
         this.maleUsers = result.filter(c => c.gender == "GENDER_MALE")[0].count
         this.femaleUsers = result.filter(c => c.gender == "GENDER_FEMALE")[0].count
         this.totalUsers = this.maleUsers + this.femaleUsers

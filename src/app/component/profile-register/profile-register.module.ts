@@ -14,6 +14,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { FormsModule } from '@angular/forms';
 import { OwlNativeDateTimeModule, OwlDateTimeModule } from 'ng-pick-datetime';
 import { CommonModule } from '@angular/common';
+import { ImageLibraryComponent } from '../image-library/image-library.component';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { CommonModule } from '@angular/common';
     FamilyFormComponent,
     MedicalFormComponent,
     AdditionalFormComponent,
+    ImageLibraryComponent
   ],
   exports: [
     ProfileRegisterComponent

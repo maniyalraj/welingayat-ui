@@ -106,7 +106,7 @@ export class ProfileRegisterComponent implements OnInit {
         this.userImagePresent = false;
       }
       else {
-        this.userImagePresent = false;
+        this.userImagePresent = true;
         this.profileImageUrl = result["imageUrl"];
       }
 

@@ -121,6 +121,19 @@ export class ProfileService {
     return this.post(url, data);
   }
 
+  getUserImagesLibrary()
+  {
+    let url = this.baseImageUrl + "get/libraryImages";
+
+    return this.get(url);
+  }
+
+  saveUserLibraryImage(data) {
+    let url = this.baseImageUrl + "save/libraryImage"
+
+    return this.post(url, data);
+  }
+
   getUserCountByGender(){
     let url = this.baseImageUrl + "noauth/getUserCount"
 

@@ -12,9 +12,9 @@
 
               <div class="card-profile-image">
 
-                <img [src]="croppedImage" class="rounded-circle" [hidden]="userImagePresent==false"
+                <img [src]="croppedImage" class="rounded-circle" *ngIf="!userImagePresent"
                   (click)="open(classic3,'','')" />
-                <img [src]="profileImageUrl" class="rounded-circle" [hidden]="userImagePresent==true"
+                <img [src]="profileImageUrl" class="rounded-circle" *ngIf="userImagePresent"
                   (click)="open(classic3,'','')" />
               </div>
 
@@ -104,13 +104,13 @@
                 </ng-template>
               </ngb-tab>
 
-              <ngb-tab id="additional">
+              <ngb-tab id="library">
                 <ng-template ngbTabTitle>
                   Library
                 </ng-template>
                 <ng-template ngbTabContent>
                   <div class="card-body px-lg-5 py-lg-5">
-                    <app-additional-form></app-additional-form>
+                    <app-image-library></app-image-library>
                   </div>
                 </ng-template>
               </ngb-tab>

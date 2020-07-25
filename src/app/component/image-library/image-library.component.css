@@ -1,0 +1,22 @@
+.add-new-image{
+  height: 180px;
+    width: 180px;
+    background-color: #eeeeee;
+    border: 2px dashed #888;
+    font-size: 50px;
+    color: #888;
+    margin: 10px;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.image-container img{
+  height: 180px;
+  width: 180px;
+}
+
+.image-container{
+  margin: 10px
+}

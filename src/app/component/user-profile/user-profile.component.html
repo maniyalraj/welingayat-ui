@@ -131,6 +131,34 @@
 
             </div>
 
+            <div class="col-12">
+
+              <div class="user-info-label">
+                <h5>Images ({{user.imageCount}}): </h5>
+              </div>
+
+              <div class="user-info" *ngIf="user.unlocked">
+                <div class="row justify-content-center">
+                <div class="image-container" *ngFor="let image of user.userImageLibrary">
+
+                  <img [src]="image.imageUrl" />
+
+                </div>
+              </div>
+              </div>
+
+              <div class="user-info" *ngIf="!user.unlocked">
+
+                  <div class="locked-images flex">
+
+                    <div><i class="fa fa-lock"></i> Unlock user to see all images</div>
+
+                  </div>
+              </div>
+
+
+            </div>
+
           </div>
         </div>
       </div>

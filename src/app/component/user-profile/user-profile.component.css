@@ -58,3 +58,18 @@
 .modal-body h4{
   color:#232323;
 }
+
+.image-container img{
+  height: 300px;
+  width: 300px;
+}
+
+.image-container{
+  margin: 5px
+}
+
+.locked-images{
+
+  height: 300px;
+
+}

@@ -1,6 +1,6 @@
 .add-new-image{
-  height: 180px;
-    width: 180px;
+  height: 300px;
+    width: 300px;
     background-color: #eeeeee;
     border: 2px dashed #888;
     font-size: 50px;
@@ -13,8 +13,8 @@
 }
 
 .image-container img{
-  height: 180px;
-  width: 180px;
+  height: 300px;
+  width: 300px;
 }
 
 .image-container{

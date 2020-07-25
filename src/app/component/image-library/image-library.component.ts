@@ -16,6 +16,7 @@ export class ImageLibraryComponent implements OnInit {
   showCropper:boolean = false;
 
   userImages:any[];
+  imageChangedEvent: any = '';
 
   constructor(private profileService: ProfileService, private modalService: NgbModal, private imageCompressor: NgxImageCompressService) { }
 

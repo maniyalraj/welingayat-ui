@@ -2,12 +2,20 @@
 
   <div class="image-container" *ngFor="let image of userImages">
     <img [src]="image.imageUrl"/>
+    <div class="actions pointer">
+      <i class="fa fa-trash" (click)="deleteImage(image)" title="Delete Image"> </i>
+    </div>
+  </div>
 
+  <div class="add-new-image flex pointer" *ngIf="imageUploading">
+    <i class="fa fa-spinner fa-spin"></i>
   </div>
 
   <div class="add-new-image flex pointer" (click)="open(classic3,'','')" *ngIf="!hideAddImageIcon">
     <i class="fa fa-plus-circle"></i>
   </div>
+
+
 
 </div>
 

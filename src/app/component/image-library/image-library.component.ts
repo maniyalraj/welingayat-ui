@@ -19,6 +19,7 @@ export class ImageLibraryComponent implements OnInit {
   imageChangedEvent: any = '';
 
   hideAddImageIcon: boolean = false;
+  imageUploading:boolean = false;
 
   constructor(private profileService: ProfileService, private modalService: NgbModal, private imageCompressor: NgxImageCompressService) { }
 
@@ -88,7 +89,29 @@ export class ImageLibraryComponent implements OnInit {
 
     formData.append("file", this.dataURItoBlob(this.croppedImage))
 
+    this.imageUploading = true;
+
     this.profileService.saveUserLibraryImage(formData).subscribe(result => {
+      this.profileService.getUserImagesLibrary().subscribe((result: any) => {
+
+        this.userImages = result;
+        this.hideAddImageIcon = this.userImages.length >= 4;
+        this.imageUploading = false;
+
+      }, error => {
+        this.imageUploading = false;
+        console.log(error);
+      })
+    }, error => {
+      console.log(error);
+    })
+
+  }
+
+  deleteImage(image)
+  {
+    this.profileService.deleteLibraryImage(image).subscribe(result=>{
+
       this.profileService.getUserImagesLibrary().subscribe((result: any) => {
 
         this.userImages = result;
@@ -96,12 +119,11 @@ export class ImageLibraryComponent implements OnInit {
 
 
       }, error => {
-        console.log(error)
+        console.log(error);
       })
     }, error => {
       console.log(error);
     })
-
   }
 
 

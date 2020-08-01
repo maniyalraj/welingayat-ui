@@ -134,6 +134,13 @@ export class ProfileService {
     return this.post(url, data);
   }
 
+  deleteLibraryImage(data)
+  {
+    let url = this.baseImageUrl + "delete/libraryImage";
+
+    return this.post(url, data)
+  }
+
   getUserCountByGender(){
     let url = this.baseImageUrl + "noauth/getUserCount"
 

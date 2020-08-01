@@ -1,0 +1,31 @@
+.admin-container{
+  background-color: #FFF;
+}
+
+.pointer
+{
+  cursor: pointer;
+}
+
+.user-search{
+  padding:10px;
+}
+
+.admin-ul{
+  list-style: none;
+  padding: 5px;
+}
+
+.admin-ul li{
+  margin:10px 0px;
+  border-bottom: 1px solid #ddd;
+}
+
+
+.admin-menu-panel .form-group, .admin-ul .form-group{
+  border: 1px solid #000;
+}
+
+.user-details{
+  font-size: 20px;
+}

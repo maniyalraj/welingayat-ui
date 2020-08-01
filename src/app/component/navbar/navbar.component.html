@@ -95,6 +95,15 @@
                       </a>
                     </div>
                   </li>
+
+                  <li *ngIf="isAdmin">
+                    <div class="media-body">
+                      <a [routerLink]="['/admin']">
+                        <i class="fa fa-user mr-2"></i>
+                        <span class="nav-link-inner--text">Admin</span>
+                      </a>
+                    </div>
+                  </li>
                 </ul>
               </div>
             </div>

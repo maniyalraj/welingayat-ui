@@ -1,0 +1,117 @@
+<section class="section">
+  <div class="container">
+    <div class="admin-container">
+
+      <div class="admin-header">
+        <h1>Welcome, Admin</h1>
+      </div>
+
+      <div class="admin-menu-panel">
+        <div class="row user-search">
+          <div class="col-12">
+            <div class="form-group mb-3">
+
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"></i></span>
+                </div>
+                <input class="form-control" [(ngModel)]="userRequest.firstName" name="userFirstName"
+                  placeholder="First Name" type="text">
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group mb-3">
+
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"></i></span>
+                </div>
+                <input class="form-control" [(ngModel)]="userRequest.middleName" name="userMiddleName"
+                  placeholder="Middle Name" type="text">
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group mb-3">
+
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"></i></span>
+                </div>
+                <input class="form-control" [(ngModel)]="userRequest.lastName" name="userLastName"
+                  placeholder="Last Name" type="text">
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="col-12">
+            <div class="btn btn-primary" (click)="search()"> Search </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-12">
+
+            <ul class="admin-ul">
+              <li *ngFor="let user of users">
+                <div class="user-details">
+                  <a (click)="viewProfile(user.id)" class="pointer">{{user.firstName}} {{user.middleName}} {{user.lastName}} </a> <i class="fa fa-coins"
+                    title="Available credits"></i> {{user.credits}}
+                </div>
+                <div class="row">
+
+                  <div class="col-12 col-md-4 col-lg-4">
+
+                    <div class="form-group mb-3">
+
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa fa-bill"></i></span>
+                        </div>
+                        <input class="form-control" [(ngModel)]="user.reference" name="referenceNumber"
+                          placeholder="Reference Number" type="text">
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4 col-lg-4">
+                    <div class="form-group mb-3">
+
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa fa-coins"></i></span>
+                        </div>
+                        <input class="form-control" [(ngModel)]="user.creditsToAdd" name="creditsToAdd"
+                          placeholder="Credits" type="text" (focus)="focusedId=user.id">
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-2 col-lg-2" *ngIf="user.id == focusedId">
+                    <div class="btn btn-primary" (click)="addCredits(user)"> Add </div>
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

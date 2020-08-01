@@ -7,6 +7,7 @@ import { SignupComponent } from './component/signup/signup.component';
 import { ViewProfilesComponent } from './component/view-profiles/view-profiles.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { FavouritesComponent } from './component/favourites/favourites.component';
+import { AdminComponent } from './component/admin/admin.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   },
   {path:"viewProfiles", component:ViewProfilesComponent},
   {path:"userProfile/:id", component:UserProfileComponent},
-  {path:"favourites", component: FavouritesComponent}
+  {path:"favourites", component: FavouritesComponent},
+  {path:"admin", component: AdminComponent}
 ];
 
 @NgModule({

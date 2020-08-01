@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
   credits = 0;
 
   isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
   subscription: Subscription;
 
   constructor(public location: Location, private router: Router, private loginService: LoginService, private userService: UserServiceService) {
@@ -35,6 +36,7 @@ export class NavbarComponent implements OnInit {
 
           let favList = []
           this.credits = result.credits;
+          this.isAdmin = result.admin;
 
           for (let f of result.userFavourites) {
             favList.push(f.id);

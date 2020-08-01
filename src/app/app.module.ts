@@ -59,6 +59,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { FavouritesComponent } from './component/favourites/favourites.component';
 import { ProfileRegisterComponentModule } from './component/profile-register/profile-register.module';
+import { AdminComponent } from './component/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { ProfileRegisterComponentModule } from './component/profile-register/pro
     ViewProfilesComponent,
     MinimumViewComponent,
     UserProfileComponent,
-    FavouritesComponent
+    FavouritesComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

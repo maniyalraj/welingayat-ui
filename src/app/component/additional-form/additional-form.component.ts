@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProfileService } from 'src/app/service/profile.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { User, UserPrivateData } from 'src/app/types/user';
+import { UserPrivateData } from 'src/app/types/user';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import { LoginService } from 'src/app/service/login.service';
 
@@ -54,7 +54,7 @@ export class AdditionalFormComponent implements OnInit {
 
     this.spinner.show("saving");
 
-    const user:UserPrivateData = {
+    const user: UserPrivateData = {
       currentAddressCity: this.user.currentAddressCity,
       currentAddressPin: this.user.currentAddressPin,
       currentAddressLine1: this.user.currentAddressLine1,

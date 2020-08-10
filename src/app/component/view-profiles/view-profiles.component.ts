@@ -7,6 +7,9 @@ import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceService } from 'src/app/service/user-service.service';
+import { LoginService } from 'src/app/service/login.service';
+import { appConstats } from 'src/app/constants';
+import { Filters } from 'src/app/types/filters';
 
 
 @Component({
@@ -68,32 +71,39 @@ export class ViewProfilesComponent implements OnInit {
 
 
 
-  constructor(private profileService: ProfileService, private mapService: MapServiceService, private spinner: NgxSpinnerService, private modalService: NgbModal, private router: Router, private userService: UserServiceService) { }
+  constructor(
+    private profileService: ProfileService,
+    private mapService: MapServiceService,
+    private spinner: NgxSpinnerService,
+    private modalService: NgbModal,
+    private router: Router,
+    private userService: UserServiceService,
+    private loginService: LoginService) { }
 
-
-  ngAfterViewInit() {
-
-  }
-
-  ngOnInit() {
+  async ngOnInit() {
 
     this.qualificationMap = this.mapService.qualtificationMap;
     this.jobTypeMap = this.mapService.jobTypeMap;
 
     this.spinner.show('loading');
 
+    this.allusers =  await this.profileService.getFirstUsers(null, null, null);
 
-    this.profileService.getAllUsers(this.getFilters(), this.page, this.size).subscribe((result: any) => {
+    this.allusers = this.populateUsers(this.allusers);
 
-      this.populateUsers(result);
-      this.totalElements = result.totalElements
+    this.spinner.hide('loading');
 
-      this.spinner.hide('loading')
+    console.log(this.allusers);
+
+  }
 
 
-    }, error => {
-      this.spinner.hide('loading')
-    })
+  async loadMoreUsers()
+  {
+    const users = await this.profileService.loadMoreUsers();
+    const newUsers = this.populateUsers(users)
+    const existingUsers = this.allusers;
+    this.allusers = [...existingUsers, ...newUsers];
   }
 
   calculateAge(date) {
@@ -105,20 +115,18 @@ export class ViewProfilesComponent implements OnInit {
     return age;
   }
 
-  applyFilter() {
+  async applyFilter() {
 
     this.spinner.show('loading')
 
-    this.profileService.getAllUsers(this.getFilters(), this.page, this.size).subscribe((result: any) => {
+    this.allusers = [];
 
-      this.populateUsers(result)
+    this.getFilters();
 
-      this.spinner.hide('loading')
+    this.allusers = this.populateUsers(
+      await this.profileService.getFirstUsers(null, null, null));
 
-
-    }, error => {
-      this.spinner.hide('loading')
-    })
+    this.spinner.hide('loading')
 
   }
 
@@ -158,67 +166,80 @@ export class ViewProfilesComponent implements OnInit {
   }
 
   getFilters() {
-    let filter = {
-      "maxHeight": "0",
-      "maxAge": "0",
-      "minSalary": "0",
-      "qualification": null,
-      "firstName": "",
-      "lastName": "",
-      "jobType": null,
-      "cityNameOrPin": ""
+    let filter: Filters = {
+      minHeightInCms: 0,
+      maxHeightInCms: 0,
+      minDob: 0,
+      maxDob: 0,
+      monthlyIncome: 0,
+      qualification: null,
+      firstName: "",
+      lastName: "",
+      jobType: null,
+      currentAddressCity: "",
+      currentCityPin: 0
     }
 
     if (this.heightFilter) {
-      filter["minHeight"] = this.heightControl.value[0]
-      filter["maxHeight"] = this.heightControl.value[1]
+      filter.minHeightInCms = this.heightControl.value[0]
+      filter.maxHeightInCms = this.heightControl.value[1]
     }
     else {
-      filter["maxHeight"] = "0"
+      filter.minHeightInCms = 0,
+      filter.maxHeightInCms = 0
     }
 
     if (this.ageFilter) {
 
-      filter["minAge"] = this.ageFilterControl.value[0]
-      filter["maxAge"] = this.ageFilterControl.value[1]
+      const minAge = this.ageFilterControl.value[0];
+      const maxAge = this.ageFilterControl.value[1];
+
+      var yearBegining = new Date(new Date().setMonth(0)).setDate(1);
+      var today = new Date().getTime();
+      var milliSecondsElapsed = today - yearBegining;
+
+
+      filter.minDob = new Date((minAge-1) * 365.24 * 24 *60 * 60 * 1000 + milliSecondsElapsed).getTime();
+      filter.maxDob = new Date((maxAge-1) * 365.24 * 24 *60 * 60 * 1000 + milliSecondsElapsed).getTime();
     }
     else {
-      filter["maxAge"] = "0"
+      filter.minDob = 0;
+      filter.maxDob = 0;
     }
 
     if (this.salaryFilter) {
-      filter["minSalary"] = this.minSalary
+      filter.monthlyIncome = this.minSalary;
     }
     else {
-      filter["minSalary"] = "0"
+      filter.monthlyIncome = 0;
     }
 
     if (this.qualificationFilter) {
-      filter["qualification"] = this.qualificationArray
+      filter.qualification = this.qualificationArray;
     }
     else {
-      filter["qualification"] = null
+      filter.qualification = null
     }
 
     if (this.nameFilter) {
       if (this.firstName != "") {
-        filter["firstName"] = "%" + this.firstName + "%"
+        filter.firstName = this.firstName
       }
       if (this.lastName != "") {
-        filter["lastName"] = "%" + this.lastName + "%"
+        filter.lastName = this.lastName
       }
 
     }
     else {
-      filter["firstName"] = ""
-      filter["lastName"] = ""
+      filter.firstName = ""
+      filter.lastName = ""
     }
 
     if (this.jobTypeFilter) {
-      filter["jobType"] = this.jobTypeArray
+      filter.jobType = this.jobTypeArray
     }
     else {
-      filter["jobType"] = null
+      filter.jobType = null
     }
 
     if (this.cityFilter) {
@@ -233,23 +254,30 @@ export class ViewProfilesComponent implements OnInit {
       filter["cityNameOrPin"] = ""
     }
 
+    this.profileService.setFilters(filter);
+
     return filter;
   }
 
-  populateUsers(result) {
+  populateUsers(_users) {
 
-    let favList: any[] = JSON.parse(localStorage.getItem("favList"));
+    _users.forEach(user => {
+      if(user.profileImageUrl == null)
+      {
+        if(user.photoURL == null)
+        {
+          user.profileImageUrl = "../../assets/images/blank-profile-picture.png";
+        }else
+        {
+        user.profileImageUrl = user.photoURL;
+        }
+      }
 
-    let users = result.content
-    this.totalElements = result.totalElements
-    this.allusers = []
-    for (let r of users) {
+      user["age"] = this.calculateAge(new Date(user.dob))
+    });
 
-      r = this.userService.transformUser(r)
+    return _users;
 
-      this.allusers.push(r)
-
-    }
   }
 
   getPage(event) {
@@ -258,19 +286,19 @@ export class ViewProfilesComponent implements OnInit {
     this.p = event;
     this.page = event - 1
 
-    this.profileService.getAllUsers(this.getFilters(), this.page, this.size).subscribe((result: any) => {
+    // this.profileService.getAllUsers(this.getFilters(), this.page, this.size).subscribe((result: any) => {
 
-      this.populateUsers(result);
-      this.totalElements = result.totalElements
+    //   this.populateUsers(result);
+    //   this.totalElements = result.totalElements
 
-      this.spinner.hide('loading')
-      window.scroll(0, 0)
+    //   this.spinner.hide('loading')
+    //   window.scroll(0, 0)
 
 
-    }, error => {
-      this.spinner.hide('loading')
-      window.scroll(0, 0)
-    })
+    // }, error => {
+    //   this.spinner.hide('loading')
+    //   window.scroll(0, 0)
+    // })
 
   }
 
@@ -283,7 +311,9 @@ export class ViewProfilesComponent implements OnInit {
     this.nameFilter = false
     this.cityFilter = false
 
-    this.getPage(1);
+    this.profileService.setFilters(null);
+    this.applyFilter();
+    // this.getPage(1);
   }
 
   viewProfile(user) {

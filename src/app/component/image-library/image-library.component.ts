@@ -3,6 +3,7 @@ import { ProfileService } from 'src/app/service/profile.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { ImageService } from 'src/app/service/image.service';
 
 @Component({
   selector: 'app-image-library',
@@ -15,24 +16,21 @@ export class ImageLibraryComponent implements OnInit {
   croppedImage;
   showCropper: boolean = false;
 
-  userImages: any[];
+  userImages: any[] = [];
   imageChangedEvent: any = '';
 
   hideAddImageIcon: boolean = false;
   imageUploading:boolean = false;
 
-  constructor(private profileService: ProfileService, private modalService: NgbModal, private imageCompressor: NgxImageCompressService) { }
+  constructor(
+    private profileService: ProfileService,
+    private modalService: NgbModal,
+    private imageCompressor: NgxImageCompressService,
+    private imageService: ImageService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
 
-    this.profileService.getUserImagesLibrary().subscribe((result: any) => {
-
-      this.userImages = result;
-      this.hideAddImageIcon = this.userImages.length >= 4;
-
-    }, error => {
-      console.log(error)
-    })
+    this.userImages = await this.imageService.getLibraryImages();
 
   }
 
@@ -83,47 +81,26 @@ export class ImageLibraryComponent implements OnInit {
     // show cropper
   }
 
-  uploadImage() {
+  async uploadImage() {
 
-    var formData: any = new FormData();
-
-    formData.append("file", this.dataURItoBlob(this.croppedImage))
 
     this.imageUploading = true;
 
-    this.profileService.saveUserLibraryImage(formData).subscribe(result => {
-      this.profileService.getUserImagesLibrary().subscribe((result: any) => {
+    const file = this.dataURItoBlob(this.croppedImage);
 
-        this.userImages = result;
-        this.hideAddImageIcon = this.userImages.length >= 4;
-        this.imageUploading = false;
+    let downloadUrl = await this.imageService.uploadLibraryImage(file);
 
-      }, error => {
-        this.imageUploading = false;
-        console.log(error);
-      })
-    }, error => {
-      console.log(error);
-    })
+    this.userImages.push({imageUrl: downloadUrl});
+
+    this.imageUploading = false;
 
   }
 
-  deleteImage(image)
+  async deleteImage(image)
   {
-    this.profileService.deleteLibraryImage(image).subscribe(result=>{
+    await this.imageService.deleteLibraryImage(image);
 
-      this.profileService.getUserImagesLibrary().subscribe((result: any) => {
-
-        this.userImages = result;
-        this.hideAddImageIcon = this.userImages.length >= 4;
-
-
-      }, error => {
-        console.log(error);
-      })
-    }, error => {
-      console.log(error);
-    })
+    this.userImages.splice(this.userImages.indexOf(image),1);
   }
 
 

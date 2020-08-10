@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SignupService } from 'src/app/service/signup.service';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/service/login.service';
 
 @Component({
   selector: 'app-signup',
@@ -26,12 +27,12 @@ export class SignupComponent implements OnInit {
   focus_Contact;
 
 
-  constructor(private signupService: SignupService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  signup() {
+ async signup() {
     let userData = {
       "username": this.email,
       "email": this.email,
@@ -44,12 +45,9 @@ export class SignupComponent implements OnInit {
     }
 
     if (this.checkPassword()) {
-      this.signupService.signup(userData).subscribe(result => {
-        alert("Signup Successfull please login");
-        this.router.navigate(['/login']);
-      }, error => {
-        alert(error.error.message);
-      });
+
+      await this.loginService.signUpWithEmail(userData);
+      // this.router.navigate(['/login']);
     }
     else {
       alert("Passwords did not match");
@@ -63,6 +61,11 @@ export class SignupComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  loginWithGoogle()
+  {
+    this.loginService.loginWithGoogle();
   }
 
 }

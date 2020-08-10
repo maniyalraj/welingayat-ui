@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { MapServiceService } from './map-service.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { UserSharedPrivateData, UserPrivateData } from '../types/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,12 @@ export class UserServiceService {
 
   baseUrl = environment.serverUrl + "api/"
 
-  constructor(private httpClient: HttpClient, private mapService: MapServiceService) { }
+  currentUser: any;
+
+  constructor(
+    private httpClient: HttpClient,
+    private mapService: MapServiceService,
+    private db: AngularFirestore) { }
 
   getUser(id) {
     let url = this.baseUrl + "getUser/" + id
@@ -19,9 +26,37 @@ export class UserServiceService {
   }
 
   getCurrentUser() {
-    let url = this.baseUrl + "user/me";
 
-    return this.get(url)
+    let user = JSON.parse(localStorage.getItem("currentUser"));
+    return user
+  }
+
+  setCurrentUser(user) {
+    this.currentUser = user;
+
+    localStorage.setItem("currentUser", JSON.stringify(user))
+  }
+
+  updateUserSharedPrivateData(userSharedPrivatedata: UserSharedPrivateData) {
+    const user = this.getCurrentUser();
+
+    const userSharedPrivateRef = this.db.doc(`usersSharedPrivate/${user.uid}`);
+
+    userSharedPrivatedata.uid = user.uid;
+
+    this.setCurrentUser({ ...user, ...userSharedPrivatedata });
+
+    return userSharedPrivateRef.set(userSharedPrivatedata, { merge: true })
+  }
+
+  updateUserPrivateData(userPrivateData: UserPrivateData) {
+    const user = this.getCurrentUser();
+    const userPrivateRef = this.db.doc(`usersPrivate/${user.uid}`);
+
+    userPrivateData.uid = user.uid;
+    this.setCurrentUser({ ...user, ...userPrivateData });
+    return userPrivateRef.set(userPrivateData, { merge: true })
+
   }
 
   addToFav(id) {
@@ -36,7 +71,7 @@ export class UserServiceService {
     return this.post(url, id);
   }
 
-  unlockUser(id){
+  unlockUser(id) {
 
     let url = this.baseUrl + "user/unlock";
 

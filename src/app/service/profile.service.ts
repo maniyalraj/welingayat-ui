@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "../../environments/environment"
+import { AngularFirestore, Query } from '@angular/fire/firestore';
+import { User } from '../types/user';
+import { UserServiceService } from './user-service.service';
+import { Filters } from '../types/filters';
 
 @Injectable({
   providedIn: 'root'
@@ -9,156 +13,133 @@ export class ProfileService {
 
   baseUrl = environment.serverUrl + "api/user/"
   baseImageUrl = environment.serverUrl + "api/"
-  constructor(private httpClient: HttpClient) { }
 
-  getUserBasicDetails() {
-    let url = this.baseUrl + "me"
+  afterKey = {};
+  filters: Filters = null;
 
-    return this.get(url)
+  constructor(
+    private httpClient: HttpClient,
+    private db: AngularFirestore,
+    private userService: UserServiceService) { }
+
+  setFilters(filters) {
+    this.afterKey = null;
+    this.filters = filters;
   }
 
-  saveBasicDetails(data) {
-    let url = this.baseUrl + "save/basicDetails"
-
-    return this.post(url, data)
+  getFilters() {
+    return this.filters;
   }
 
-  getPersonalDetails() {
-    let url = this.baseUrl + "get/personalDetails"
+  async getFirstUsers(filters, page, afterKey) {
 
-    return this.get(url);
-  }
 
-  savePersonalDetails(data) {
-    let url = this.baseUrl + "save/personalDetails"
+    const userRef = this.getQueryFromFilters();
 
-    return this.post(url, data)
-  }
+    let users = []
 
-  getEducationalDetails() {
-    let url = this.baseUrl + "get/educationalDetails"
+    if (!afterKey) {
+      await userRef.get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          users.push(doc.data());
+        })
+        this.refreshAfterKey(querySnapshot);
+      })
+    } else {
+      await userRef.startAfter(afterKey).get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          users.push(doc.data());
+        })
+        this.refreshAfterKey(querySnapshot);
 
-    return this.get(url)
-  }
+      })
+    }
 
-  saveEducationalDetails(data) {
-    let url = this.baseUrl + "save/educationalDetails"
+    if (false && users && users.length > 0) {
+      this.afterKey = JSON.parse(JSON.stringify(users[users.length - 1]));
+    }
 
-    return this.post(url, data)
-  }
-
-  getProfessionalDetails() {
-    let url = this.baseUrl + "get/professionalDetails"
-
-    return this.get(url);
-
-  }
-
-  saveProfessionalDetails(data) {
-    let url = this.baseUrl + "save/professionalDetails"
-
-    return this.post(url, data);
-  }
-
-  getFamilyDetails() {
-
-    let url = this.baseUrl + "get/userFamilyDetails"
-
-    return this.get(url)
+    return users;
 
   }
 
-  saveFamilyDetails(data) {
-
-    let url = this.baseUrl + "save/userFamilyDetails"
-
-    return this.post(url, data);
+  private refreshAfterKey(querySnapshot) {
+    if (querySnapshot.docs.length > 0) {
+      this.afterKey = querySnapshot.docs[querySnapshot.docs.length - 1];
+    }
   }
 
-  deleteFamilyDetails(data) {
-    let url = this.baseUrl + "delete/userFamilyDetails"
-
-    return this.post(url, data);
+  async loadMoreUsers() {
+    return await this.getFirstUsers(null, null, this.afterKey);
   }
 
+  private getQueryFromFilters() {
 
-  getMedicalDetails() {
-    let url = this.baseUrl + "get/medicalDetails"
+    const currentUser: User = this.userService.getCurrentUser();
+    let query: Query = this.db.collection('users').ref;
 
+    // if(currentUser.gender == "GENDER_MALE")
+    // {
+    //   query = query.where("gender","==","GENDER_FEMALE");
+    // }
 
-    return this.get(url);
+    query = query.limit(3);
+
+    if (this.filters == null) {
+
+      return query;
+    }
+
+    if (this.filters.firstName != "") {
+      const variations = this.getStringVariations(this.filters.firstName)
+      query = query.where("firstName", "in", variations);
+    }
+
+    if (this.filters.lastName != "") {
+      const variations = this.getStringVariations(this.filters.lastName)
+      query = query.where("lastName", "in", variations);
+    }
+
+    if (this.filters.minHeightInCms != 0 || this.filters.maxHeightInCms != 0) {
+      query = query.where("heightInCms", ">=", this.filters.minHeightInCms);
+      query = query.where("heightInCms", "<=", this.filters.maxHeightInCms);
+    }
+
+    if (this.filters.minDob != 0 || this.filters.maxDob != 0) {
+      query = query.where("dob", ">=", this.filters.minDob);
+      query = query.where("dob", "<=", this.filters.maxDob);
+    }
+
+    if (this.filters.monthlyIncome != 0)
+    {
+      query = query.where("monthlyIncome",">=",this.filters.monthlyIncome);
+    }
+
+    if(this.filters.qualification)
+    {
+      query = query.where("qualification","in",this.filters.qualification);
+    }
+
+    if(this.filters.jobType)
+    {
+      query = query.where("jobType","in",this.filters.jobType);
+    }
+      // query = query.limit(3);
+
+      return query;
+
   }
 
-  saveMedicalDetails(data) {
-    let url = this.baseUrl + "save/medicalDetails"
+  getStringVariations(string: String) {
+    let variations = [];
 
-    return this.post(url, data);
-  }
+    variations.push(string.toLowerCase())
+    variations.push(string.toUpperCase())
+    let sentenceCase = string.replace(string.charAt(0), string.charAt(0).toUpperCase())
+    variations.push(sentenceCase)
 
-  getAdditionalDetails() {
-    let url = this.baseUrl + "get/additionalDetails"
+    return variations;
 
-
-    return this.get(url);
-
-  }
-
-  saveAdditionalDetails(data) {
-    let url = this.baseUrl + "save/additionalDetails"
-
-    return this.post(url, data);
-  }
-
-  getUserProfileUrl() {
-    let url = this.baseImageUrl + "get/profileImage"
-
-    return this.get(url);
-  }
-
-  saveUserProfileImage(data) {
-    let url = this.baseImageUrl + "save/profileImage"
-
-    return this.post(url, data);
-  }
-
-  getUserImagesLibrary()
-  {
-    let url = this.baseImageUrl + "get/libraryImages";
-
-    return this.get(url);
-  }
-
-  saveUserLibraryImage(data) {
-    let url = this.baseImageUrl + "save/libraryImage"
-
-    return this.post(url, data);
-  }
-
-  deleteLibraryImage(data)
-  {
-    let url = this.baseImageUrl + "delete/libraryImage";
-
-    return this.post(url, data)
-  }
-
-  getUserCountByGender(){
-    let url = this.baseImageUrl + "noauth/getUserCount"
-
-    return this.get(url);
-  }
-
-  getAllUsers(data, page, size) {
-    let url = this.baseImageUrl + "getAllUsers?page="+page+"&size="+size
-
-    return this.post(url, data);
-  }
-
-  get(url) {
-    return this.httpClient.get(url);
-  }
-
-  post(url, data) {
-    return this.httpClient.post(url, data);
   }
 
 

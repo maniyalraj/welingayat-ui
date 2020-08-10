@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "welingayat"
+  },
+  "targets": {
+    "welingayat": {
+      "hosting": {
+        "welingayat-ui": [
+          "welingayat"
+        ]
+      }
+    }
+  }
+}

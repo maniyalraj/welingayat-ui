@@ -77,13 +77,13 @@
                       <span class="nav-link-inner--text">Credits: {{credits}}</span>
                     </a>
 
-                </li>
+                  </li>
 
                   <li>
-                      <a [routerLink]="['/favourites']">
-                        <i class="fa fa-star mr-2"></i>
-                        <span class="nav-link-inner--text">Selected</span>
-                      </a>
+                    <a [routerLink]="['/favourites']">
+                      <i class="fa fa-star mr-2"></i>
+                      <span class="nav-link-inner--text">Selected</span>
+                    </a>
 
                   </li>
 
@@ -156,3 +156,83 @@
   </nav>
 
 </ngx-headroom>
+
+
+<ng-template #inCompleteUser let-c="close" let-d="dismiss">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h6 class="modal-title" id="modal-title-default">We need few more details to continue</h6>
+    </div>
+    <div class="modal-body">
+
+      <form role="form">
+        <div class="form-group">
+          <div class="row">
+            <!-- Gender -->
+            <div class="col-6">
+              <div class="custom-control custom-radio mb-3">
+                <input name="gender-radio-1" class="custom-control-input" id="customRadio2" checked type="radio"
+                  [(ngModel)]="gender" value="FEMALE">
+                <label class="custom-control-label" for="customRadio2">
+                  <span>Female</span>
+                </label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="custom-control custom-radio mb-3">
+                <input name="gender-radio-1" class="custom-control-input" id="customRadio1" type="radio"
+                  [(ngModel)]="gender" value="MALE">
+                <label class="custom-control-label" for="customRadio1">
+                  <span>Male</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- FirstName -->
+        <div class="form-group mb-3">
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+            </div>
+            <input class="form-control" [(ngModel)]="firstName" name="firstName" placeholder="First Name" type="text">
+          </div>
+        </div>
+        <!-- Middle Name -->
+        <div class="form-group mb-3">
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+            </div>
+            <input class="form-control" [(ngModel)]="middleName" name="middleName" placeholder="Middle Name"
+              type="text">
+          </div>
+        </div>
+        <!-- Last Name -->
+        <div class="form-group mb-3">
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+            </div>
+            <input class="form-control" [(ngModel)]="lastName" name="lastName" placeholder="Last Name" type="text">
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="form-group mb-3">
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-phone"></i></span>
+            </div>
+            <input class="form-control" [(ngModel)]="contact" name="contact" placeholder="Contact" type="number">
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" data-dismiss="modal"
+        (click)="updateDetails();c('Close click')">Update</button>
+    </div>
+  </div>
+</ng-template>

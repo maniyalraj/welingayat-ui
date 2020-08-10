@@ -23,26 +23,23 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() {
+  async loginWithEmail() {
     let userdata = {
       "usernameOrEmail": this.usernameOrEmail,
       "password": this.password
     }
 
     this.spinner.show('loading');
+    await this.loginService.loginWithEmail(userdata);
+    this.spinner.hide('loading');
 
-    this.loginService.login(userdata).subscribe(result => {
-      console.log(result);
-      this.spinner.hide('loading');
-      localStorage.setItem("accessToken", result["accessToken"]);
-      // alert("Login Success");
-      this.loginService.changeLoginState(true);
-      this.router.navigate(["/profile"]);
-    }, error => {
-      this.spinner.hide('loading')
-      console.log(error);
-      alert(error.error.message)
-    });
+  }
+
+  async loginWithGoogle()
+  {
+    this.spinner.show('loading');
+    await this.loginService.loginWithGoogle();
+    this.spinner.hide('loading');
   }
 
 

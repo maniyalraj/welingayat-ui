@@ -29,9 +29,8 @@
               "node_modules/argon-design-system-free/assets/scss/argon.scss",
               "node_modules/argon-design-system-free/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css",
               "node_modules/animate.css/animate.css"
-
             ],
-            "scripts": [          
+            "scripts": [
               "node_modules/argon-design-system-free/assets/vendor/jquery/jquery.min.js",
               "node_modules/argon-design-system-free/assets/vendor/popper/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
@@ -130,6 +129,10 @@
               "devServerTarget": "welingayat-ui:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

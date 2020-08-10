@@ -1,5 +1,8 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { ProfileService } from 'src/app/service/profile.service';
+import { UserServiceService } from 'src/app/service/user-service.service';
+import { LoginService } from 'src/app/service/login.service';
+import { User } from 'src/app/types/user';
 
 @Component({
   selector: 'app-basic-form',
@@ -10,49 +13,29 @@ export class BasicFormComponent implements OnInit {
 
   @Output() changeTabEvent = new EventEmitter<string>();
 
-  firstName:string;
-  middleName:string;
-  lastName:string;
-  contact:number;
-  email:string;
+  user;
   focus;
   focus1;
 
 
-  constructor(private profileService: ProfileService) { }
+  constructor(
+    private profileService: ProfileService,
+    private userService: UserServiceService,
+    private loginService: LoginService) { }
 
   ngOnInit() {
 
-    this.profileService.getUserBasicDetails().subscribe(result=>{
-      this.firstName = result["firstName"]!=""?result["firstName"]:null;
-      this.lastName = result["lastName"]!=""?result["lastName"]:null;
-      this.middleName = result["middleName"]!=""?result["middleName"]:null;
-
-      this.contact = result["contact"]!=""?result["contact"]:null;
-      this.email = result["email"]!=""?result["email"]:null;
-    },error=>{
-      console.log(error)
-    })
-
-  }
+    this.user = this.userService.getCurrentUser();
+ }
 
   saveAndNext(){
 
-    let obj = {
-      "firstName":this.firstName,
-      "lastName":this.lastName,
-      "middleName": this.middleName,
-      "contact": this.contact,
-      "email": this.email
+    let updatedUser = {
+      "contact": this.user.contact,
     }
 
-    this.profileService.saveBasicDetails(obj).subscribe(result=>{
-      this.changeTabEvent.emit();
-      console.log(result);
-    },error=>{
-      console.log(error);
-    })
-
+    this.userService.updateUserSharedPrivateData(updatedUser);
+    this.changeTabEvent.emit();
 
   }
 

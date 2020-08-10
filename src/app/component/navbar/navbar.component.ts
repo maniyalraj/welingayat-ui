@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/service/login.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserSharedPrivateData } from 'src/app/types/user';
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +22,20 @@ export class NavbarComponent implements OnInit {
   isAdmin: boolean = false;
   subscription: Subscription;
 
-  constructor(public location: Location, private router: Router, private loginService: LoginService, private userService: UserServiceService) {
+  gender;
+  firstName;
+  middleName;
+  lastName;
+  contact;
+
+  @ViewChild('inCompleteUser', null) inCompleteUser: ElementRef;
+
+  constructor(
+    public location: Location,
+    private router: Router,
+    private loginService: LoginService,
+    private userService: UserServiceService,
+    private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -30,23 +45,12 @@ export class NavbarComponent implements OnInit {
     this.subscription = this.loginService.loggedInState$
       .subscribe(item => {
         this.isLoggedIn = item
-        this.isLoggedIn = this.checkIsLoggedIn() != null ? true : false;
 
-        this.userService.getCurrentUser().subscribe((result: any) => {
+        const user = this.userService.getCurrentUser();
 
-          let favList = []
-          this.credits = result.credits;
-          this.isAdmin = result.admin;
-
-          for (let f of result.userFavourites) {
-            favList.push(f.id);
-          }
-
-          localStorage.setItem("favList", JSON.stringify(favList));
-
-        }, error => {
-
-        })
+        if (item && user && user.gender == undefined) {
+          this.open(this.inCompleteUser);
+        }
 
       });
 
@@ -68,25 +72,10 @@ export class NavbarComponent implements OnInit {
       this.lastPoppedUrl = ev.url;
     });
 
-    this.userService.getCurrentUser().subscribe((result: any) => {
-
-      let favList = []
-      this.credits = result.credits;
-
-      for (let f of result.userFavourites) {
-        favList.push(f.id);
-      }
-
-      localStorage.setItem("favList", JSON.stringify(favList));
-
-    }, error => {
-
-    })
-
-
   }
 
   checkIsLoggedIn() {
+
     return localStorage.getItem("accessToken");
   }
 
@@ -100,20 +89,54 @@ export class NavbarComponent implements OnInit {
       return false;
     }
   }
-  isDocumentation() {
-    var titlee = this.location.prepareExternalUrl(this.location.path());
-    if (titlee === '#/documentation') {
-      return true;
+
+  open(content) {
+
+    this.modalService.open(content, {
+      centered: true, backdrop: 'static', keyboard: false
+    }).result.then((result) => {
+      // this.closeResult = 'Closed with: $result';
+    }, (reason) => {
+      // this.closeResult = 'Dismissed $this.getDismissReason(reason)';
+    });
+
+  }
+
+  updateDetails() {
+
+    if (this.gender != null
+      && this.firstName != null
+      && this.middleName != null
+      && this.lastName != null
+      && this.contact != null) {
+      const user = this.userService.getCurrentUser();
+      const updateData = {
+        "gender": this.gender,
+        "firstName": this.firstName,
+        "middleName": this.middleName,
+        "lastName": this.lastName,
+      }
+
+      const updateUserSharedPrivateData: UserSharedPrivateData = {
+        contact: this.contact
+      }
+
+      this.loginService.updateUserData(user, updateData);
+
+      this.userService.updateUserSharedPrivateData(updateUserSharedPrivateData);
     }
     else {
+      alert("Please fill all details");
       return false;
     }
+
   }
 
   logout() {
+    this.loginService.logout();
     localStorage.removeItem("accessToken");
     this.isLoggedIn = false;
     this.router.navigate(["/home"]);
-    this.loginService.changeLoginState(false);
+    // this.loginService.changeLoginState(false);
   }
 }

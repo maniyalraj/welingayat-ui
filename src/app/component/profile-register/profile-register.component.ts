@@ -6,6 +6,9 @@ import { ImageCropperComponent, ImageCroppedEvent, ImageTransform } from 'ngx-im
 import { NgxImageCompressService } from 'ngx-image-compress';
 
 import { appConstats } from '../../constants';
+import { UserServiceService } from 'src/app/service/user-service.service';
+import { ImageService } from 'src/app/service/image.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-profile-register',
@@ -22,7 +25,7 @@ export class ProfileRegisterComponent implements OnInit {
 
   initialRotate: number = 0;
 
-  userImagePresent: boolean = false;
+  userImagePresent: boolean = true;
   profileImageUrl: String = "";
 
   imageBase64: any = appConstats.blankProfilePicBase64;
@@ -39,6 +42,35 @@ export class ProfileRegisterComponent implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: any = 'assets/images/blank-profile-picture.png';
 
+
+  constructor(
+    private profileService: ProfileService,
+    private modalService: NgbModal,
+    private spinner: NgxSpinnerService,
+    private imageCompressor: NgxImageCompressService,
+    private userService: UserServiceService,
+    private imageService: ImageService) {
+
+  }
+
+  ngOnInit() {
+
+    let user = this.userService.getCurrentUser();
+
+    if (user && !user.profileImageUrl && user.photoURL) {
+
+      user.profileImageUrl = user.photoURL;
+      this.profileImageUrl = user.photoURL;
+      // this.userService.setCurrentUser(user);
+    }
+
+    this.profileImageUrl = user.profileImageUrl;
+
+    this.firstName = user.firstName;
+    this.lastName = user.lastName;
+
+  }
+
   uploadAndCompress() {
     this.imageCompressor.uploadFile().then(({ image, orientation }) => {
 
@@ -47,10 +79,8 @@ export class ProfileRegisterComponent implements OnInit {
 
       this.imageCompressor.compressFile(image, orientation, 75, 50).then(
         result => {
-          // console.log(result);
           this.imageLoaded()
           this.imageBase64 = result;
-          // this.imgResultAfterCompress = result;
           console.warn('Size in bytes is now:', this.imageCompressor.byteCount(result));
         }
       );
@@ -87,64 +117,12 @@ export class ProfileRegisterComponent implements OnInit {
     this.imageCropper.transform = { 'rotate': this.initialRotate }
   }
 
-  constructor(private profileService: ProfileService, private modalService: NgbModal, private imageCompressor: NgxImageCompressService) {
-
-  }
-
-  ngOnInit() {
-    this.profileService.getUserBasicDetails().subscribe(result => {
-      this.firstName = result["firstName"];
-      this.lastName = result["lastName"];
-    }, error => {
-      console.log(error)
-    })
-
-    this.profileService.getUserProfileUrl().subscribe(result => {
-
-      if (result == null || result["imageUrl"] == "" || result["imageUrl"] == null) {
-        this.userImagePresent = false;
-      }
-      else {
-        this.userImagePresent = true;
-        this.profileImageUrl = result["imageUrl"];
-      }
-
-    }, error => {
-      console.log(error);
-    })
-  }
-
   open(content, type, modalDimension) {
-    if (modalDimension === 'sm' && type === 'modal_mini') {
-      this.modalService.open(content, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
-        this.closeResult = 'Closed with: $result';
-      }, (reason) => {
-        this.closeResult = 'Dismissed $this.getDismissReason(reason)';
-      });
-    } else if (modalDimension === '' && type === 'Notification') {
-      this.modalService.open(content, { windowClass: 'modal-danger', centered: true }).result.then((result) => {
-        this.closeResult = 'Closed with: $result';
-      }, (reason) => {
-        this.closeResult = 'Dismissed $this.getDismissReason(reason)';
-      });
-    } else {
-      this.modalService.open(content, { centered: true }).result.then((result) => {
-        this.closeResult = 'Closed with: $result';
-      }, (reason) => {
-        this.closeResult = 'Dismissed $this.getDismissReason(reason)';
-      });
-    }
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return 'with: $reason';
-    }
-
+    this.modalService.open(content, { centered: true }).result.then((result) => {
+      this.closeResult = 'Closed with: $result';
+    }, (reason) => {
+      console.log(reason);
+    });
 
   }
 
@@ -160,19 +138,18 @@ export class ProfileRegisterComponent implements OnInit {
     return blob;
   }
 
-  uploadImage() {
+  async uploadImage() {
 
-    var formData: any = new FormData();
+    this.spinner.show('saving');
 
-    formData.append("file", this.dataURItoBlob(this.croppedImage))
+    const image = this.dataURItoBlob(this.croppedImage)
 
-    this.profileService.saveUserProfileImage(formData).subscribe(result => {
-      this.profileImageUrl = result["message"]
-      console.log(result);
-      this.modal.dismissAll();
-    }, error => {
-      console.log(error);
-    })
+    this.profileImageUrl = await this.imageService.uploadProfileImage(image);
+
+    this.imageBase64 = appConstats.blankProfilePicBase64;
+
+    this.spinner.hide('saving');
+
 
   }
 

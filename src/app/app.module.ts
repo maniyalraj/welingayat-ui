@@ -61,6 +61,13 @@ import { FavouritesComponent } from './component/favourites/favourites.component
 import { ProfileRegisterComponentModule } from './component/profile-register/profile-register.module';
 import { AdminComponent } from './component/admin/admin.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule} from '@angular/fire/auth'
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,7 +119,12 @@ import { AdminComponent } from './component/admin/admin.component';
     InViewportModule,
     NgwWowModule,
     NgxPaginationModule,
-    ProfileRegisterComponentModule
+    ProfileRegisterComponentModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
   entryComponents: [NgbdModalContent],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }, NgxImageCompressService],

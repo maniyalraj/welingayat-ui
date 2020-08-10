@@ -1,113 +1,128 @@
-<div class="card bg-secondary shadow border-0">
-  <div class="card-body px-lg-5 py-lg-5">
-    <div class="text-center mb-4">
-                <h3>SIGN UP</h3>
+<div class="container pt-lg-md">
+  <div class="card bg-secondary shadow border-0">
+    <div class="card-header bg-white pb-5">
+      <div class="text-muted text-center mb-3">
+        <small>Continue with</small>
+      </div>
+      <div class="btn-wrapper text-center" (click)="loginWithGoogle()">
+        <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+          <span class="btn-inner--icon">
+            <img src="./assets/img/icons/common/google.svg">
+          </span>
+          <span class="btn-inner--text">Google</span>
+        </a>
+      </div>
+    </div>
+    <div class="card-body px-lg-5 py-lg-5">
+      <div class="text-center mb-4">
+        <h3>or SIGN UP</h3>
+      </div>
+      <form role="form">
+        <div class="form-group" [ngClass]="{'focused':focus===true}">
+          <div class="row">
+
+            <div class="col-6">
+              <div class="custom-control custom-radio mb-3">
+                <input name="gender-radio-1" class="custom-control-input" id="customRadio2" checked type="radio"
+                  [(ngModel)]="gender" value="GENDER_FEMALE">
+                <label class="custom-control-label" for="customRadio2">
+                  <span>Female</span>
+                </label>
               </div>
-    <form role="form">
-      <div class="form-group" [ngClass]="{'focused':focus===true}">
-        <div class="row">
-
-          <div class="col-6">
-            <div class="custom-control custom-radio mb-3">
-              <input name="gender-radio-1" class="custom-control-input" id="customRadio2" checked type="radio"
-                [(ngModel)]="gender" value="GENDER_FEMALE">
-              <label class="custom-control-label" for="customRadio2">
-                <span>Female</span>
-              </label>
             </div>
-          </div>
 
-          <div class="col-6">
+            <div class="col-6">
 
-            <div class="custom-control custom-radio mb-3">
-              <input name="gender-radio-1" class="custom-control-input" id="customRadio1" type="radio"
-                [(ngModel)]="gender" value="GENDER_MALE">
-              <label class="custom-control-label" for="customRadio1">
-                <span>Male</span>
-              </label>
+              <div class="custom-control custom-radio mb-3">
+                <input name="gender-radio-1" class="custom-control-input" id="customRadio1" type="radio"
+                  [(ngModel)]="gender" value="GENDER_MALE">
+                <label class="custom-control-label" for="customRadio1">
+                  <span>Male</span>
+                </label>
+              </div>
             </div>
-          </div>
 
-        </div>
-      </div>
-      <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-        <div class="input-group input-group-alternative">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
           </div>
-          <input class="form-control" [(ngModel)]="email" name="email" placeholder="Email" type="email"
-            (focus)="focus=true" (blur)="focus=false">
         </div>
-      </div>
-      <div class="form-group mb-3" [ngClass]="{'focused':focus_firstName===true}">
-        <div class="input-group input-group-alternative">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+        <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+            </div>
+            <input class="form-control" [(ngModel)]="email" name="email" placeholder="Email" type="email"
+              (focus)="focus=true" (blur)="focus=false">
           </div>
-          <input class="form-control" [(ngModel)]="firstname" name="firstname" placeholder="First Name" type="text"
-            (focus)="focus_firstName=true" (blur)="focus_firstName=false">
         </div>
-      </div>
-      <div class="form-group mb-3" [ngClass]="{'focused':focus_LastName===true}">
-        <div class="input-group input-group-alternative">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+        <div class="form-group mb-3" [ngClass]="{'focused':focus_firstName===true}">
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+            </div>
+            <input class="form-control" [(ngModel)]="firstname" name="firstname" placeholder="First Name" type="text"
+              (focus)="focus_firstName=true" (blur)="focus_firstName=false">
           </div>
-          <input class="form-control" [(ngModel)]="middleName" name="middleName" placeholder="Middle Name" type="text"
-            (focus)="focus_LastName=true" (blur)="focus_LastName=false">
         </div>
-      </div>
-      <div class="form-group mb-3" [ngClass]="{'focused':focus_LastName===true}">
-        <div class="input-group input-group-alternative">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+        <div class="form-group mb-3" [ngClass]="{'focused':focus_LastName===true}">
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+            </div>
+            <input class="form-control" [(ngModel)]="middleName" name="middleName" placeholder="Middle Name" type="text"
+              (focus)="focus_LastName=true" (blur)="focus_LastName=false">
           </div>
-          <input class="form-control" [(ngModel)]="lastname" name="lastname" placeholder="Last Name" type="text"
-            (focus)="focus_LastName=true" (blur)="focus_LastName=false">
         </div>
-      </div>
-      <div class="form-group mb-3" [ngClass]="{'focused':focus_Contact===true}">
-        <div class="input-group input-group-alternative">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fa fa-phone"></i></span>
+        <div class="form-group mb-3" [ngClass]="{'focused':focus_LastName===true}">
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+            </div>
+            <input class="form-control" [(ngModel)]="lastname" name="lastname" placeholder="Last Name" type="text"
+              (focus)="focus_LastName=true" (blur)="focus_LastName=false">
           </div>
-          <input class="form-control" [(ngModel)]="contact" name="contact" placeholder="Contact" type="number"
-            (focus)="focus_Contact=true" (blur)="focus_Contact=false">
         </div>
-      </div>
-      <div class="form-group" [ngClass]="{'focused':focus1===true}">
-        <div class="input-group input-group-alternative">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fa fa-key"></i></span>
+        <div class="form-group mb-3" [ngClass]="{'focused':focus_Contact===true}">
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-phone"></i></span>
+            </div>
+            <input class="form-control" [(ngModel)]="contact" name="contact" placeholder="Contact" type="number"
+              (focus)="focus_Contact=true" (blur)="focus_Contact=false">
           </div>
-          <input class="form-control" [(ngModel)]="password" name="password" placeholder="Password" type="password"
-            (focus)="focus1=true" (blur)="focus1=false">
         </div>
-      </div>
-      <div class="form-group" [ngClass]="{'focused':focus===true}">
-        <div class="input-group input-group-alternative">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fa fa-key"></i></span>
+        <div class="form-group" [ngClass]="{'focused':focus1===true}">
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-key"></i></span>
+            </div>
+            <input class="form-control" [(ngModel)]="password" name="password" placeholder="Password" type="password"
+              (focus)="focus1=true" (blur)="focus1=false">
           </div>
-          <input class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword"
-            placeholder="Confirm Password" type="password" (focus)="focus1=true" (blur)="focus1=false">
         </div>
-      </div>
-      <div class="text-center">
-        <button type="button" class="btn btn-primary my-4" (click)="signup()">Register</button>
-      </div>
-    </form>
+        <div class="form-group" [ngClass]="{'focused':focus===true}">
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-key"></i></span>
+            </div>
+            <input class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword"
+              placeholder="Confirm Password" type="password" (focus)="focus1=true" (blur)="focus1=false">
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary my-4" (click)="signup()">Register</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
-<div class="row mt-3">
-  <div class="col-6">
-    <a href="javascript:void(0)" class="text-light disabled">
-      <small>Forgot password?</small>
-    </a>
-  </div>
-  <div class="col-6 text-right">
-    <a [routerLink]="['/login']" class="text-light">
-      <small>Already a user? Sign in</small>
-    </a>
+  <div class="row mt-3">
+    <div class="col-6">
+      <a href="javascript:void(0)" class="text-light disabled">
+        <small>Forgot password?</small>
+      </a>
+    </div>
+    <div class="col-6 text-right">
+      <a [routerLink]="['/login']" class="text-light">
+        <small>Already a user? Sign in</small>
+      </a>
+    </div>
   </div>
 </div>

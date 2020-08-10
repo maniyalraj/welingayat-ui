@@ -1,6 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProfileService } from 'src/app/service/profile.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { User } from 'src/app/types/user';
+import { UserServiceService } from 'src/app/service/user-service.service';
+import { LoginService } from 'src/app/service/login.service';
 
 @Component({
   selector: 'app-professional-form',
@@ -17,61 +20,36 @@ export class ProfessionalFormComponent implements OnInit {
   jobLocation: string;
   jobIndustry: string;
 
+  user: User;
+
   focus;
   focus1;
 
-  constructor(private profileService: ProfileService, private spinner: NgxSpinnerService) { }
+  constructor(
+    private profileService: ProfileService,
+    private spinner: NgxSpinnerService,
+    private userService: UserServiceService,
+    private loginService: LoginService
+    ) { }
 
   ngOnInit() {
 
     this.spinner.show('loading')
 
-    this.profileService.getProfessionalDetails().subscribe(result => {
+    this.user = this.userService.getCurrentUser();
 
-      this.spinner.hide('loading')
-
-      this.jobType = result["jobType"] != "" ? result["jobType"] : "JOB_TYPE_SELECTED";
-      this.jobRole = result["jobRole"] != "" ? result["jobRole"] : null;
-      this.monthlyIncome = result["monthlyIncome"] != "" ? result["monthlyIncome"] : null;
-      this.jobLocation = result["jobLocation"] != "" ? result["jobLocation"] : null;
-      this.jobIndustry = result["jobIndustry"] != "" ? result["jobIndustry"] : null;
-
-
-
-
-    }, error => {
-
-      this.spinner.hide('loading')
-
-      console.log(error);
-    })
+    this.spinner.hide('loading');
 
 
   }
 
   saveAndNext() {
 
-    let obj = {
-      "jobType": this.jobType != "JOB_TYPE_SELECTED" ? this.jobType : "",
-      "jobRole": this.jobRole,
-      "monthlyIncome": this.monthlyIncome,
-      "jobLocation": this.jobLocation,
-      "jobIndustry": this.jobIndustry
-    }
 
     this.spinner.show('saving');
-    this.profileService.saveProfessionalDetails(obj).subscribe(result => {
-      this.spinner.hide('saving');
-
-      this.changeTabEvent.emit();
-    }, error => {
-      this.spinner.hide('saving');
-
-      console.log(error)
-    })
-
-
-
+    this.loginService.updateUserData(this.user, this.user);
+    this.spinner.hide('saving');
+    this.changeTabEvent.emit();
   }
 
   skipAndNext() {

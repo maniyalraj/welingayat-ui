@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-4 col-md-8">
             <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <select class="browser-default custom-select" [(ngModel)]="qualification">
+                <select class="browser-default custom-select" [(ngModel)]="user.qualification">
                     <option selected value="QUALIFICATION_SELECT">Qualification</option>
                     <ng-container *ngFor="let qualification of qualificationMap">
                         <option value="{{qualification.key}}">{{qualification.value}}</option>
@@ -16,7 +16,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">O</span>
                     </div>
-                    <input class="form-control" [(ngModel)]="otherQualification" name="otherQualification"
+                    <input class="form-control" [(ngModel)]="user.otherQualification" name="otherQualification"
                         placeholder="Other Qualification" type="text" (focus)="focus1=true" (blur)="focus1=false">
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-university"></i></span>
                     </div>
-                    <input class="form-control" [(ngModel)]="nameOfInstitute" name="nameOfInstitute"
+                    <input class="form-control" [(ngModel)]="user.institute" name="nameOfInstitute"
                         placeholder="Institute Name" type="text" (focus)="focus1=true" (blur)="focus1=false">
                 </div>
             </div>

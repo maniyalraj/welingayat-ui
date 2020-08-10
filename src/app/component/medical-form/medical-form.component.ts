@@ -2,6 +2,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProfileService } from 'src/app/service/profile.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EnumServiceService } from 'src/app/service/enum-service.service';
+import { User } from 'src/app/types/user';
+import { UserServiceService } from 'src/app/service/user-service.service';
+import { LoginService } from 'src/app/service/login.service';
 
 @Component({
   selector: 'app-medical-form',
@@ -16,42 +19,41 @@ export class MedicalFormComponent implements OnInit {
   bloodGroupOptions: any = []
   isDisabled: boolean = false;
   typeOfDisability: string;
+
+  user: User;
   focus;
   focus1;
 
-  constructor(private profileService: ProfileService, private enumService: EnumServiceService, private spinner: NgxSpinnerService) { }
+  constructor(
+    private profileService: ProfileService,
+    private enumService: EnumServiceService,
+    private spinner: NgxSpinnerService,
+    private userService: UserServiceService,
+    private loginService: LoginService) { }
 
   ngOnInit() {
 
     this.spinner.show('loading');
 
-    this.profileService.getMedicalDetails().subscribe(result => {
-      this.spinner.hide('loading');
-      this.bloodGroup = result["bloodGroup"],
-        this.isDisabled = result["isDisabled"],
-        this.typeOfDisability = result["typeOfDisability"]
-    }, error => {
-      this.spinner.hide('loading');
+    this.user = this.userService.getCurrentUser();
 
-      console.log(error)
-    })
+    this.spinner.hide('loading');
+
   }
 
   saveAndNext() {
 
-    let obj = {
-      "bloodGroup": this.bloodGroup,
-      "isDisabled": this.isDisabled,
-      "typeOfDisability": this.typeOfDisability
+
+    this.spinner.show('saving');
+
+    if(this.user.isDifferentlyAbled === false)
+    {
+      this.user.typeOfDisability = null;
     }
-    this.spinner.show('saving')
-    this.profileService.saveMedicalDetails(obj).subscribe(result => {
-      this.spinner.hide('saving')
-      this.changeTabEvent.emit()
-    }, error => {
-      this.spinner.hide('saving')
-      console.log(error)
-    })
+
+    this.loginService.updateUserData(this.user, this.user);
+    this.spinner.hide('saving');
+    this.changeTabEvent.emit();
 
 
   }

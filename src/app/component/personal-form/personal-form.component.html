@@ -4,7 +4,7 @@
 
             <div class="custom-control custom-radio mb-3">
                 <input name="custom-radio-1" class="custom-control-input" id="customRadio1" type="radio"
-                    [(ngModel)]="gender" value="GENDER_MALE">
+                    [(ngModel)]="user.gender" value="MALE">
                 <label class="custom-control-label" for="customRadio1">
                     <span>Male</span>
                 </label>
@@ -13,7 +13,7 @@
         <div class="col-lg-2 col-md-4 col-5">
             <div class="custom-control custom-radio mb-3">
                 <input name="custom-radio-1" class="custom-control-input" id="customRadio2" checked type="radio"
-                    [(ngModel)]="gender" value="GENDER_FEMALE">
+                    [(ngModel)]="user.gender" value="FEMALE">
                 <label class="custom-control-label" for="customRadio2">
                     <span>Female</span>
                 </label>
@@ -38,7 +38,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-city"></i></span>
                     </div>
-                    <input class="form-control" [(ngModel)]="placeOfBirth" name="placeOfBirth"
+                    <input class="form-control" [(ngModel)]="user.placeOfBirth" name="placeOfBirth"
                         placeholder="Place of Birth" type="text" (focus)="focus1=true" (blur)="focus1=false">
                 </div>
             </div>
@@ -52,7 +52,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-arrows-alt-v"></i></span>
                     </div>
-                    <input class="form-control" [(ngModel)]="heightInCms" name="heightInCms" placeholder="Height in Cms"
+                    <input class="form-control" [(ngModel)]="user.heightInCms" name="heightInCms" placeholder="Height in Cms"
                         type="number" (focus)="focus=true" (blur)="focus=false">
                 </div>
             </div>
@@ -63,14 +63,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-weight"></i></span>
                     </div>
-                    <input class="form-control" [(ngModel)]="weightInKgs" name="weightInKgs" placeholder="Weight in Kgs"
+                    <input class="form-control" [(ngModel)]="user.weightInKgs" name="weightInKgs" placeholder="Weight in Kgs"
                         type="number" (focus)="focus=true" (blur)="focus=false">
                 </div>
             </div>
         </div>
         <div class="col-lg-4 col-md-8">
             <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <select class="browser-default custom-select" [(ngModel)]="complexion">
+                <select class="browser-default custom-select" [(ngModel)]="user.complexion">
                     <option selected value="COMPLEXION_SELECTED">Select Complexion</option>
                     <option value="COMPLEXION_FAIR">Fair</option>
                     <option value="COMPLEXION_FAIR">Dark</option>
@@ -82,7 +82,7 @@
     <div class="row">
         <div class="col-lg-4 col-md-8">
             <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <select class="browser-default custom-select" [(ngModel)]="maritalStatus">
+                <select class="browser-default custom-select" [(ngModel)]="user.maritalStatus">
                     <option selected value="MARITAL_STATUS_SELECTED">Marital Status</option>
                     <option value="MARITAL_STATUS_SINGLE">Single</option>
                     <option value="MARITAL_STATUS_MARRIED">Married</option>
@@ -93,7 +93,7 @@
         </div>
         <div class="col-lg-4 col-md-8">
             <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <select class="browser-default custom-select" [(ngModel)]="familyType">
+                <select class="browser-default custom-select" [(ngModel)]="user.familyType">
                     <option selected value="FAMILY_TYPE_SELECTED">Family Type</option>
                     <option value="FAMILY_TYPE_NUCLEAR">Nuclear</option>
                     <option value="FAMILY_TYPE_JOINT">Joint</option>

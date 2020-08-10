@@ -4,9 +4,19 @@
 
 export const environment = {
   production: false,
-  // serverUrl: "http://localhost:8080/"
-  serverUrl: "https://aws.welingayat.in/",
-  // serverUrl: "http://ec2-34-222-19-194.us-west-2.compute.amazonaws.com:8080/"
+  serverUrl: "http://localhost:8080/",
+  // serverUrl: "https://aws.welingayat.in/",
+  // serverUrl: "http://ec2-34-222-19-194.us-west-2.compute.amazonaws.com:8080/",
+  firebase: {
+    apiKey: "AIzaSyAn7VV17zr8EgLXflqqEIGHUev8ju4xjPQ",
+    authDomain: "welingayat.firebaseapp.com",
+    databaseURL: "https://welingayat.firebaseio.com",
+    projectId: "welingayat",
+    storageBucket: "welingayat.appspot.com",
+    messagingSenderId: "833782970481",
+    appId: "1:833782970481:web:096521fa5e247556efc3d0",
+    measurementId: "G-FE39WYMX1Y"
+  }
 };
 
 /*

@@ -7,8 +7,7 @@
             <div class="col-lg-12">
 
               <div class="card-profile-image">
-                <img [src]="croppedImage" class="rounded-circle" [hidden]="userImagePresent==false" />
-                <img [src]="profileImageUrl" class="rounded-circle" [hidden]="userImagePresent==true" />
+                <img [src]="user.profileImageUrl" class="rounded-circle" />
               </div>
 
               <div class="unlock" *ngIf="!user.unlocked" (click)="open(classic3,'','')">
@@ -37,7 +36,7 @@
                 <div class="row">
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Status: </span>{{user.userPersonalDetails.maritalStatus}}
+                    <span class="info-label"> Status: </span>{{user.maritalStatus}}
                   </div>
 
                   <!-- <div class="col-lg-3 col-12">
@@ -45,15 +44,15 @@
                   </div> -->
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Height: </span>{{user.userPersonalDetails.heightInCms}} Cms
+                    <span class="info-label"> Height: </span>{{user.heightInCms}} Cms
                   </div>
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Weight: </span>{{user.userPersonalDetails.weightInKgs}} Kgs
+                    <span class="info-label"> Weight: </span>{{user.weightInKgs}} Kgs
                   </div>
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Complexion: </span>{{user.userPersonalDetails.complexion}}
+                    <span class="info-label"> Complexion: </span>{{user.complexion}}
                   </div>
 
                   <div class="col-lg-3 col-12">
@@ -61,11 +60,11 @@
                   </div>
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Current City: </span> {{user.userAdditionalDetails.currentCity}}
+                    <span class="info-label"> Current City: </span> {{user.currentCity}}
                   </div>
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Home City: </span> {{user.userAdditionalDetails.permanentCity}}
+                    <span class="info-label"> Home City: </span> {{user.permanentCity}}
                   </div>
 
                 </div>
@@ -80,28 +79,28 @@
                 <div class="row">
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Salary: </span> {{user.userProfessionalDetails.monthlyIncome}} <i
+                    <span class="info-label"> Salary: </span> {{user.monthlyIncome}} <i
                       class="fas fa-rupee-sign"></i>/ month
                   </div>
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Job Type: </span> {{user.userProfessionalDetails.jobType}}
+                    <span class="info-label"> Job Type: </span> {{user.jobType}}
                   </div>
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Job Role: </span> {{user.userProfessionalDetails.jobRole}}
+                    <span class="info-label"> Job Role: </span> {{user.jobRole}}
                   </div>
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Job City: </span> {{user.userProfessionalDetails.jobLocation}}
+                    <span class="info-label"> Job City: </span> {{user.jobLocation}}
                   </div>
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Qualification: </span> {{user.userEducationalDetails.qualification}}
+                    <span class="info-label"> Qualification: </span> {{user.qualification}}
                   </div>
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Institute: </span> {{user.userEducationalDetails.institute}}
+                    <span class="info-label"> Institute: </span> {{user.institute}}
                   </div>
 
                 </div>
@@ -119,11 +118,11 @@
                     <span class="info-label"> Total Siblings: </span> {{countOfSiblings}}
                   </div>
                   <div class="col-lg-6 col-12">
-                    <span class="info-label"> Family Type: </span> {{user.userPersonalDetails.familyType}}
+                    <span class="info-label"> Family Type: </span> {{user.familyType}}
                   </div>
 
-                  <div class="col-lg-6 col-12" *ngFor="let r of user.userFamilyDetails">
-                    {{r.relation}}: {{r.title}} {{r.firstName}} {{r.lastName}} ({{r.profession}})
+                  <div class="col-lg-12 col-12" *ngFor="let r of user.familyDetails">
+                    {{r.relation}} <span *ngIf="r.isMarried"> Married </span>: {{r.title}} {{r.firstName}} {{r.lastName}} ({{r.profession}})
                   </div>
 
                 </div>

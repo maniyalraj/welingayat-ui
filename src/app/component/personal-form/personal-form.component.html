@@ -71,10 +71,10 @@
         <div class="col-lg-4 col-md-8">
             <div class="form-group" [ngClass]="{'focused':focus1===true}">
                 <select class="browser-default custom-select" [(ngModel)]="user.complexion">
-                    <option selected value="COMPLEXION_SELECTED">Select Complexion</option>
-                    <option value="COMPLEXION_FAIR">Fair</option>
-                    <option value="COMPLEXION_FAIR">Dark</option>
-                    <option value="COMPLEXION_WHEATISH">Wheatish</option>
+                    <option selected value="undefined">Select Complexion</option>
+                    <option value="FAIR">Fair</option>
+                    <option value="DARK">Dark</option>
+                    <option value="WHEATISH">Wheatish</option>
                 </select>
             </div>
         </div>
@@ -83,20 +83,20 @@
         <div class="col-lg-4 col-md-8">
             <div class="form-group" [ngClass]="{'focused':focus1===true}">
                 <select class="browser-default custom-select" [(ngModel)]="user.maritalStatus">
-                    <option selected value="MARITAL_STATUS_SELECTED">Marital Status</option>
-                    <option value="MARITAL_STATUS_SINGLE">Single</option>
-                    <option value="MARITAL_STATUS_MARRIED">Married</option>
-                    <option value="MARITAL_STATUS_DIVORCED">Divorced</option>
-                    <option value="MARITAL_STATUS_WIDOWED">Widowed</option>
+                    <option selected value="undefined">Marital Status</option>
+                    <option value="SINGLE">Single</option>
+                    <option value="MARRIED">Married</option>
+                    <option value="DIVORCED">Divorced</option>
+                    <option value="WIDOWED">Widowed</option>
                 </select>
             </div>
         </div>
         <div class="col-lg-4 col-md-8">
             <div class="form-group" [ngClass]="{'focused':focus1===true}">
                 <select class="browser-default custom-select" [(ngModel)]="user.familyType">
-                    <option selected value="FAMILY_TYPE_SELECTED">Family Type</option>
-                    <option value="FAMILY_TYPE_NUCLEAR">Nuclear</option>
-                    <option value="FAMILY_TYPE_JOINT">Joint</option>
+                    <option selected value="undefined">Family Type</option>
+                    <option value="NUCLEAR">Nuclear</option>
+                    <option value="JOINT">Joint</option>
                 </select>
             </div>
         </div>

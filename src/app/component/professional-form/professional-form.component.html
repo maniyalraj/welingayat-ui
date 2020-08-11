@@ -3,12 +3,12 @@
         <div class="col-lg-4 col-md-8">
             <div class="form-group" [ngClass]="{'focused':focus1===true}">
                 <select class="browser-default custom-select" [(ngModel)]="user.jobType">
-                    <option selected value="JOB_TYPE_SELECTED">Select Job Type</option>
-                    <option value="JOB_TYPE_SALARIED">Salaried</option>
-                    <option value="JOB_TYPE_BUSINESS">Business</option>
-                    <option value="JOB_TYPE_PROFESSIONAL">Professional</option>
+                    <option selected value="undefined">Select Job Type</option>
+                    <option value="SALARIED">Salaried</option>
+                    <option value="BUSINESS">Business</option>
+                    <option value="PROFESSIONAL">Professional</option>
                     <!-- <option value="JOB_TYPE_RETIRED">Retired</option> -->
-                    <option value="JOB_TYPE_GOVERNMENT">Government</option>
+                    <option value="GOVERNMENT">Government</option>
 
                 </select>
             </div>

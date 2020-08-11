@@ -130,37 +130,23 @@ export class ViewProfilesComponent implements OnInit {
 
   }
 
-  toggleFavourite(user) {
+  async toggleFavourite(user) {
 
-    let favList = JSON.parse(localStorage.getItem("favList"));
+    const currentUser = this.userService.getCurrentUser();
+
+    let favList = currentUser.favouriteUsers || []
 
     user.spin = "fa-spin";
 
-    if (favList.includes(user.id)) {
-      this.userService.removeFromFav(user.id).subscribe((result) => {
-        if (result != null) {
-          favList.splice(favList.indexOf(user.id), 1);
-          localStorage.setItem("favList", JSON.stringify(favList));
-          user.isFavourite = false;
-        }
-        user.spin = ""
-      }, (error) => {
-        console.log(error);
-        user.spin = ""
-      })
+    if (favList.includes(user.uid)) {
+      await this.userService.removeFromFav(user.uid);
+      user.isFavourite = false;
+      user.spin = "";
     }
     else {
-      this.userService.addToFav(user.id).subscribe((result) => {
-        if (result != null) {
-          favList.push(user.id);
-          localStorage.setItem("favList", JSON.stringify(favList));
-          user.isFavourite = true;
-        }
-        user.spin = ""
-      }, (error) => {
-        console.log(error);
-        user.spin = ""
-      })
+      await this.userService.addToFav(user.uid);
+      user.isFavourite = true;
+      user.spin = "";
     }
 
   }
@@ -261,6 +247,8 @@ export class ViewProfilesComponent implements OnInit {
 
   populateUsers(_users) {
 
+    const favouriteUsers = this.userService.getCurrentUser().favouriteUsers;
+
     _users.forEach(user => {
       if(user.profileImageUrl == null)
       {
@@ -273,7 +261,10 @@ export class ViewProfilesComponent implements OnInit {
         }
       }
 
-      user["age"] = this.calculateAge(new Date(user.dob))
+      user["age"] = this.calculateAge(new Date(user.dob));
+
+      user.isFavourite  = favouriteUsers.includes(user.uid);
+
     });
 
     return _users;

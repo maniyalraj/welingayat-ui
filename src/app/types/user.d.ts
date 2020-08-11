@@ -40,7 +40,8 @@ export interface Family {
   lastName?: string,
   relation?: string,
   profession?: string,
-  additionalDescription?: string
+  additionalDescription?: string,
+  isMarried? : boolean
 }
 
 export interface LibraryImages {

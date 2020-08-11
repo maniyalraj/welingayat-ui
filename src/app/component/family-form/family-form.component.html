@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <h1 class="display-4">
                         {{relation.title+" "+relation.firstName+" "+relation.middleName+" "+relation.lastName}}</h1>
-                    <h6>Relation: {{relation.relation}}</h6>
+                    <h6>Relation: {{relation.relation}} <span *ngIf="relation.isMarried"> Married </span></h6>
                     <h6>Profession: {{relation.profession}}</h6>
                     <h6>Additonal Info: {{relation.additionalDescription}}</h6>
                     <div class="text-center">
@@ -20,7 +20,7 @@
             <div class="col-lg-2 col-md-4">
                 <div class="form-group" [ngClass]="{'focused':focus1===true}">
                     <select class="browser-default custom-select" [(ngModel)]="title">
-                        <option selected value="TITLE_SELECTED">Select Title</option>
+                        <option selected value="undefined">Select Title</option>
                         <option value="Mr.">Mr.</option>
                         <option value="Mrs.">Mrs.</option>
                         <option value="Dr.">Dr.</option>
@@ -67,19 +67,19 @@
             <div class="col-lg-4 col-md-8">
                 <div class="form-group" [ngClass]="{'focused':focus1===true}">
                     <select class="browser-default custom-select" [(ngModel)]="relation">
-                        <option selected value="RELATION_SELECTED">Select Relation</option>
-                        <option value="RELATION_FATHER">Father</option>
-                        <option value="RELATION_MOTHER">Mother</option>
-                        <option value="RELATION_SIBLING">Sibling</option>
-                        <option value="RELATION_MATERNAL">Maternal</option>
-                        <option value="RELATION_PATERNAL">Paternal</option>
+                        <option selected value="undefined">Select Relation</option>
+                        <option value="FATHER">Father</option>
+                        <option value="MOTHER">Mother</option>
+                        <option value="SIBLING">Sibling</option>
+                        <option value="MATERNAL">Maternal</option>
+                        <option value="PATERNAL">Paternal</option>
                     </select>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-4 col-5" [hidden]="relation!='RELATION_SIBLING'">
+            <div class="col-lg-2 col-md-4 col-5" [hidden]="relation!='SIBLING'">
 
-                <div class="custom-control custom-radio mb-3">
-                    <input name="married-radio" class="custom-control-input" id="married-radio-1" type="radio"
+                <div class="custom-control custom-checkbox mb-3">
+                    <input name="married-radio" class="custom-control-input" id="married-radio-1" type="checkbox"
                         [(ngModel)]="isMarried" value="true">
                     <label class="custom-control-label" for="married-radio-1">
                         <span>Married</span>
@@ -100,11 +100,11 @@
             <div class="col-lg-4 col-md-8">
                 <div class="form-group" [ngClass]="{'focused':focus1===true}">
                     <select class="browser-default custom-select" [(ngModel)]="profession">
-                        <option selected value="JOB_TYPE_SELECTED">Select Job Type</option>
-                        <option value="JOB_TYPE_SALARIED">Salaried</option>
-                        <option value="JOB_TYPE_BUSINESS">Business</option>
-                        <option value="JOB_TYPE_PROFESSIONAL">Professional</option>
-                        <option value="JOB_TYPE_RETIRED">Retired</option>
+                        <option selected value="undefined">Select Job Type</option>
+                        <option value="SALARIED">Salaried</option>
+                        <option value="BUSINESS">Business</option>
+                        <option value="PROFESSIONAL">Professional</option>
+                        <option value="RETIRED">Retired</option>
                     </select>
                 </div>
             </div>

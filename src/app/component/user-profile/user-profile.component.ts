@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,12 +16,17 @@ export class UserProfileComponent implements OnInit {
 
   userImagePresent: boolean = false;
   profileImageUrl: String = "";
-  croppedImage: any = 'assets/images/blank-profile-picture.png';
+  blankProfile: any = 'assets/images/blank-profile-picture.png';
 
   user ;
   countOfSiblings= 0;
 
-  constructor(private route: ActivatedRoute, private userService: UserServiceService, private spinner: NgxSpinnerService, private modalService: NgbModal) {
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserServiceService,
+    private spinner: NgxSpinnerService,
+    private modalService: NgbModal,
+    private router: Router) {
     let emptyUser = this.userService.transformUser(null);
     this.user = {...this.user, ...emptyUser};
 
@@ -29,58 +34,39 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show('loading');
-    this.sub = this.route.params.subscribe(params => {
-       this.id = +params['id'];
+    this.sub = this.route.params.subscribe(async params => {
+       this.id = params['id'];
+       this.user = await this.userService.getUser(this.id) ;
+       this.spinner.hide('loading');
+      //  .subscribe((result:any)=>{
+      //   this.spinner.hide('loading');
+      //   console.log(result)
+      //   if(result){
+      //     if (result.userImages == null || result.userImages.imageUrl == null) {
+      //       result.userImages = { "imageUrl": "../../assets/images/blank-profile-picture.png" }
+      //     }
+      //     this.profileImageUrl = result.userImages.imageUrl
 
+      //     this.user =this.userService.transformUser(result);
 
-       this.userService.getUser(this.id).subscribe((result:any)=>{
-        this.spinner.hide('loading');
-        console.log(result)
-        if(result){
-          if (result.userImages == null || result.userImages.imageUrl == null) {
-            result.userImages = { "imageUrl": "../../assets/images/blank-profile-picture.png" }
-          }
-          this.profileImageUrl = result.userImages.imageUrl
+      //     if(this.user.userFamilyDetails != null)
+      //     {
 
-          this.user =this.userService.transformUser(result);
+      //       for(let r of this.user.userFamilyDetails)
+      //       {
+      //         if(r.relation === "RELATION_SIBLING")
+      //         {
+      //           this.countOfSiblings += 1;
+      //         }
+      //         r.relation = r.relation.replace("RELATION_","")
+      //         r.profession = r.profession.replace("JOB_TYPE_","")
 
-          // this.user.age = this.calculateAge(result.userPersonalDetails.dob);
-          // this.user.userProfessionalDetails.jobType = this.user.userProfessionalDetails.jobType.replace("JOB_TYPE_","")
-          // this.user.userPersonalDetails.complexion = this.user.userPersonalDetails.complexion.replace("COMPLEXION_","")
-          // this.user.userPersonalDetails.maritalStatus = this.user.userPersonalDetails.maritalStatus.replace("MARITAL_STATUS_","")
-          // this.user.userPersonalDetails.familyType = this.user.userPersonalDetails.familyType.replace("FAMILY_TYPE_","")
-          // this.user.userMedicalDetails.bloodGroup = this.user.userMedicalDetails.bloodGroup.replace("BLOOD_GROUP","")
+      //       }
+      //     }
 
-          // if(this.user.userEducationalDetails.qualification === "QUALIFICATION_OTHER")
-          // {
-          //   this.user.userEducationalDetails.qualification = this.user.userEducationalDetails.otherQualification;
-          // }
-          // else
-          // {
-          //   this.user.userEducationalDetails.qualification = this.user.userEducationalDetails.qualification.replace("QUALIFICATION_","")
-          // }
+      //   }
 
-          if(this.user.userFamilyDetails != null)
-          {
-
-            for(let r of this.user.userFamilyDetails)
-            {
-              if(r.relation === "RELATION_SIBLING")
-              {
-                this.countOfSiblings += 1;
-              }
-              r.relation = r.relation.replace("RELATION_","")
-              r.profession = r.profession.replace("JOB_TYPE_","")
-
-            }
-          }
-
-        }
-
-      },error=>{
-        this.spinner.hide('loading');
-
-      })
+      // }
     });
   }
 
@@ -97,17 +83,12 @@ export class UserProfileComponent implements OnInit {
     return age;
   }
 
-  unlockUser()
+  async unlockUser()
   {
-    this.userService.unlockUser(this.user.id).subscribe(
-      result =>{
-        this.modalService.dismissAll();
-        window.location.reload();
-      },
-      error => {
-        alert(error.error.message);
-      }
-    )
+    await this.userService.unlockUser(this.user.uid);
+    this.modalService.dismissAll();
+    this.user = await this.userService.getUser(this.user.uid);
+    console.log(this.user);
   }
 
   open(content, type, modalDimension) {

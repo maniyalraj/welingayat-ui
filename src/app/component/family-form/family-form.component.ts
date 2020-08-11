@@ -16,50 +16,18 @@ export class FamilyFormComponent implements OnInit {
 
   relations = [];
 
-  title: string = "TITLE_SELECTED";
+  title: string;
   firstName: string;
   middleName: string;
   lastName: string;
-  relation: string = "RELATION_SELECTED";
-  profession: string = "JOB_TYPE_SELECTED";
+  relation: string;
+  profession: string;
   additionalDescription: string;
   isMarried;
 
   user: User;
   focus;
   focus1;
-
-  relationMap = {
-    "RELATION_FATHER": "Father",
-    "RELATION_MOTHER": "Mother",
-    "RELATION_SIBLING": "Sibling",
-    "RELATION_MATERNAL": "Maternal",
-    "RELATION_PATERNAL": "Paternal"
-  }
-
-  inverseRelationMap = {
-    "Father": "RELATION_FATHER",
-    "Mother": "RELATION_MOTHER",
-    "Sibling": "RELATION_SIBLING",
-    "Maternal": "RELATION_MATERNAL",
-    "Paternal": "RELATION_PATERNAL"
-
-  }
-
-  professionMap = {
-    "JOB_TYPE_SALARIED": "Salaried",
-    "JOB_TYPE_BUSINESS": "Business",
-    "JOB_TYPE_PROFESSIONAL": "Professional",
-    "JOB_TYPE_RETIRED": "Retired",
-
-  }
-
-  inverseProfessionMap = {
-    "Salaried": "JOB_TYPE_SALARIED",
-    "Business": "JOB_TYPE_BUSINESS",
-    "Professional": "JOB_TYPE_PROFESSIONAL",
-    "Retired": "JOB_TYPE_RETIRED"
-  }
 
   constructor(
     private profileService: ProfileService,
@@ -78,7 +46,8 @@ export class FamilyFormComponent implements OnInit {
   }
 
   addRelation() {
-    let obj:Family = {
+
+    let obj: Family = {
       "title": this.title,
       "firstName": this.firstName,
       "middleName": this.middleName,
@@ -88,10 +57,13 @@ export class FamilyFormComponent implements OnInit {
       "additionalDescription": this.additionalDescription
     }
 
+    if (this.isMarried) {
+      obj["isMarried"] = this.isMarried
+    }
+
     this.spinner.show('saving');
 
-    if(!this.user.familyDetails)
-    {
+    if (!this.user.familyDetails) {
       this.user.familyDetails = [];
     }
     this.user.familyDetails.push(obj);
@@ -107,21 +79,20 @@ export class FamilyFormComponent implements OnInit {
   }
 
   resetDefaults() {
-    this.title = "TITLE_SELECTED",
-      this.firstName = null;
-    this.middleName = null;
-    this.lastName = null;
-    this.relation = "RELATION_SELECTED"
-    this.profession = "JOB_TYPE_SELECTED";
-    this.additionalDescription = null;
+    this.title = undefined;
+    this.firstName = undefined;
+    this.middleName = undefined;
+    this.lastName = undefined;
+    this.relation = undefined;
+    this.profession = undefined;
+    this.additionalDescription = undefined;
 
   }
 
   removeRelation(rel) {
     const index: number = this.user.familyDetails.indexOf(rel);
 
-    if(index !== -1)
-    {
+    if (index !== -1) {
       this.user.familyDetails.splice(index, 1);
     }
 

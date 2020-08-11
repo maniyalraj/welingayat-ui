@@ -36,7 +36,7 @@ export class ImageService {
     const userRef: AngularFirestoreDocument<UserSharedPrivateData> = this.db.doc(`usersSharedPrivate/${user.uid}`);
 
     // The main task
-    this.task = this.storage.upload(path, image);
+    this.task = this.storage.upload(path, image, {cacheControl: 'public,max-age=31536000'});
 
     await this.task.then(async () => {
       this.downloadURL = await ref.getDownloadURL().toPromise();
@@ -57,7 +57,7 @@ export class ImageService {
 
     const userRef = this.db.doc(`users/${user.uid}`);
 
-    this.task = this.storage.upload(path, image);
+    this.task = this.storage.upload(path, image, {cacheControl: 'public,max-age=31536000'});
 
     await this.task.then(async () => {
       this.downloadURL = await ref.getDownloadURL().toPromise();

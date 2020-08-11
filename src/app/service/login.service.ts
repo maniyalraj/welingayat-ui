@@ -56,6 +56,10 @@ export class LoginService {
 
   }
 
+  async getCurrentUser(){
+    console.log(this.auth.user);
+  }
+
   async signUpWithEmail(userData){
 
     let credentials = await this.auth.auth.createUserWithEmailAndPassword(userData.email, userData.password);

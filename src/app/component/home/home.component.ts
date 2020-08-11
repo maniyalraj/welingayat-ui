@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     this.subscription = this.loginService.loggedInState$
       .subscribe(item => {
         this.isLoggedIn = item
-        this.isLoggedIn = this.checkIsLoggedIn() != null ? true : false;
+        // this.isLoggedIn = this.checkIsLoggedIn() != null ? true : false;
       });
 
 

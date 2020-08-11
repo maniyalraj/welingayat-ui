@@ -3,7 +3,10 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { MapServiceService } from './map-service.service';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { UserSharedPrivateData, UserPrivateData } from '../types/user';
+import { UserSharedPrivateData, UserPrivateData, User } from '../types/user';
+import { LoginService } from './login.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,21 +17,46 @@ export class UserServiceService {
 
   currentUser: any;
 
+  blankProfile: any = 'assets/images/blank-profile-picture.png';
+
+
   constructor(
     private httpClient: HttpClient,
     private mapService: MapServiceService,
-    private db: AngularFirestore) { }
+    private db: AngularFirestore,
+    private auth: AngularFireAuth,
+    private router: Router) { }
 
-  getUser(id) {
-    let url = this.baseUrl + "getUser/" + id
+  async getUser(uid) {
+    const currentUser = this.getCurrentUser();
+    let userSharedPrivateData = {};
+    let userRef = this.db.collection("users").doc(uid);
 
-    return this.get(url)
+    currentUser.unlockedUsers = currentUser.unlockedUsers || [];
+
+    if(currentUser.unlockedUsers.includes(uid)){
+      let userSharedPrivateRef = this.db.collection("usersPrivate").doc(uid);
+      userSharedPrivateData = await (await userSharedPrivateRef.ref.get()).data();
+    }
+    const userData = await (await userRef.ref.get()).data();
+    userData.profileImageUrl = userData.profileImageUrl || userData.photoURL || this.blankProfile;
+    userData.age = this.calculateAge(userData.dob);
+    const final = {...userData, ...userSharedPrivateData}
+
+    return final;
   }
 
   getCurrentUser() {
 
-    let user = JSON.parse(localStorage.getItem("currentUser"));
-    return user
+    let _user = localStorage.getItem("currentUser");
+
+    if(!_user)
+    {
+      this.auth.auth.signOut();
+      this.router.navigate(['/login']);
+    }
+    const user = JSON.parse(_user);
+    return user;
   }
 
   setCurrentUser(user) {
@@ -59,23 +87,57 @@ export class UserServiceService {
 
   }
 
-  addToFav(id) {
-    let url = this.baseUrl + "user/save/favourite";
+  addToFav(uid) {
+    const user = this.getCurrentUser();
+    const userPrivateRef = this.db.doc(`usersPrivate/${user.uid}`);
 
-    return this.post(url, id);
+    let favouriteUsers = user.favouriteUsers || [];
+
+    favouriteUsers.push(uid);
+
+    user.favouriteUsers = favouriteUsers;
+
+    this.setCurrentUser(user);
+
+    return userPrivateRef.set({ favouriteUsers: favouriteUsers }, { merge: true });
+
   }
 
-  removeFromFav(id) {
-    let url = this.baseUrl + "user/remove/favourite";
+  removeFromFav(uid) {
+    const user = this.getCurrentUser();
+    const userPrivateRef = this.db.doc(`usersPrivate/${user.uid}`);
 
-    return this.post(url, id);
+    let favouriteUsers = user.favouriteUsers || [];
+
+    const index = favouriteUsers.indexOf(uid);
+
+    favouriteUsers.splice(index, 1);
+
+    user.favouriteUsers = favouriteUsers;
+
+    this.setCurrentUser(user);
+
+    return userPrivateRef.set({ favouriteUsers: favouriteUsers }, { merge: true });
   }
 
-  unlockUser(id) {
+  unlockUser(uid) {
 
-    let url = this.baseUrl + "user/unlock";
+    const user = this.getCurrentUser();
+    const userPrivateRef = this.db.doc(`usersPrivate/${user.uid}`);
 
-    return this.post(url, id);
+    let unlockedUsers = user.unlockedUsers || [];
+    let credits = user.credits || 0;
+
+    if(credits > 0)
+    {
+      if(!unlockedUsers.includes(uid))
+      {unlockedUsers.push(uid);}
+    }
+
+    user.unlockedUsers = unlockedUsers;
+    this.setCurrentUser(user);
+
+    return userPrivateRef.set({ unlockedUsers: unlockedUsers }, { merge: true });
 
   }
 

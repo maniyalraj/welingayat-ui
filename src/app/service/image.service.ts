@@ -33,8 +33,8 @@ export class ImageService {
 
     let libraryImages = user.libraryImages || [];
 
-    const userRef: AngularFirestoreDocument<UserSharedPrivateData> = this.db.doc(`usersSharedPrivate/${user.uid}`);
-
+    const userSharedPrivateRef: AngularFirestoreDocument<UserSharedPrivateData> = this.db.doc(`usersSharedPrivate/${user.uid}`);
+    const userRef = this.db.doc(`users/${user.uid}`);
     // The main task
     this.task = this.storage.upload(path, image, {cacheControl: 'public,max-age=31536000'});
 
@@ -43,7 +43,8 @@ export class ImageService {
       libraryImages.push({ imageUrl: this.downloadURL });
       user.libraryImages = libraryImages;
       this.userService.setCurrentUser(user);
-      userRef.set({ libraryImages: libraryImages }, { merge: true })
+      userRef.set({countOfImages: libraryImages.length}, {merge: true});
+      userSharedPrivateRef.set({ libraryImages: libraryImages }, { merge: true });
     })
 
     return this.downloadURL;

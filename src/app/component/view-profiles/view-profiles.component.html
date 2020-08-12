@@ -216,9 +216,11 @@
             <ng-container
               *ngFor="let user of allusers | paginate: { itemsPerPage: size, currentPage: p, totalItems:totalElements }">
               <div class="col-md-4 padding-sm-zero"
+
                 style="margin-bottom:15px; padding:0px; padding-left:10px; padding-right:10px ">
+
                 <div class="" style="margin-left:10px; margin-right:10px">
-                  <div class="row user-card box-shadow shadow " style="padding:10px; margin-right:0px; margin-left:0px">
+                  <div class="row user-card box-shadow shadow " [class.myprofile]="user.uid == currentuser.uid" style="padding:10px; margin-right:0px; margin-left:0px">
 
                     <div class="col-12 d-flex justify-content-center" style="padding:2px">
 
@@ -297,7 +299,7 @@
                       </div>
                     </div>
 
-                    <div class="favourite-icon" (click)="toggleFavourite(user)">
+                    <div class="favourite-icon" (click)="toggleFavourite(user)" *ngIf="user.uid != currentuser.uid">
                       <i class="far fa-star inactive" [ngClass]="user.spin" aria-hidden="true" [hidden]="user.isFavourite" title="Add Favourite"></i>
                       <i class="fas fa-star active" [ngClass]="user.spin" aria-hidden="true" [hidden]="!user.isFavourite" title="Remove Favourite"></i>
 
@@ -311,7 +313,7 @@
 
           </div>
           <div class="flex pagination-div" style="width:100%">
-            <div class="btn btn-primary" (click)="loadMoreUsers()"> Load More</div>
+            <div class="btn btn-primary" (click)="loadMoreUsers()" *ngIf="hasMoreUsers"> Load More</div>
           </div>
           <!-- <div class="flex pagination-div" style="width:100%">
             <pagination-controls (pageChange)="getPage($event)"></pagination-controls>

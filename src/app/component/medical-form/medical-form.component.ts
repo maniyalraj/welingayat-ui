@@ -15,7 +15,7 @@ export class MedicalFormComponent implements OnInit {
 
   @Output() changeTabEvent = new EventEmitter<string>();
 
-  bloodGroup: string = "BLOOD_GROUP_SELECTED";
+  bloodGroup: string;
   bloodGroupOptions: any = []
   isDisabled: boolean = false;
   typeOfDisability: string;

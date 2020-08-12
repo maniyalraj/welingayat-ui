@@ -1,6 +1,7 @@
 export interface User {
   uid: string;
   email: string;
+  countOfImages?: number;
   photoURL?: string;
   profileImageUrl?: string,
   displayName?: string;

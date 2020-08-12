@@ -3,14 +3,14 @@
         <div class="col-lg-4 col-md-8">
             <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
                 <select class="browser-default custom-select" [(ngModel)]="user.qualification">
-                    <option selected value="QUALIFICATION_SELECT">Qualification</option>
+                    <option selected value="undefined">Qualification</option>
                     <ng-container *ngFor="let qualification of qualificationMap">
                         <option value="{{qualification.key}}">{{qualification.value}}</option>
                     </ng-container>
                 </select>
             </div>
         </div>
-        <div class="col-lg-4 col-md-8" [hidden]="qualification!='QUALIFICATION_OTHER'">
+        <div class="col-lg-4 col-md-8" [hidden]="qualification!='OTHER'">
             <div class="form-group" [ngClass]="{'focused':focus1===true}">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">

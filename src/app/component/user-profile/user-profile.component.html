@@ -133,12 +133,12 @@
             <div class="col-12">
 
               <div class="user-info-label">
-                <h5>Images ({{user.imageCount}}): </h5>
+                <h5>Images ({{user.countOfImages || 0}}): </h5>
               </div>
 
               <div class="user-info" *ngIf="user.unlocked">
                 <div class="row justify-content-center">
-                <div class="image-container" *ngFor="let image of user.userImageLibrary">
+                <div class="image-container" *ngFor="let image of user.libraryImages">
 
                   <img [src]="image.imageUrl" />
 

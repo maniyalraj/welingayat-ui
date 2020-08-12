@@ -35,7 +35,7 @@ export class UserServiceService {
     currentUser.unlockedUsers = currentUser.unlockedUsers || [];
 
     if(currentUser.unlockedUsers.includes(uid)){
-      let userSharedPrivateRef = this.db.collection("usersPrivate").doc(uid);
+      let userSharedPrivateRef = this.db.collection("usersSharedPrivate").doc(uid);
       userSharedPrivateData = await (await userSharedPrivateRef.ref.get()).data();
     }
     const userData = await (await userRef.ref.get()).data();
@@ -132,6 +132,8 @@ export class UserServiceService {
     {
       if(!unlockedUsers.includes(uid))
       {unlockedUsers.push(uid);}
+      credits = credits - 100;
+      user.credits = credits;
     }
 
     user.unlockedUsers = unlockedUsers;

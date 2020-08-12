@@ -14,7 +14,7 @@ export class ProfessionalFormComponent implements OnInit {
 
   @Output() changeTabEvent = new EventEmitter<string>();
 
-  jobType: string = "JOB_TYPE_SELECTED";
+  jobType: string ;
   jobRole: string;
   monthlyIncome: number;
   jobLocation: string;

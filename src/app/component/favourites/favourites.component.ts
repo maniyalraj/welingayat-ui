@@ -59,36 +59,36 @@ export class FavouritesComponent implements OnInit {
 
   toggleFavourite(user) {
 
-    let favList = JSON.parse(localStorage.getItem("favList"));
+    // let favList = JSON.parse(localStorage.getItem("favList"));
 
-    user.spin = "fa-spin";
+    // user.spin = "fa-spin";
 
-    if (favList.includes(user.id)) {
-      this.userService.removeFromFav(user.id).subscribe((result) => {
-        if (result != null) {
-          favList.splice(favList.indexOf(user.id), 1);
-          localStorage.setItem("favList", JSON.stringify(favList));
-          user.isFavourite = false;
-        }
-        user.spin = ""
-      }, (error) => {
-        console.log(error);
-        user.spin = ""
-      })
-    }
-    else {
-      this.userService.addToFav(user.id).subscribe((result) => {
-        if (result != null) {
-          favList.push(user.id);
-          localStorage.setItem("favList", JSON.stringify(favList));
-          user.isFavourite = true;
-        }
-        user.spin = ""
-      }, (error) => {
-        console.log(error);
-        user.spin = ""
-      })
-    }
+    // if (favList.includes(user.id)) {
+    //   this.userService.removeFromFav(user.id).subscribe((result) => {
+    //     if (result != null) {
+    //       favList.splice(favList.indexOf(user.id), 1);
+    //       localStorage.setItem("favList", JSON.stringify(favList));
+    //       user.isFavourite = false;
+    //     }
+    //     user.spin = ""
+    //   }, (error) => {
+    //     console.log(error);
+    //     user.spin = ""
+    //   })
+    // }
+    // else {
+    //   this.userService.addToFav(user.id).subscribe((result) => {
+    //     if (result != null) {
+    //       favList.push(user.id);
+    //       localStorage.setItem("favList", JSON.stringify(favList));
+    //       user.isFavourite = true;
+    //     }
+    //     user.spin = ""
+    //   }, (error) => {
+    //     console.log(error);
+    //     user.spin = ""
+    //   })
+    // }
 
   }
 

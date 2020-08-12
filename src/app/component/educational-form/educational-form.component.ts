@@ -16,7 +16,7 @@ export class EducationalFormComponent implements OnInit {
 
   @Output() changeTabEvent = new EventEmitter<string>();
 
-  qualification: string = "QUALIFICATION_SELECT"
+  qualification: string ;
   otherQualification: string
   nameOfInstitute: string
   qualificationMap: any;

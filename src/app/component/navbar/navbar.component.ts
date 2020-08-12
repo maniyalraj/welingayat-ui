@@ -48,6 +48,8 @@ export class NavbarComponent implements OnInit {
 
         const user = this.userService.getCurrentUser();
 
+        this.credits = user.credits || 0;
+
         if (item && user && user.gender == undefined) {
           this.open(this.inCompleteUser);
         }

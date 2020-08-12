@@ -6,19 +6,19 @@ import { Injectable } from '@angular/core';
 export class MapServiceService {
 
   maritalStatusMap = {
-    "MARITAL_STATUS_SINGLE": "Single"
+    "SINGLE": "Single"
   }
 
   inverseMaritalStatusMap = {
-    "MARITAL_STATUS_SINGLE": "Single"
+    "SINGLE": "Single"
   }
 
-  qualtificationMap = [{ "key": "QUALIFICATION_TENTH", "value": "10th" }, { "key": "QUALIFICATION_TWELTH", "value": "12th" }, { "key": "QUALIFICATION_BSC", "value": "BSc" }, { "key": "QUALIFICATION_MSC", "value": "Msc" }, { "key": "QUALIFICATION_BCOM", "value": "BCom" }, { "key": "QUALIFICATION_MCOM", "value": "MCom" }, { "key": "QUALIFICATION_MBA", "value": "MBA" }, { "key": "QUALIFICATION_BA", "value": "BA" }, { "key": "QUALIFICATION_MA", "value": "MA" }, { "key": "QUALIFICATION_PHD", "value": "PHD" }, { "key": "QUALIFICATION_MBBS", "value": "MBBS" }, { "key": "QUALIFICATION_BE", "value": "BE" }, { "key": "QUALIFICATION_BTECH", "value": "BTECH" }, { "key": "QUALIFICATION_ME", "value": "ME" }, { "key": "QUALIFICATION_MTECH", "value": "MTECH" }, { "key": "QUALIFICATION_ITI", "value": "ITI" }, { "key": "QUALIFICATION_MD", "value": "MD" }, { "key": "QUALIFICATION_BPHARM", "value": "BPHARM" }, { "key": "QUALIFICATION_MPHARM", "value": "MPHARM" }, { "key": "QUALIFICATION_BED", "value": "B.Ed" }, { "key": "QUALIFICATION_MED", "value": "M.Ed" }, { "key": "QUALIFICATION_BARCH", "value": "B.Arch" }, { "key": "QUALIFICATION_MARCH", "value": "M.ARch" }, { "key": "QUALIFICATION_OTHER", "value": "Other" }]
+  qualtificationMap = [{ "key": "TENTH", "value": "10th" }, { "key": "TWELTH", "value": "12th" }, { "key": "BSC", "value": "BSc" }, { "key": "MSC", "value": "Msc" }, { "key": "BCOM", "value": "BCom" }, { "key": "MCOM", "value": "MCom" }, { "key": "MBA", "value": "MBA" }, { "key": "BA", "value": "BA" }, { "key": "MA", "value": "MA" }, { "key": "PHD", "value": "PHD" }, { "key": "MBBS", "value": "MBBS" }, { "key": "BE", "value": "BE" }, { "key": "BTECH", "value": "BTECH" }, { "key": "ME", "value": "ME" }, { "key": "MTECH", "value": "MTECH" }, { "key": "ITI", "value": "ITI" }, { "key": "MD", "value": "MD" }, { "key": "BPHARM", "value": "BPHARM" }, { "key": "MPHARM", "value": "MPHARM" }, { "key": "BED", "value": "B.Ed" }, { "key": "MED", "value": "M.Ed" }, { "key": "BARCH", "value": "B.Arch" }, { "key": "MARCH", "value": "M.ARch" }, { "key": "OTHER", "value": "Other" }]
 
-  jobTypeMap = [{ "key": "JOB_TYPE_SALARIED", "value": "Salaried" },
-  { "key": "JOB_TYPE_BUSINESS", "value": "Business" },
-  { "key": "JOB_TYPE_PROFESSIONAL", "value": "Professional" },
-  { "key": "JOB_TYPE_GOVERNMENT", "value": "Government" }]
+  jobTypeMap = [{ "key": "SALARIED", "value": "Salaried" },
+  { "key": "BUSINESS", "value": "Business" },
+  { "key": "PROFESSIONAL", "value": "Professional" },
+  { "key": "GOVERNMENT", "value": "Government" }]
 
   getMaritalStatusString(maritalStatus) {
     return this.maritalStatusMap[maritalStatus]

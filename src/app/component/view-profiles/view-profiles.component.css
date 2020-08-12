@@ -1,101 +1,137 @@
 h5 {
-  font-size:1.3rem;
+  font-size: 1.3rem;
   line-height: inherit;
   margin-bottom: 0px;
   font-weight: bold;
-
 }
-.text {  font-size:0.75rem; white-space: nowrap;}
-.search-view-image{
+
+.text {
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.search-view-image {
   max-width: 200px;
   max-height: 200px;
 }
 
-.padding-sm-zero{
+.padding-sm-zero {
   padding: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important
 }
 
 /* Small devices (landscape phones, 544px and up) */
+
 @media screen and (min-width: 544px) {
-    h5 {font-size:1.3rem ; margin-bottom: 0px;} /*1rem = 16px*/
-    .text {  font-size:0.75rem; white-space: nowrap;}
-    .search-view-image{
-      max-width: 200px;
-      max-height: 200px;
-    }
-    .padding-sm-zero{
-      padding: 0 !important;
-      padding-left: 0 !important;
-      padding-right: 0 !important
-    }
-
+  h5 {
+    font-size: 1.3rem;
+    margin-bottom: 0px;
   }
-
-  /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-  @media screen and (min-width: 768px) {
-    h5 {font-size:1.3rem;  margin-bottom: 0px;} /*1rem = 16px*/
-    .text {  font-size:0.75rem; white-space: nowrap;}
-    .search-view-image{
-      max-width: 200px;
-  max-height: 200px;
-    }
-    .padding-sm-zero{
-      padding: 0 !important;
-      padding-left: 0 !important;
-      padding-right: 0 !important
-    }
+  /*1rem = 16px*/
+  .text {
+    font-size: 0.75rem;
+    white-space: nowrap;
   }
-
-  /* Large devices (desktops, 992px and up) */
-  @media (min-width: 992px) {
-    h5 {font-size:1.3rem;  margin-bottom: 0px;} /*1rem = 16px*/
-    .text {  font-size:0.75rem; white-space: nowrap;}
-    .search-view-image{
-      max-width: 200px;
-      max-height: 200px;
-    }
-    .padding-md{
-      padding:10px; padding-top:0px;
-    }
+  .search-view-image {
+    max-width: 200px;
+    max-height: 200px;
   }
-
-  /* Extra large devices (large desktops, 1200px and up) */
-  @media (min-width: 1200px) {
-    h5 {font-size:1.5rem;  margin-bottom: 0px;} /*1rem = 16px*/
-    .text {  font-size:0.9rem; white-space: nowrap;}
-    .search-view-image{
-      max-width: 200px;
-      max-height: 200px;
-    }
-    .padding-md{
-      padding:10px; padding-top:0px;
-    }
+  .padding-sm-zero {
+    padding: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important
   }
-
-.filter-header{
-  border-bottom: 1px dashed gray;
-  margin-top:5px;
 }
 
-.filter-header h5{
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 
+@media screen and (min-width: 768px) {
+  h5 {
+    font-size: 1.3rem;
+    margin-bottom: 0px;
+  }
+  /*1rem = 16px*/
+  .text {
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  .search-view-image {
+    max-width: 200px;
+    max-height: 200px;
+  }
+  .padding-sm-zero {
+    padding: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+  h5 {
+    font-size: 1.3rem;
+    margin-bottom: 0px;
+  }
+  /*1rem = 16px*/
+  .text {
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  .search-view-image {
+    max-width: 200px;
+    max-height: 200px;
+  }
+  .padding-md {
+    padding: 10px;
+    padding-top: 0px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+  h5 {
+    font-size: 1.5rem;
+    margin-bottom: 0px;
+  }
+  /*1rem = 16px*/
+  .text {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  .search-view-image {
+    max-width: 200px;
+    max-height: 200px;
+  }
+  .padding-md {
+    padding: 10px;
+    padding-top: 0px;
+  }
+}
+
+.filter-header {
+  border-bottom: 1px dashed gray;
+  margin-top: 5px;
+}
+
+.filter-header h5 {
   font-size: 1.15rem;
   line-height: 0;
   text-transform: uppercase;
 }
 
-.filter{
+.filter {
   padding: 5px;
 }
 
-.row{
-  margin:1px;
+.row {
+  margin: 1px;
 }
 
-.clear-filter{
-  color:gray;
+.clear-filter {
+  color: gray;
 }
 
 .icon-control {
@@ -104,8 +140,8 @@ h5 {
   font-size: 80%
 }
 
-.card{
-  margin-top:15px
+.card {
+  margin-top: 15px
 }
 
 /* .profile-page{
@@ -116,13 +152,14 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
 .custom-slider .ng5-slider .ng5-slider-pointer {
   width: 8px;
   height: 16px;
-  top: auto; /* to remove the default positioning */
+  top: auto;
+  /* to remove the default positioning */
   bottom: 0;
   background-color: #333;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   border-color: #333;
-  z-index:2
+  z-index: 2
 }
 
 .ng5-slider .ng5-slider-pointer:after {
@@ -131,51 +168,45 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
 
 .custom-slider .ng5-slider .ng5-slider-pointer.ng5-slider-active {
   background: white;
-
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
 }
 
-.user-card
-{
+.user-card {
   background: white !important;
-  border-radius:2rem;
+  border-radius: 2rem;
   /* border: 1.5px solid #CA0000; */
 }
 
-
-.icon-div{
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 25px;
-    height: 25px;
-    /* background-color: grey; */
-    border-radius: 100%;
-    color:#640000;
-    /* padding: 5px; */
-    margin-right: 5px;
-    font-size:small
-
+.icon-div {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  /* background-color: grey; */
+  border-radius: 100%;
+  color: #640000;
+  /* padding: 5px; */
+  margin-right: 5px;
+  font-size: small
 }
 
-.ngx-pagination{
-  padding: 0  !important;
+.ngx-pagination {
+  padding: 0 !important;
 }
 
-.ngx-pagination .current
-{
+.ngx-pagination .current {
   background: #CA0000 !important;
 }
 
-.pagination-div{
-  background:#fff;
+.pagination-div {
+  background: #fff;
 }
 
-
-.favourite-icon{
+.favourite-icon {
   cursor: pointer;
   position: absolute;
   right: 25px;
@@ -183,13 +214,15 @@ background: linear-gradient(152deg, rgba(147,0,159,1) 14%, rgba(102,71,133,1) 47
   font-size: 25px;
 }
 
-.favourite-icon .active{
-
-  color:#fece3a;
-
+.favourite-icon .active {
+  color: #fece3a;
 }
 
-.favourite-icon .inactive{
+.favourite-icon .inactive {
   color: #949494;
 }
 
+.myprofile {
+  background-color: #d3d3d3 !important;
+  border: 2px dashed black;
+}

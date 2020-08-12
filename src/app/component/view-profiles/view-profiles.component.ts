@@ -51,6 +51,8 @@ export class ViewProfilesComponent implements OnInit {
   cityNameOrPin = ""
 
   allusers = []
+  currentuser;
+  hasMoreUsers:boolean = true;
   qualificationMap: any;
   jobTypeMap: any;
 
@@ -82,6 +84,8 @@ export class ViewProfilesComponent implements OnInit {
 
   async ngOnInit() {
 
+    this.currentuser = this.userService.getCurrentUser();
+
     this.qualificationMap = this.mapService.qualtificationMap;
     this.jobTypeMap = this.mapService.jobTypeMap;
 
@@ -101,9 +105,17 @@ export class ViewProfilesComponent implements OnInit {
   async loadMoreUsers()
   {
     const users = await this.profileService.loadMoreUsers();
-    const newUsers = this.populateUsers(users)
-    const existingUsers = this.allusers;
-    this.allusers = [...existingUsers, ...newUsers];
+    if(users.length>0)
+    {
+      const newUsers = this.populateUsers(users)
+      const existingUsers = this.allusers;
+      this.allusers = [...existingUsers, ...newUsers];
+    }else
+    {
+      this.hasMoreUsers = false;
+      alert("No more users");
+    }
+
   }
 
   calculateAge(date) {
@@ -120,6 +132,7 @@ export class ViewProfilesComponent implements OnInit {
     this.spinner.show('loading')
 
     this.allusers = [];
+    this.hasMoreUsers = true;
 
     this.getFilters();
 
@@ -245,9 +258,12 @@ export class ViewProfilesComponent implements OnInit {
     return filter;
   }
 
-  populateUsers(_users) {
+  populateUsers(_users: any[]) {
 
-    const favouriteUsers = this.userService.getCurrentUser().favouriteUsers;
+    const currentUser = this.userService.getCurrentUser();
+    const favouriteUsers = currentUser.favouriteUsers || [];
+
+    // _users = _users.filter(user=> currentUser.uid != user.uid);
 
     _users.forEach(user => {
       if(user.profileImageUrl == null)

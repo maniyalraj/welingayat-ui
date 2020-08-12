@@ -36,8 +36,20 @@ export class UserProfileComponent implements OnInit {
     this.spinner.show('loading');
     this.sub = this.route.params.subscribe(async params => {
        this.id = params['id'];
+       const currentUser = this.userService.getCurrentUser();
+       if(currentUser.uid == this.id)
+       {
+         this.router.navigate(['/profile']);
+       }
        this.user = await this.userService.getUser(this.id) ;
        this.spinner.hide('loading');
+
+
+
+       if(currentUser.unlockedUsers && currentUser.unlockedUsers.includes(this.user.uid))
+       {
+         this.user.unlocked = true;
+       }
       //  .subscribe((result:any)=>{
       //   this.spinner.hide('loading');
       //   console.log(result)
@@ -85,7 +97,17 @@ export class UserProfileComponent implements OnInit {
 
   async unlockUser()
   {
+    const currentUser = this.userService.getCurrentUser();
+
+    if(currentUser.credits >= 100)
+    {
     await this.userService.unlockUser(this.user.uid);
+    }
+    else
+    {
+      alert("You do not have sufficient credits.");
+    }
+
     this.modalService.dismissAll();
     this.user = await this.userService.getUser(this.user.uid);
     console.log(this.user);

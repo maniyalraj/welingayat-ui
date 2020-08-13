@@ -10,7 +10,7 @@ import { switchMap } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { UserServiceService } from './user-service.service';
-import { User } from '../types/user';
+import { User, UserPrivateData, UserSharedPrivateData } from '../types/user';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class LoginService {
   private isLoggedIn = new BehaviorSubject<boolean>(false);
   loggedInState$ = this.isLoggedIn.asObservable();
 
-  user$:Observable<User>;
+  user$: Observable<User>;
 
   constructor(
     private httpClient: HttpClient,
@@ -32,35 +32,35 @@ export class LoginService {
     this.url = environment.serverUrl + "api/auth/signin";
 
     // Get the auth state, then fetch the Firestore user document or return null
-      this.auth.authState.subscribe(async (user)=>{
-        if(user){
-          let userRef = this.afs.collection("users").doc(user.uid);
-          let userSharedPrivateRef = this.afs.collection("usersPrivate").doc(user.uid);
-          let userPrivateRef = this.afs.collection("usersSharedPrivate").doc(user.uid);
+    this.auth.authState.subscribe(async (user) => {
+      if (user) {
+        let userRef = this.afs.collection("users").doc(user.uid);
+        let userSharedPrivateRef = this.afs.collection("usersPrivate").doc(user.uid);
+        let userPrivateRef = this.afs.collection("usersSharedPrivate").doc(user.uid);
 
-          const currentUser = await (await userRef.ref.get()).data();
-          const currentUserSharedPrivate = await (await userSharedPrivateRef.ref.get()).data();
-          const currentUserPrivate = await (await userPrivateRef.ref.get()).data();
+        const currentUser = await (await userRef.ref.get()).data();
+        const currentUserSharedPrivate = await (await userSharedPrivateRef.ref.get()).data();
+        const currentUserPrivate = await (await userPrivateRef.ref.get()).data();
 
-          const finalData = {...currentUser, ...currentUserPrivate, ...currentUserSharedPrivate};
+        const finalData = { ...currentUser, ...currentUserPrivate, ...currentUserSharedPrivate };
 
-          this.userService.setCurrentUser(finalData);
+        this.userService.setCurrentUser(finalData);
 
-          this.changeLoginState(true);
-          this.router.navigate(['/profile']);
-        }
-        else{
-          this.changeLoginState(false);
-        }
-      })
+        this.changeLoginState(true);
+        this.router.navigate(['/profile']);
+      }
+      else {
+        this.changeLoginState(false);
+      }
+    })
 
   }
 
-  async getCurrentUser(){
+  async getCurrentUser() {
     console.log(this.auth.user);
   }
 
-  async signUpWithEmail(userData){
+  async signUpWithEmail(userData) {
 
     let credentials = await this.auth.auth.createUserWithEmailAndPassword(userData.email, userData.password);
     this.updateUserData(credentials.user, userData)
@@ -72,12 +72,11 @@ export class LoginService {
     return this.post(url, userData)
   }
 
-  logout()
-  {
+  logout() {
     this.auth.auth.signOut();
   }
 
-  async loginWithGoogle(){
+  async loginWithGoogle() {
 
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.auth.auth.signInWithPopup(provider);
@@ -86,7 +85,7 @@ export class LoginService {
     return true;
   }
 
-  async loginWithEmail(userData){
+  async loginWithEmail(userData) {
 
     const credential = await this.auth.auth.signInWithEmailAndPassword(userData.usernameOrEmail, userData.password);
     return true;
@@ -96,6 +95,8 @@ export class LoginService {
   updateUserData(user, userData = null) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    const userSharedPrivateRef: AngularFirestoreDocument<UserSharedPrivateData> = this.afs.doc(`usersSharedPrivate/${user.uid}`);
+    const userPrivateRef: AngularFirestoreDocument<UserPrivateData> = this.afs.doc(`usersPrivate/${user.uid}`);
 
     let data = {
       uid: user.uid,
@@ -104,11 +105,17 @@ export class LoginService {
       photoURL: user.photoURL
     }
 
-    data = {...data, ...userData};
+    data = { ...data, ...userData };
+
+    let baseData = {
+      uid: user.id
+    }
 
     this.userService.setCurrentUser(data);
 
-    return userRef.set(data, { merge: true })
+    userSharedPrivateRef.set(baseData, { merge: true });
+    userPrivateRef.set(baseData, { merge: true });
+    return userRef.set(data, { merge: true });
 
   }
 

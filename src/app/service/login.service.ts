@@ -80,7 +80,7 @@ export class LoginService {
 
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.auth.auth.signInWithPopup(provider);
-    this.updateUserData(credential.user);
+    await this.updateUserData(credential.user);
 
     return true;
   }
@@ -108,7 +108,7 @@ export class LoginService {
     data = { ...data, ...userData };
 
     let baseData = {
-      uid: user.id
+      uid: user.uid
     }
 
     this.userService.setCurrentUser(data);

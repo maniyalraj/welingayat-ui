@@ -85,6 +85,8 @@ export class ProfileRegisterComponent implements OnInit {
         }
       );
 
+    }).catch(error => {
+      alert(error);
     });
   }
 
@@ -104,6 +106,7 @@ export class ProfileRegisterComponent implements OnInit {
   }
   loadImageFailed() {
     // show message
+    alert("Failed loading image");
   }
 
   crop() {

@@ -1,56 +1,56 @@
 <div class="justify-content-center">
-    <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <select class="browser-default custom-select" [(ngModel)]="user.bloodGroup">
-                    <option selected value="undefined">Select Blood Group</option>
-                    <!-- <ng-container *ngFor="let bgOptions of bloodGroupOptions">
-                        <option value="{{bgOptions.key}}">{{bgOptions.value}}</option>
-                    </ng-container> -->
-                    <option value="A_POS">A+</option>
-                    <option value="A_NEG">A-</option>
-                    <option value="B_POS">B+</option>
-                    <option value="B_NEG">B-</option>
-                    <option value="AB_POS">AB+</option>
-                    <option value="AB_NEG">AB-</option>
-                    <option value="O_POS">O+</option>
-                    <option value="O_NEG">O-</option>
-                    <option value="DONTKNOW">Dont Know</option>
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group mb-3">
+        <label for="bloodGroup">Blood Group: </label>
+        <select class="browser-default custom-select" [(ngModel)]="user.bloodGroup">
+          <option selected value="undefined">Select Blood Group</option>
+          <option value="A_POS">A+</option>
+          <option value="A_NEG">A-</option>
+          <option value="B_POS">B+</option>
+          <option value="B_NEG">B-</option>
+          <option value="AB_POS">AB+</option>
+          <option value="AB_NEG">AB-</option>
+          <option value="O_POS">O+</option>
+          <option value="O_NEG">O-</option>
+          <option value="DONTKNOW">Dont Know</option>
 
-                </select>
-            </div>
-        </div>
+        </select>
+      </div>
+    </div>
 
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group mb-3">
+        <label for="isDifferentlyAbled">Are you diffrently abled: </label>
+        <select class="browser-default custom-select" [(ngModel)]="user.isDifferentlyAbled">
+          <option selected value="-1">Select</option>
+          <option value="yes">YES</option>
+          <option value="no">NO</option>
+        </select>
+      </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <select class="browser-default custom-select" [(ngModel)]="user.isDifferentlyAbled">
-                    <option selected value="-1">Is Differently Abled</option>
-                    <option value="true">YES</option>
-                    <option value="false">NO</option>
-                </select>
-            </div>
+    <div class="col-lg-4 col-md-8" *ngIf="user.isDifferentlyAbled === 'yes'">
+      <div class="form-group">
+        <label for="typeOfDisability">Please specifiy: </label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-sign-in"></i></span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.typeOfDisability" name="typeOfDisability"
+            placeholder="Type of Disability" type="text">
         </div>
-        <div class="col-lg-4 col-md-8" *ngIf="user.isDifferentlyAbled">
-            <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-sign-in"></i></span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.typeOfDisability" name="typeOfDisability"
-                        placeholder="Type of Disability" type="text" (focus)="focus1=true" (blur)="focus1=false">
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="text-center col-sm-6 col-lg-4">
-            <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save and Next</button>
-        </div>
-        <div class="text-center col-sm-6 col-lg-4">
-            <button type="button" class="btn btn-primary my-4" (click)="skipAndNext()">Skip and Next</button>
-        </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="text-center col-sm-6 col-lg-4">
+      <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save and Next</button>
     </div>
+    <div class="text-center col-sm-6 col-lg-4">
+      <button type="button" class="btn btn-primary my-4" (click)="skipAndNext()">Skip and Next</button>
+    </div>
+  </div>
 
 </div>

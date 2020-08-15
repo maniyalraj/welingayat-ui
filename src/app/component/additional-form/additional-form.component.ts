@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProfileService } from 'src/app/service/profile.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { UserPrivateData } from 'src/app/types/user';
+import { User } from 'src/app/types/user';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import { LoginService } from 'src/app/service/login.service';
 
@@ -15,7 +15,7 @@ export class AdditionalFormComponent implements OnInit {
 
   isSameAsCurrent: boolean = false;
 
-  user: UserPrivateData;
+  user: User;
 
   focus;
   focus1;
@@ -35,16 +35,14 @@ export class AdditionalFormComponent implements OnInit {
   checkAndCopy() {
     if (this.isSameAsCurrent == false) {
 
-      this.user.permanentAddressLine1 = this.user.currentAddressLine1;
-      this.user.permanentAddressLine2 = this.user.currentAddressLine2;
+      this.user.permanentAddressLocality = this.user.currentAddressLocality;
       this.user.permanentAddressCity = this.user.currentAddressCity;
       this.user.permanentAddressPin = this.user.currentAddressPin;
 
 
     }
     else {
-      this.user.permanentAddressLine1 = null;
-      this.user.permanentAddressLine2 = null;
+      this.user.permanentAddressLocality = null;
       this.user.permanentAddressCity = null;
       this.user.permanentAddressPin = null;
     }
@@ -53,19 +51,18 @@ export class AdditionalFormComponent implements OnInit {
   saveAndNext() {
 
     this.spinner.show("saving");
+    const currentUser = this.userService.getCurrentUser();
 
-    const user: UserPrivateData = {
+    const user: User = {
       currentAddressCity: this.user.currentAddressCity,
       currentAddressPin: this.user.currentAddressPin,
-      currentAddressLine1: this.user.currentAddressLine1,
-      currentAddressLine2: this.user.currentAddressLine2,
+      currentAddressLocality: this.user.currentAddressLocality,
       permanentAddressCity: this.user.permanentAddressCity,
       permanentAddressPin: this.user.permanentAddressPin,
-      permanentAddressLine1: this.user.permanentAddressLine1,
-      permanentAddressLine2: this.user.permanentAddressLine2
+      permanentAddressLocality: this.user.permanentAddressLocality,
     }
 
-    this.userService.updateUserPrivateData(user);
+    this.loginService.updateUserData(currentUser, user);
     this.spinner.hide("saving");
     this.changeTabEvent.emit();
 

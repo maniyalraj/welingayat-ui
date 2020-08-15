@@ -191,6 +191,7 @@
         </div>
         <!-- FirstName -->
         <div class="form-group mb-3">
+          <label for="firstName">First Name:</label>
           <div class="input-group input-group-alternative">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-address-book"></i></span>
@@ -200,6 +201,7 @@
         </div>
         <!-- Middle Name -->
         <div class="form-group mb-3">
+          <label for="middleName">Middle Name:</label>
           <div class="input-group input-group-alternative">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-address-book"></i></span>
@@ -210,6 +212,7 @@
         </div>
         <!-- Last Name -->
         <div class="form-group mb-3">
+          <label for="lastName">Last Name:</label>
           <div class="input-group input-group-alternative">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-address-book"></i></span>
@@ -220,11 +223,24 @@
 
         <!-- Contact -->
         <div class="form-group mb-3">
+          <label for="contact">Contact:</label>
           <div class="input-group input-group-alternative">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-phone"></i></span>
             </div>
             <input class="form-control" [(ngModel)]="contact" name="contact" placeholder="Contact" type="number">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+            </div>
+            <input class="form-control datepicker" placeholder="Date of Birth" name="dob" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+              [(ngModel)]="dob">
+            <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
           </div>
         </div>
 

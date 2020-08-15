@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
   middleName;
   lastName;
   contact;
+  dob;
 
   @ViewChild('inCompleteUser', null) inCompleteUser: ElementRef;
 
@@ -48,7 +49,7 @@ export class NavbarComponent implements OnInit {
 
         const user = this.userService.getCurrentUser();
 
-        this.credits = user.credits || 0;
+        this.credits = user && user.credits || 0;
 
         if (item && user && user.gender == undefined) {
           this.open(this.inCompleteUser);
@@ -117,6 +118,7 @@ export class NavbarComponent implements OnInit {
         "firstName": this.firstName,
         "middleName": this.middleName,
         "lastName": this.lastName,
+        "dob": new Date(this.dob).getTime()
       }
 
       const updateUserSharedPrivateData: UserSharedPrivateData = {

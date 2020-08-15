@@ -1,70 +1,73 @@
 <div class="justify-content-center">
-    <div class="row">
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">F</span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.firstName" name="firstName" placeholder="First Name"
-                        type="text" (focus)="focus=true" (blur)="focus=false" disabled>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group mb-3">
+        <label for="firstName">First Name: </label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text">F</span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.firstName" name="firstName" placeholder="First Name" type="text"
+            disabled>
         </div>
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">M</span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.middleName" name="middleName" placeholder="Middle Name"
-                        type="text" (focus)="focus1=true" (blur)="focus1=false" disabled>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">L</span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name"
-                        type="text" (focus)="focus1=true" (blur)="focus1=false" disabled>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.contact" name="contact" placeholder="Contact"
-                        type="number" (focus)="focus=true" (blur)="focus=false">
-                </div>
-            </div>
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group">
+        <label for="middleName">Middle Name: </label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text">M</span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.middleName" name="middleName" placeholder="Middle Name"
+            type="text" disabled>
         </div>
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.email" name="email" placeholder="Email"
-                        type="email" (focus)="focus1=true" (blur)="focus1=false" disabled>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="text-center col-sm-6 col-lg-4">
-            <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save and Next</button>
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group">
+        <label for="lastName">Last Name: </label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text">L</span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name" type="text"
+            disabled>
         </div>
-        <div class="text-center col-sm-6 col-lg-4">
-            <button type="button" class="btn btn-primary my-4" (click)="skipAndNext()">Skip and Next</button>
-        </div>
+      </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group mb-3">
+        <label for="contact">Contact: </label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-phone"></i></span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.contact" name="contact" placeholder="Contact" type="number">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group">
+        <label for="email">Email: </label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.email" name="email" placeholder="Email" type="email" disabled>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="text-center col-sm-6 col-lg-4">
+      <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save and Next</button>
+    </div>
+    <div class="text-center col-sm-6 col-lg-4">
+      <button type="button" class="btn btn-primary my-4" (click)="skipAndNext()">Skip and Next</button>
+    </div>
+  </div>
 
 </div>

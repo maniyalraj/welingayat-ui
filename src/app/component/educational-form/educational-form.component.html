@@ -1,7 +1,8 @@
 <div class="justify-content-center">
     <div class="row justify-content-center">
         <div class="col-lg-4 col-md-8">
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+            <div class="form-group mb-3">
+              <label for="qualification">Highest Qualification: </label>
                 <select class="browser-default custom-select" [(ngModel)]="user.qualification">
                     <option selected value="undefined">Qualification</option>
                     <ng-container *ngFor="let qualification of qualificationMap">
@@ -10,14 +11,16 @@
                 </select>
             </div>
         </div>
-        <div class="col-lg-4 col-md-8" [hidden]="qualification!='OTHER'">
-            <div class="form-group" [ngClass]="{'focused':focus1===true}">
+        <div class="col-lg-4 col-md-8" *ngIf="user.qualification==='OTHER'">
+          <label for="otherQualification">Please specify: </label>
+
+            <div class="form-group">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                         <span class="input-group-text">O</span>
                     </div>
                     <input class="form-control" [(ngModel)]="user.otherQualification" name="otherQualification"
-                        placeholder="Other Qualification" type="text" (focus)="focus1=true" (blur)="focus1=false">
+                        placeholder="Other Qualification" type="text">
                 </div>
             </div>
         </div>
@@ -26,13 +29,14 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-lg-4 col-md-8">
-            <div class="form-group" [ngClass]="{'focused':focus1===true}">
+            <div class="form-group">
+          <label for="nameOfInstitute">Name of Institute: </label>
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-university"></i></span>
                     </div>
                     <input class="form-control" [(ngModel)]="user.institute" name="nameOfInstitute"
-                        placeholder="Institute Name" type="text" (focus)="focus1=true" (blur)="focus1=false">
+                        placeholder="Institute Name" type="text" >
                 </div>
             </div>
         </div>

@@ -73,6 +73,7 @@ export class LoginService {
   }
 
   logout() {
+    localStorage.clear();
     this.auth.auth.signOut();
   }
 
@@ -80,7 +81,7 @@ export class LoginService {
 
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.auth.auth.signInWithPopup(provider);
-    await this.updateUserData(credential.user);
+    await this.updateUserDataForFirstLogin(credential.user);
 
     return true;
   }
@@ -92,11 +93,34 @@ export class LoginService {
 
   }
 
+  updateUserDataForFirstLogin(user)
+  {
+        // Sets user data to firestore on login
+        const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+        const userSharedPrivateRef: AngularFirestoreDocument<UserSharedPrivateData> = this.afs.doc(`usersSharedPrivate/${user.uid}`);
+        const userPrivateRef: AngularFirestoreDocument<UserPrivateData> = this.afs.doc(`usersPrivate/${user.uid}`);
+
+        let data = {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        }
+
+        let baseData = {
+          uid: user.uid
+        }
+
+        this.userService.setCurrentUser(data);
+
+        userSharedPrivateRef.set(baseData, { merge: true });
+        userPrivateRef.set(baseData, { merge: true });
+        return userRef.set(data, { merge: true });
+  }
+
   updateUserData(user, userData = null) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-    const userSharedPrivateRef: AngularFirestoreDocument<UserSharedPrivateData> = this.afs.doc(`usersSharedPrivate/${user.uid}`);
-    const userPrivateRef: AngularFirestoreDocument<UserPrivateData> = this.afs.doc(`usersPrivate/${user.uid}`);
 
     let data = {
       uid: user.uid,
@@ -107,14 +131,8 @@ export class LoginService {
 
     data = { ...data, ...userData };
 
-    let baseData = {
-      uid: user.uid
-    }
-
     this.userService.setCurrentUser(data);
 
-    userSharedPrivateRef.set(baseData, { merge: true });
-    userPrivateRef.set(baseData, { merge: true });
     return userRef.set(data, { merge: true });
 
   }

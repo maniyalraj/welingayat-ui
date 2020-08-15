@@ -17,7 +17,7 @@ export class MedicalFormComponent implements OnInit {
 
   bloodGroup: string;
   bloodGroupOptions: any = []
-  isDisabled: boolean = false;
+  isDisabled = 'no';
   typeOfDisability: string;
 
   user: User;

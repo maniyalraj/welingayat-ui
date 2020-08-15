@@ -114,3 +114,12 @@ label{
 .form-control{
   color: #000 !important;
 }
+
+.cdk-overlay-container {
+  z-index:1053 !important;
+}
+
+.form-group label{
+  margin-bottom: 0px;
+  font-size: 14px;
+}

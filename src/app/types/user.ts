@@ -1,6 +1,6 @@
 export interface User {
-  uid: string;
-  email: string;
+  uid?: string;
+  email?: string;
   countOfImages?: number;
   photoURL?: string;
   profileImageUrl?: string,
@@ -29,9 +29,12 @@ export interface User {
   bloodGroup?: string,
   isDifferentlyAbled?: boolean,
   typeOfDisability?: string,
-
-
-
+  currentAddressCity?: string,
+  currentAddressPin?: number,
+  currentAddressLocality?:string,
+  permanentAddressLocality?:string,
+  permanentAddressCity?: string,
+  permanentAddressPin?: number
 }
 
 export interface Family {
@@ -60,14 +63,6 @@ export interface UserSharedPrivateData {
 export interface UserPrivateData {
   uid?:string;
   credits?: number;
-  currentAddressCity?: string;
-  currentAddressPin?: number;
-  currentAddressLine1?: string;
-  currentAddressLine2?: string;
-  permanentAddressCity?: string;
-  permanentAddressPin?: number;
-  permanentAddressLine1?: string;
-  permanentAddressLine2?: string;
   unlockedUsers?: string[];
   favouriteUsers?: string[];
 }

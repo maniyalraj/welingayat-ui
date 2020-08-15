@@ -1,142 +1,107 @@
 <div class="justify-content-center">
-    <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-8">
-
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">L1</span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.currentAddressLine1" name="currentAddressLine1"
-                        placeholder="Current Address Line 1" type="text" (focus)="focus=true" (blur)="focus=false">
-                </div>
-            </div>
-
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group mb-3">
+        <label for="currentAddressCity">Current Address City: </label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-city"></i></span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.currentAddressCity" name="currentAddressCity"
+            placeholder="Current Address City" type="text">
         </div>
+      </div>
     </div>
-
-    <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-8">
-
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">L2</span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.currentAddressLine2" name="currentAddressLine2"
-                        placeholder="Current Address Line 2" type="text" (focus)="focus=true" (blur)="focus=false">
-                </div>
-            </div>
-
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group mb-3">
+        <label for="currentAddressPin">Current Address PIN: </label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text">P</span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.currentAddressPin" name="currentAddressPin"
+            placeholder="Current Address Pin" type="number">
         </div>
+      </div>
+
     </div>
-
-
-    <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-8">
-
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-city"></i></span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.currentAddressCity" name="currentAddressCity"
-                        placeholder="Current Address City" type="text" (focus)="focus=true" (blur)="focus=false">
-                </div>
-            </div>
-
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-8">
+      <div class="form-group mb-3">
+        <label for="currentAddressLocality">Current Locality / Area: </label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text">L1</span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.currentAddressLocality" name="currentAddressLocality"
+            placeholder="Current Locality / Area" type="text">
         </div>
-        <div class="col-lg-4 col-md-8">
-
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">P</span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.currentAddressPin" name="currentAddressPin"
-                        placeholder="Current Address Pin" type="number" (focus)="focus=true" (blur)="focus=false">
-                </div>
-            </div>
-
-        </div>
+      </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="custom-control custom-checkbox mb-3">
-            <input class="custom-control-input" id="customCheck1" type="checkbox" [(ngModel)]="isSameAsCurrent"
-                (click)="checkAndCopy()">
-            <label class="custom-control-label" for="customCheck1">Same as Above</label>
-        </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="custom-control custom-checkbox mb-3">
+      <input class="custom-control-input" id="customCheck1" type="checkbox" [(ngModel)]="isSameAsCurrent"
+        (click)="checkAndCopy()">
+      <label class="custom-control-label" for="customCheck1">Same as Above</label>
     </div>
-    <div class="row justify-content-center">
+  </div>
 
-        <div class="col-lg-8 col-md-8">
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-8">
 
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">L1</span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.permanentAddressLine1" name="permanentAddressLine1"
-                        placeholder="Permanent Address Line 1" type="text" (focus)="focus=true" (blur)="focus=false">
-                </div>
-            </div>
-
+      <div class="form-group mb-3">
+        <label for="permanentAddressCity">Permanent Address City: </label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-city"></i></span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.permanentAddressCity" name="permanentAddressCity"
+            placeholder="Permanent Address City" type="text">
         </div>
+      </div>
+
     </div>
+    <div class="col-lg-4 col-md-8">
 
-    <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-8">
-
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">L2</span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.permanentAddressLine2" name="permanentAddressLine2"
-                        placeholder="Permanent Address Line 2" type="text" (focus)="focus=true" (blur)="focus=false">
-                </div>
-            </div>
-
+      <div class="form-group mb-3">
+        <label for="permanentAddressPin">Permanent Address PIN: </label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text">P</span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.permanentAddressPin" name="permanentAddressPin"
+            placeholder="Permanent Address Pin" type="number">
         </div>
+      </div>
+
     </div>
+  </div>
 
-
-    <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-8">
-
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-city"></i></span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.permanentAddressCity" name="permanentAddressCity"
-                        placeholder="Permanent Address City" type="text" (focus)="focus=true" (blur)="focus=false">
-                </div>
-            </div>
-
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-8">
+      <div class="form-group mb-3">
+        <label for="permanentAddressLocality">Permanent Locality / Area: </label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text">L1</span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.permanentAddressLocality" name="permanentAddressLocality"
+            placeholder="Permanent Locality / Area" type="text">
         </div>
-        <div class="col-lg-4 col-md-8">
-
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">P</span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.permanentAddressPin" name="permanentAddressPin"
-                        placeholder="Permanent Address Pin" type="number" (focus)="focus=true" (blur)="focus=false">
-                </div>
-            </div>
-
-        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="row justify-content-center">
-        <div class="text-center col-sm-6 col-lg-4">
-            <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save</button>
-        </div>
-        <!-- <div class="text-center col-4">
+  <div class="row justify-content-center">
+    <div class="text-center col-sm-6 col-lg-4">
+      <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save</button>
+    </div>
+    <!-- <div class="text-center col-4">
             <button type="button" class="btn btn-primary my-4" (click)="closeAlert()">Skip and Next</button>
         </div> -->
-    </div>
+  </div>
 
 </div>

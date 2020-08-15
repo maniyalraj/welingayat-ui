@@ -1,114 +1,102 @@
 <div class="justify-content-center">
-    <div class="row">
-        <div class="col-lg-2 col-md-4 col-5">
+  <div class="row">
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group">
+        <label> Date of Birth:</label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+          </div>
+          <input disabled class="form-control datepicker" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+            [(ngModel)]="dob">
+          <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+        </div>
+      </div>
+    </div>
 
-            <div class="custom-control custom-radio mb-3">
-                <input name="custom-radio-1" class="custom-control-input" id="customRadio1" type="radio"
-                    [(ngModel)]="user.gender" value="MALE">
-                <label class="custom-control-label" for="customRadio1">
-                    <span>Male</span>
-                </label>
-            </div>
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group">
+        <label for="placeOfBirth"> Place of Birth:</label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-city"></i></span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.placeOfBirth" name="placeOfBirth" placeholder="Place of Birth"
+            type="text">
         </div>
-        <div class="col-lg-2 col-md-4 col-5">
-            <div class="custom-control custom-radio mb-3">
-                <input name="custom-radio-1" class="custom-control-input" id="customRadio2" checked type="radio"
-                    [(ngModel)]="user.gender" value="FEMALE">
-                <label class="custom-control-label" for="customRadio2">
-                    <span>Female</span>
-                </label>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                    </div>
-                    <!-- <input class="form-control datepicker" placeholder="Date of Birth" name="dp" [(ngModel)]="dob"
-                        ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" /> -->
-                        <input class="form-control datepicker" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" [(ngModel)]="dob">
-                        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-city"></i></span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.placeOfBirth" name="placeOfBirth"
-                        placeholder="Place of Birth" type="text" (focus)="focus1=true" (blur)="focus1=false">
-                </div>
-            </div>
-        </div>
+      </div>
+    </div>
 
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group mb-3">
+        <label for="heightInCms"> Height (in cms):</label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-arrows-alt-v"></i></span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.heightInCms" name="heightInCms" placeholder="Height in Cms"
+            type="number">
+        </div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-arrows-alt-v"></i></span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.heightInCms" name="heightInCms" placeholder="Height in Cms"
-                        type="number" (focus)="focus=true" (blur)="focus=false">
-                </div>
-            </div>
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group mb-3">
+        <label for="weightInKgs"> Weight (in Kgs):</label>
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-weight"></i></span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.weightInKgs" name="weightInKgs" placeholder="Weight in Kgs"
+            type="number">
         </div>
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-weight"></i></span>
-                    </div>
-                    <input class="form-control" [(ngModel)]="user.weightInKgs" name="weightInKgs" placeholder="Weight in Kgs"
-                        type="number" (focus)="focus=true" (blur)="focus=false">
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <select class="browser-default custom-select" [(ngModel)]="user.complexion">
-                    <option selected value="undefined">Select Complexion</option>
-                    <option value="FAIR">Fair</option>
-                    <option value="DARK">Dark</option>
-                    <option value="WHEATISH">Wheatish</option>
-                </select>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <select class="browser-default custom-select" [(ngModel)]="user.maritalStatus">
-                    <option selected value="undefined">Marital Status</option>
-                    <option value="SINGLE">Single</option>
-                    <option value="MARRIED">Married</option>
-                    <option value="DIVORCED">Divorced</option>
-                    <option value="WIDOWED">Widowed</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-8">
-            <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                <select class="browser-default custom-select" [(ngModel)]="user.familyType">
-                    <option selected value="undefined">Family Type</option>
-                    <option value="NUCLEAR">Nuclear</option>
-                    <option value="JOINT">Joint</option>
-                </select>
-            </div>
-        </div>
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group">
+        <label for="complexion"> Complextion </label>
+        <select class="browser-default custom-select" [(ngModel)]="user.complexion">
+          <option selected value="undefined">Select Complexion</option>
+          <option value="FAIR">Fair</option>
+          <option value="DARK">Dark</option>
+          <option value="WHEATISH">Wheatish</option>
+        </select>
+      </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="text-center col-sm-6 col-lg-4">
-            <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save and Next</button>
-        </div>
-        <div class="text-center col-sm-6 col-lg-4">
-            <button type="button" class="btn btn-primary my-4" (click)="skipAndNext()">Skip and Next</button>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group">
+        <label for="maritalStatus"> Marital Status: </label>
+        <select class="browser-default custom-select" [(ngModel)]="user.maritalStatus">
+          <option selected value="undefined">Marital Status</option>
+          <option value="SINGLE">Single</option>
+          <option value="MARRIED">Married</option>
+          <option value="DIVORCED">Divorced</option>
+          <option value="WIDOWED">Widowed</option>
+        </select>
+      </div>
     </div>
+    <div class="col-lg-4 col-md-8">
+      <div class="form-group">
+        <label for="familyType"> Family Type: </label>
+        <select class="browser-default custom-select" [(ngModel)]="user.familyType">
+          <option selected value="undefined">Family Type</option>
+          <option value="NUCLEAR">Nuclear</option>
+          <option value="JOINT">Joint</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="text-center col-sm-6 col-lg-4">
+      <button type="button" class="btn btn-primary my-4" (click)="saveAndNext()">Save and Next</button>
+    </div>
+    <div class="text-center col-sm-6 col-lg-4">
+      <button type="button" class="btn btn-primary my-4" (click)="skipAndNext()">Skip and Next</button>
+    </div>
+  </div>
 
 
 </div>
@@ -116,4 +104,3 @@
 
 <!-- <ngb-alert [dismissible]="true" [type]="alertType" class="alert" *ngIf="!staticAlertClosed"
     (close)="staticAlertClosed = true">{{alertMessage}}</ngb-alert> -->
-

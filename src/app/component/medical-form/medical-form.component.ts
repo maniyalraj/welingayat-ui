@@ -46,7 +46,7 @@ export class MedicalFormComponent implements OnInit {
 
     this.spinner.show('saving');
 
-    if(this.user.isDifferentlyAbled === false)
+    if(this.user.isDifferentlyAbled === 'no')
     {
       this.user.typeOfDisability = null;
     }

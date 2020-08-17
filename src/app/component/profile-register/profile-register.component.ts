@@ -59,7 +59,7 @@ export class ProfileRegisterComponent implements OnInit {
 
     if (user && !user.profileImageUrl && user.photoURL) {
 
-      user.profileImageUrl = user.photoURL;
+      user.profileImageUrl = user.photoURL || this.croppedImage;
       this.profileImageUrl = user.photoURL;
       // this.userService.setCurrentUser(user);
     }

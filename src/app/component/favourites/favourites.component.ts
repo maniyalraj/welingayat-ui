@@ -19,38 +19,24 @@ export class FavouritesComponent implements OnInit {
 
   constructor(private userService: UserServiceService, private router: Router, private spinner: NgxSpinnerService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
 
 
     this.spinner.show('loading');
 
-    this.userService.getCurrentUser().subscribe((result:any)=>{
+    const currentUser = this.userService.getCurrentUser();
 
-      for(let r of result.userFavourites)
-      {
+    const favouritesUsers = currentUser.favouriteUsers || [];
+    const unlockedUsers = currentUser.unlockedUsers || [];
 
-        this.allusers.push(this.userService.transformUser(r));
+    const selectedUsers = [...favouritesUsers, ...unlockedUsers]
 
-      }
+    if(selectedUsers.length >0)
+    {
+      this.allusers = await this.userService.getSelectedUsers(selectedUsers);
 
-      for(let r of result.unlockedUsers)
-      {
-
-        if(!this.allusers.some((u) => u.id == r.id))
-        this.allusers.push(this.userService.transformUser(r));
-
-      }
-
-      this.spinner.hide('loading');
-
-
-    }, error=>{
-      this.spinner.hide('loading');
-
-      console.log(error);
-
-    })
-
+    }
+    this.spinner.hide('loading');
   }
 
   viewProfile(user) {

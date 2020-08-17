@@ -18,7 +18,8 @@ export class SignupComponent implements OnInit {
   contact: string;
   middleName: string;
   confirmPassword: string;
-  gender: string = "GENDER_FEMALE";
+  gender: string = "FEMALE";
+  dob;
 
   focus;
   focus1;
@@ -41,7 +42,8 @@ export class SignupComponent implements OnInit {
       "lastName": this.lastname,
       "middleName": this.middleName,
       "contact": this.contact,
-      "gender": this.gender
+      "gender": this.gender,
+      "dob": new Date(this.dob).getTime()
     }
 
     if (this.checkPassword()) {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { MapServiceService } from './map-service.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore,Query } from '@angular/fire/firestore';
 import { UserSharedPrivateData, UserPrivateData, User } from '../types/user';
 import { LoginService } from './login.service';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -118,6 +118,25 @@ export class UserServiceService {
     this.setCurrentUser(user);
 
     return userPrivateRef.set({ favouriteUsers: favouriteUsers }, { merge: true });
+  }
+
+  async getSelectedUsers(users)
+  {
+    const currentUser: User = this.getCurrentUser();
+    let query: Query = this.db.collection('users').ref;
+    let usersList = []
+    query = query.where("uid","in",users)
+
+    await query.get().then(querySnapshot => {
+      querySnapshot.forEach((_user:any) => {
+        let user = _user.data();
+        user.profileImageUrl = user.profileImageUrl || user.photoURL || this.blankProfile;
+        usersList.push(user);
+      })
+    })
+
+  return usersList;
+
   }
 
   unlockUser(uid) {

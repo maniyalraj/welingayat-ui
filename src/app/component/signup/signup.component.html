@@ -18,13 +18,13 @@
         <h3>or SIGN UP</h3>
       </div>
       <form role="form">
-        <div class="form-group" [ngClass]="{'focused':focus===true}">
+        <!-- <div class="form-group" [ngClass]="{'focused':focus===true}">
           <div class="row">
 
             <div class="col-6">
               <div class="custom-control custom-radio mb-3">
                 <input name="gender-radio-1" class="custom-control-input" id="customRadio2" checked type="radio"
-                  [(ngModel)]="gender" value="GENDER_FEMALE">
+                  [(ngModel)]="gender" value="FEMALE">
                 <label class="custom-control-label" for="customRadio2">
                   <span>Female</span>
                 </label>
@@ -35,7 +35,7 @@
 
               <div class="custom-control custom-radio mb-3">
                 <input name="gender-radio-1" class="custom-control-input" id="customRadio1" type="radio"
-                  [(ngModel)]="gender" value="GENDER_MALE">
+                  [(ngModel)]="gender" value="MALE">
                 <label class="custom-control-label" for="customRadio1">
                   <span>Male</span>
                 </label>
@@ -44,6 +44,19 @@
 
           </div>
         </div>
+
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+            </div>
+            <input class="form-control datepicker" placeholder="Date of Birth" name="dob" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+              [(ngModel)]="dob">
+            <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+          </div>
+        </div> -->
+
         <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
           <div class="input-group input-group-alternative">
             <div class="input-group-prepend">
@@ -53,7 +66,7 @@
               (focus)="focus=true" (blur)="focus=false">
           </div>
         </div>
-        <div class="form-group mb-3" [ngClass]="{'focused':focus_firstName===true}">
+        <!-- <div class="form-group mb-3" [ngClass]="{'focused':focus_firstName===true}">
           <div class="input-group input-group-alternative">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-address-book"></i></span>
@@ -88,7 +101,7 @@
             <input class="form-control" [(ngModel)]="contact" name="contact" placeholder="Contact" type="number"
               (focus)="focus_Contact=true" (blur)="focus_Contact=false">
           </div>
-        </div>
+        </div> -->
         <div class="form-group" [ngClass]="{'focused':focus1===true}">
           <div class="input-group input-group-alternative">
             <div class="input-group-prepend">

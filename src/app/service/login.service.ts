@@ -35,8 +35,8 @@ export class LoginService {
     this.auth.authState.subscribe(async (user) => {
       if (user) {
         let userRef = this.afs.collection("users").doc(user.uid);
-        let userSharedPrivateRef = this.afs.collection("usersPrivate").doc(user.uid);
-        let userPrivateRef = this.afs.collection("usersSharedPrivate").doc(user.uid);
+        let userSharedPrivateRef = this.afs.collection("usersSharedPrivate").doc(user.uid);
+        let userPrivateRef = this.afs.collection("usersPrivate").doc(user.uid);
 
         const currentUser = await (await userRef.ref.get()).data();
         const currentUserSharedPrivate = await (await userSharedPrivateRef.ref.get()).data();
@@ -63,7 +63,7 @@ export class LoginService {
   async signUpWithEmail(userData) {
 
     let credentials = await this.auth.auth.createUserWithEmailAndPassword(userData.email, userData.password);
-    this.updateUserData(credentials.user, userData)
+    await this.updateUserDataForFirstLogin(credentials.user);
 
   }
 
@@ -82,7 +82,8 @@ export class LoginService {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.auth.auth.signInWithPopup(provider);
     await this.updateUserDataForFirstLogin(credential.user);
-
+    // this.changeLoginState(true);
+    // this.router.navigate(['/profile']);
     return true;
   }
 
@@ -93,30 +94,31 @@ export class LoginService {
 
   }
 
-  async updateUserDataForFirstLogin(user)
-  {
-        // Sets user data to firestore on login
-        const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-        const userSharedPrivateRef: AngularFirestoreDocument<UserSharedPrivateData> = this.afs.doc(`usersSharedPrivate/${user.uid}`);
-        const userPrivateRef: AngularFirestoreDocument<UserPrivateData> = this.afs.doc(`usersPrivate/${user.uid}`);
 
-        let data = {
-          uid: user.uid,
-          email: user.email,
-          displayName: user.displayName,
-          photoURL: user.photoURL
-        }
+  async updateUserDataForFirstLogin(user) {
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    const userSharedPrivateRef: AngularFirestoreDocument<UserSharedPrivateData> = this.afs.doc(`usersSharedPrivate/${user.uid}`);
+    const userPrivateRef: AngularFirestoreDocument<UserPrivateData> = this.afs.doc(`usersPrivate/${user.uid}`);
 
-        let baseData = {
-          uid: user.uid
-        }
+    let data = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL
+    }
 
-        this.userService.setCurrentUser(data);
+    let baseData = {
+      uid: user.uid
+    }
 
-        await userSharedPrivateRef.set(baseData, { merge: true });
-        await userPrivateRef.set(baseData, { merge: true });
-        await userRef.set(data, { merge: true });
-        return true;
+    this.userService.setCurrentUser(data);
+
+    await userSharedPrivateRef.set(baseData, { merge: true });
+    await userPrivateRef.set(baseData, { merge: true });
+    await userRef.set(data, { merge: true });
+
+    return true;
   }
 
   updateUserData(user, userData = null) {

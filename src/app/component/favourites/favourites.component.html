@@ -25,13 +25,13 @@
                     <div class="col-12 d-flex justify-content-center" style="padding:2px">
 
                       <img class="img img-thumbnail rounded rounded-circle search-view-image pointer"
-                        [src]="user.userImages.imageUrl" (click)="viewProfile(user.id)" />
+                        [src]="user.profileImageUrl" (click)="viewProfile(user.id)" />
 
                     </div>
                     <div class="col-12" style="padding:2px">
                       <div class="row">
                         <div class="col-12">
-                          <h5 class="text-truncate text-center pointer" (click)="viewProfile(user.id)">{{user.lastName}}
+                          <h5 class="text-truncate text-center pointer" (click)="viewProfile(user.uid)">{{user.lastName}}
                             {{user.firstName}}
                             {{user.middleName}}
                           </h5>
@@ -43,11 +43,11 @@
                             <div class="icon-div"><i class="fas fa-arrows-alt-v"></i></div>
                             Height:
                           </span>
-                          {{user.userPersonalDetails?.heightInCms}}
+                          {{user.heightInCms}}
                           cms
                         </div>
                         <div class="col-6 text text-right">
-                          {{user.age}}, {{user.userPersonalDetails?.maritalStatus}}
+                          {{user.age}}, {{user.maritalStatus}}
                         </div>
                       </div>
                       <div class="row">
@@ -56,7 +56,7 @@
                             <div class="icon-div"><i class="fas fa-weight"></i></div>
                             Weight:
                           </span>
-                          {{user.userPersonalDetails?.weightInKgs}}
+                          {{user.weightInKgs}}
                           kgs
                         </div>
 
@@ -68,7 +68,7 @@
                             <div class="icon-div"><i class="fas fa-briefcase"></i></div>
                             Job :
                           </span>
-                          {{user.userProfessionalDetails?.jobRole}}
+                          {{user.jobRole}}
                         </div>
 
 
@@ -78,7 +78,7 @@
                           <span class="d-md-inline">
                             <div class="icon-div"><i class="fas fa-university"></i></div>Qualification:
                           </span>
-                          {{user.userEducationalDetails?.qualification}}
+                          {{user.qualification}}
                         </div>
                       </div>
                       <div class="row">
@@ -87,16 +87,10 @@
                             <div class="icon-div"><i class="fas fa-rupee-sign"></i></div>
                             Salary:
                           </span>
-                          {{user.userProfessionalDetails?.monthlyIncome}}
+                          {{user.monthlyIncome}}
                           Rs
                         </div>
-                        <div class="col-3 p-0">
-                          <i class="fa fa-eye mr-2 pointer float-right" (click)="open(classic3,'',''); quickView(user)"
-                            data-toggle="tooltip" data-placement="top" title="Quick View"></i>
-                          <i class="fa fa-external-link mr-2 pointer float-right"
-                            (click)="open(classic3,'',''); quickView(user)" data-toggle="tooltip" data-placement="top"
-                            title="Visit Profile"></i>
-                        </div>
+
                       </div>
                     </div>
 

@@ -50,35 +50,14 @@ export class UserProfileComponent implements OnInit {
        {
          this.user.unlocked = true;
        }
-      //  .subscribe((result:any)=>{
-      //   this.spinner.hide('loading');
-      //   console.log(result)
-      //   if(result){
-      //     if (result.userImages == null || result.userImages.imageUrl == null) {
-      //       result.userImages = { "imageUrl": "../../assets/images/blank-profile-picture.png" }
-      //     }
-      //     this.profileImageUrl = result.userImages.imageUrl
 
-      //     this.user =this.userService.transformUser(result);
+       currentUser.familyDetails.forEach(d => {
+         if(d.relation === "SIBLING")
+         {
+           this.countOfSiblings +=1;
+         }
+       })
 
-      //     if(this.user.userFamilyDetails != null)
-      //     {
-
-      //       for(let r of this.user.userFamilyDetails)
-      //       {
-      //         if(r.relation === "RELATION_SIBLING")
-      //         {
-      //           this.countOfSiblings += 1;
-      //         }
-      //         r.relation = r.relation.replace("RELATION_","")
-      //         r.profession = r.profession.replace("JOB_TYPE_","")
-
-      //       }
-      //     }
-
-      //   }
-
-      // }
     });
   }
 

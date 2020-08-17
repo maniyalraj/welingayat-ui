@@ -78,7 +78,7 @@
 
       <div class="container  wow fadeInUp" inViewport [inViewportOptions]="{ threshold: [0] }"
         (inViewportAction)="onIntersection($event)" data-wow-delay="0.1s">
-        <div class="row">
+        <div class="row flex">
           <div class="col-md-4 flex counter-container">
             <div class="counter flex">
               <h1 [countUp]="totalUsers">0</h1>
@@ -88,7 +88,7 @@
             </div>
           </div>
 
-          <div class="col-md-4 flex counter-container">
+          <!-- <div class="col-md-4 flex counter-container">
             <div class="counter flex">
               <h1 [countUp]="femaleUsers">0</h1>
             </div>
@@ -104,7 +104,7 @@
             <div class="counter-text">
               <i class="fas fa-male"></i> Male Users
             </div>
-          </div>
+          </div> -->
 
 
         </div>

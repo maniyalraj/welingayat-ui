@@ -126,10 +126,7 @@ export class LoginService {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
     let data = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL
+      uid: user.uid
     }
 
     data = { ...data, ...userData };

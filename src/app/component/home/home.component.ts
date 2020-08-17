@@ -3,6 +3,7 @@ import { Subscription, Observable, Observer } from 'rxjs';
 import { LoginService } from 'src/app/service/login.service';
 import { NgwWowService } from 'ngx-wow';
 import { ProfileService } from 'src/app/service/profile.service';
+import { UserServiceService } from 'src/app/service/user-service.service';
 
 @Component({
   selector: 'app-home',
@@ -18,11 +19,15 @@ export class HomeComponent implements OnInit {
   femaleUsers = 0;
 
 
-  constructor(private loginService: LoginService, private wowService: NgwWowService, private profileService: ProfileService) {
+  constructor(
+    private loginService: LoginService,
+    private wowService: NgwWowService,
+    private profileService: ProfileService,
+    private userService: UserServiceService) {
     this.wowService.init()
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.isLoggedIn = this.checkIsLoggedIn() != null ? true : false;
 
     this.subscription = this.loginService.loggedInState$
@@ -31,7 +36,7 @@ export class HomeComponent implements OnInit {
         // this.isLoggedIn = this.checkIsLoggedIn() != null ? true : false;
       });
 
-
+      this.totalUsers = await this.userService.getCountOfTotalUsers();
 
   }
 
@@ -39,18 +44,7 @@ export class HomeComponent implements OnInit {
     return localStorage.getItem("accessToken");
   }
 
-  public onIntersection({ target, visible }) {
-
-    // if (visible) {
-    //   this.profileService.getUserCountByGender().subscribe((result: any) => {
-    //     this.maleUsers = result.filter(c => c.gender == "GENDER_MALE")[0].count
-    //     this.femaleUsers = result.filter(c => c.gender == "GENDER_FEMALE")[0].count
-    //     this.totalUsers = this.maleUsers + this.femaleUsers
-    //   }, error => {
-    //     console.error(error);
-
-    //   })
-    // }
+ onIntersection({ target, visible }) {
 
 
 

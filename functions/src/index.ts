@@ -1,4 +1,5 @@
 import * as functions from 'firebase-functions';
+import { firestore } from 'firebase-admin';
 
 const admin = require('firebase-admin');
 admin.initializeApp();
@@ -22,30 +23,40 @@ export const unlockUsersAfterUpdatingCredits =
     console.log(prevValue);
     console.log(newValue);
 
-    let credits:number = prevValue.credits;
+    let credits: number = prevValue.credits;
     const prevUnlockedUsers: string[] = prevValue.unlockedUsers || [];
     const newUnlockedUsers: string[] = newValue.unlockedUsers || [];
 
     if (
-      prevUnlockedUsers.length != newUnlockedUsers.length
+      prevUnlockedUsers.length !== newUnlockedUsers.length
       || !(newUnlockedUsers.every(val => prevUnlockedUsers.includes(val)))) {
 
-        if(credits >= 100)
-        {
-          console.log("Updating Credits");
-          credits = (credits - 100)
-          newValue.credits = credits;
-          return db.doc(`usersPrivate/${prevValue.uid}`).set(newValue, {merge: true});
-        }
-        else
-        {
-          console.log("Insufficient credits");
-          return null;
-        }
+      if (credits >= 100) {
+        console.log("Updating Credits");
+        credits = (credits - 100)
+        newValue.credits = credits;
+        return db.doc(`usersPrivate/${prevValue.uid}`).set(newValue, { merge: true });
+      }
+      else {
+        console.log("Insufficient credits");
+        return null;
+      }
 
     }
     console.log("Updating without check");
     return true;
 
+
+  })
+
+export const incrementCountOfUsers =
+  functions.firestore.document('users/{uid}').onCreate((snapshot, context) => {
+
+    const increment = firestore.FieldValue.increment(1);
+
+    const chainCounterRef = db.doc('publicData/1');
+    chainCounterRef.update({ count: increment });
+
+    return true;
 
   })

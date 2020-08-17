@@ -95,9 +95,9 @@
                     </div>
 
                     <div class="favourite-icon" (click)="toggleFavourite(user)">
-                      <i class="far fa-star inactive" aria-hidden="true" [hidden]="user.isFavourite"
+                      <i class="far fa-star inactive" [ngClass]="user.spin" aria-hidden="true" [hidden]="user.isFavourite"
                         title="Add Favourite"></i>
-                      <i class="fas fa-star active" aria-hidden="true" [hidden]="!user.isFavourite"
+                      <i class="fas fa-star active" [ngClass]="user.spin" aria-hidden="true" [hidden]="!user.isFavourite"
                         title="Remove Favourite"></i>
 
                     </div>

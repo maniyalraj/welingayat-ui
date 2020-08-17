@@ -27,8 +27,7 @@ export class UserProfileComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private modalService: NgbModal,
     private router: Router) {
-    let emptyUser = this.userService.transformUser(null);
-    this.user = {...this.user, ...emptyUser};
+
 
   }
 

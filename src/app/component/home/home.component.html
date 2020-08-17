@@ -73,11 +73,12 @@
       </div>
 
     </section>
-    <section class="section section-lg section-counter">
+    <section class="section section-lg">
 
 
-      <div class="container  wow fadeInUp" inViewport [inViewportOptions]="{ threshold: [0] }"
-        (inViewportAction)="onIntersection($event)" data-wow-delay="0.1s">
+      <div class="container box-shadow shadow wow fadeInUp" inViewport [inViewportOptions]="{ threshold: [0] }"
+        (inViewportAction)="onIntersection($event)" style="background-color: #ddd; padding:10px 0px"
+        data-wow-delay="0.1s">
         <div class="row flex">
           <div class="col-md-4 flex counter-container">
             <div class="counter flex">
@@ -88,29 +89,57 @@
             </div>
           </div>
 
-          <!-- <div class="col-md-4 flex counter-container">
+          <div class="col-md-4 flex counter-container">
             <div class="counter flex">
-              <h1 [countUp]="femaleUsers">0</h1>
+              <h1 [countUp]="70">0</h1>
             </div>
             <div class="counter-text">
-              <i class="fas fa-female"></i> Female Users
+              Events Organised
             </div>
           </div>
 
-          <div class="col-md-4 flex counter-container">
-            <div class="counter flex">
-              <h1 [countUp]="maleUsers">0</h1>
-            </div>
-            <div class="counter-text">
-              <i class="fas fa-male"></i> Male Users
-            </div>
-          </div> -->
+        </div>
 
+      </div>
+    </section>
+    <section class="section section-lg">
+      <div class="container box-shadow shadow wow fadeInUp" inViewport [inViewportOptions]="{ threshold: [0] }"
+        style="background-color: #fff; padding:10px 10px" data-wow-delay="0.1s">
+        <div class="row flex">
+          <div class="col-md-5 flex address-container">
+            <div class="address-icon">
+              <i class="fa fa-map-marker"></i>
+            </div>
+            <div class="address-content">
+              <h3>Office Address:</h3>
+              <p>Shop No. 2, Vishal Raj Complex,</p>
+              <p>Near Khadakpada Circle, </p>
+              <p>Kalyan West </p>
+              <p>Thane (421301)</p>
+              <p>Phone: 9820375365</p>
+            </div>
+
+          </div>
+
+          <div class="col-md-5 flex address-container">
+            <div class="address-icon">
+              <i class="fas fa-hands-helping"></i>
+            </div>
+            <div class="address-content">
+              <h3>Account Details for Donation</h3>
+              <p>A/c Name: VEERSHAIV LINGAYAT SEVASANSTHA</p>
+              <p>S.B.A/c No: 105403130002688</p>
+              <p>Bank: SVC CO-OPERATIVE BANK LTD.</p>
+              <p>Branch: KHADAKPADA,KALYAN[WEST]</p>
+              <p>IFSC Code: SVCB0000054</p>
+            </div>
+          </div>
 
         </div>
 
       </div>
 
     </section>
+
   </div>
 </main>

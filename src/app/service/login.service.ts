@@ -93,7 +93,7 @@ export class LoginService {
 
   }
 
-  updateUserDataForFirstLogin(user)
+  async updateUserDataForFirstLogin(user)
   {
         // Sets user data to firestore on login
         const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
@@ -113,9 +113,10 @@ export class LoginService {
 
         this.userService.setCurrentUser(data);
 
-        userSharedPrivateRef.set(baseData, { merge: true });
-        userPrivateRef.set(baseData, { merge: true });
-        return userRef.set(data, { merge: true });
+        await userSharedPrivateRef.set(baseData, { merge: true });
+        await userPrivateRef.set(baseData, { merge: true });
+        await userRef.set(data, { merge: true });
+        return true;
   }
 
   updateUserData(user, userData = null) {

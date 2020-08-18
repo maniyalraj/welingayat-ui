@@ -47,7 +47,7 @@ export class LoginService {
         this.userService.setCurrentUser(finalData);
 
         this.changeLoginState(true);
-        // this.router.navigate(['/profile']);
+        this.router.navigate(['/profile']);
       }
       else {
         this.changeLoginState(false);

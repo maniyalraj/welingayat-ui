@@ -64,9 +64,10 @@ import { AdminComponent } from './component/admin/admin.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule} from '@angular/fire/auth'
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { PaymentComponent } from './component/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     MinimumViewComponent,
     UserProfileComponent,
     FavouritesComponent,
-    AdminComponent
+    AdminComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -127,7 +129,16 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     AngularFireStorageModule
   ],
   entryComponents: [NgbdModalContent],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }, NgxImageCompressService],
+  providers: [
+    {
+      provide: FirestoreSettingsToken,
+      useValue: environment.production ? undefined : {
+        host: 'localhost:8080',
+        ssl: false
+      }
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
+    NgxImageCompressService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

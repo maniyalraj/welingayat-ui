@@ -1,18 +1,48 @@
 import * as functions from 'firebase-functions';
 import { firestore } from 'firebase-admin';
+const express = require('express');
+const cors = require('cors');
+const Razorpay = require('razorpay');
+
+const app = express();
+
+// Automatically allow cross-origin requests
+app.use(cors({ origin: true }));
 
 const admin = require('firebase-admin');
 admin.initializeApp();
 
 const db = admin.firestore();
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+var instance = new Razorpay({
+  key_id: 'rzp_test_tm8X6QFyi0Jh4L',
+  key_secret: '3bElPUm9kfXjIpGXk7vfFDaJ'
+})
+
+app.post('/', (req: any, res: any) => {
+  console.log(req);
+  res.send('ok');
+});
+
+app.post('/generateOrder', (req: any, res: any) => {
+  const body = req.body
+  const {amount} = body;
+
+  var options = {
+    amount: amount,  // amount in the smallest currency unit
+    currency: "INR",
+    receipt: "order_rcptid_11",
+    payment_capture: '0'
+  };
+  instance.orders.create(options, function(err:any, order:any) {
+    console.log(order);
+    res.send({"orderId":order.id});
+  });
+
+});
+
+// Expose Express API as a single Cloud Function:
+exports.payments = functions.https.onRequest(app);
 
 export const unlockUsersAfterUpdatingCredits =
   functions.firestore.document('usersPrivate/{uid}').onWrite((change, context) => {
@@ -23,7 +53,7 @@ export const unlockUsersAfterUpdatingCredits =
     console.log(prevValue);
     console.log(newValue);
 
-    let credits: number = prevValue.credits;
+    let credits: number = prevValue.credits || 0;
     const prevUnlockedUsers: string[] = prevValue.unlockedUsers || [];
     const newUnlockedUsers: string[] = newValue.unlockedUsers || [];
 

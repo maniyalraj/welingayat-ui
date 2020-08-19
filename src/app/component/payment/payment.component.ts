@@ -30,7 +30,7 @@ export class PaymentComponent implements OnInit {
       "uid":user.uid
     }
 
-    const url = this.localUrl + "/generateOrder";
+    const url = this.prodUrl + "/generateOrder";
 
     const order_id = await this.http.post(url, data).toPromise();
     return order_id;

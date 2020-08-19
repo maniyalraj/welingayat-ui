@@ -22,7 +22,10 @@ export class PaymentComponent implements OnInit {
       "amount": amount
     }
 
-    const order_id = await this.http.post('http://localhost:5001/welingayat/us-central1/payments/generateOrder', data).toPromise();
+    const url = "https://us-central1-welingayat.cloudfunctions.net/payments/generateOrder"
+    // const url = "http://localhost:5001/welingayat/us-central1/payments/generateOrder"
+
+    const order_id = await this.http.post('', data).toPromise();
     return order_id;
   }
 

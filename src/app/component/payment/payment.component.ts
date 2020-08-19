@@ -25,7 +25,7 @@ export class PaymentComponent implements OnInit {
     const url = "https://us-central1-welingayat.cloudfunctions.net/payments/generateOrder"
     // const url = "http://localhost:5001/welingayat/us-central1/payments/generateOrder"
 
-    const order_id = await this.http.post('', data).toPromise();
+    const order_id = await this.http.post(url, data).toPromise();
     return order_id;
   }
 

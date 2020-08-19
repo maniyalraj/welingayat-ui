@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserServiceService } from 'src/app/service/user-service.service';
+import { PaymentService } from 'functions/service/payment.service';
 
 @Component({
   selector: 'app-payment',
@@ -9,11 +10,8 @@ import { UserServiceService } from 'src/app/service/user-service.service';
 })
 export class PaymentComponent implements OnInit {
 
-  localUrl = "https://bb69f7316393.ngrok.io/welingayat/us-central1/payments"
-  prodUrl = "https://us-central1-welingayat.cloudfunctions.net/payments"
-
   constructor(
-    private http: HttpClient,
+    private paymentService: PaymentService,
     private userService: UserServiceService) { }
 
   ngOnInit() {
@@ -23,24 +21,10 @@ export class PaymentComponent implements OnInit {
     return window as any;
   }
 
-  async generateOrder(amount) {
-    const user = this.userService.getCurrentUser();
-    const data = {
-      "amount": amount*100,
-      "uid":user.uid
-    }
-
-    const url = this.prodUrl + "/generateOrder";
-
-    const order_id = await this.http.post(url, data).toPromise();
-    return order_id;
-  }
-
   async buy(amount) {
 
     const user = this.userService.getCurrentUser();
-    const order:any = await this.generateOrder(amount);
-    console.log(order.orderId)
+    const order: any = await this.paymentService.generateOrder(amount);
 
     const options = {
       key: "rzp_test_tm8X6QFyi0Jh4L",

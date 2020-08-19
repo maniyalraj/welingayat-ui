@@ -83,7 +83,7 @@ export class LoginService {
     const credential = await this.auth.auth.signInWithPopup(provider);
     await this.updateUserDataForFirstLogin(credential.user);
     // this.changeLoginState(true);
-    // this.router.navigate(['/profile']);
+    this.router.navigate(['/profile']);
     return true;
   }
 

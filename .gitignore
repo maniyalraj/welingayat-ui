@@ -45,3 +45,10 @@ testem.log
 .DS_Store
 Thumbs.db
 public/
+functions/src/index.ts
+database-debug.log
+firestore-debug.log
+firestore.rules
+functions/database-debug.log
+functions/firestore-debug.log
+functions/ui-debug.log

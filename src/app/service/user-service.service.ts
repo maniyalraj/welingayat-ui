@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { MapServiceService } from './map-service.service';
-import { AngularFirestore,Query } from '@angular/fire/firestore';
+import { AngularFirestore, Query } from '@angular/fire/firestore';
 import { UserSharedPrivateData, UserPrivateData, User } from '../types/user';
 import { LoginService } from './login.service';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -34,14 +34,18 @@ export class UserServiceService {
 
     currentUser.unlockedUsers = currentUser.unlockedUsers || [];
 
-    if(currentUser.unlockedUsers.includes(uid)){
+    if (currentUser.unlockedUsers.includes(uid)) {
       let userSharedPrivateRef = this.db.collection("usersSharedPrivate").doc(uid);
-      userSharedPrivateData = await (await userSharedPrivateRef.ref.get()).data();
+      try {
+        userSharedPrivateData = await (await userSharedPrivateRef.ref.get()).data();
+      } catch (error) {
+        console.log("Error in fetching data");
+      }
     }
     const userData = await (await userRef.ref.get()).data();
     userData.profileImageUrl = userData.profileImageUrl || userData.photoURL || this.blankProfile;
     userData.age = this.calculateAge(userData.dob);
-    const final = {...userData, ...userSharedPrivateData}
+    const final = { ...userData, ...userSharedPrivateData }
 
     return final;
   }
@@ -50,8 +54,7 @@ export class UserServiceService {
 
     let _user = localStorage.getItem("currentUser");
 
-    if(!_user)
-    {
+    if (!_user) {
       this.auth.auth.signOut();
       this.router.navigate(['/login']);
     }
@@ -120,23 +123,22 @@ export class UserServiceService {
     return userPrivateRef.set({ favouriteUsers: favouriteUsers }, { merge: true });
   }
 
-  async getSelectedUsers(users)
-  {
+  async getSelectedUsers(users) {
     const currentUser: User = this.getCurrentUser();
     let query: Query = this.db.collection('users').ref;
     let usersList = []
-    query = query.where("uid","in",users)
+    query = query.where("uid", "in", users)
 
     await query.get().then(querySnapshot => {
-      querySnapshot.forEach((_user:any) => {
+      querySnapshot.forEach((_user: any) => {
         let user = _user.data();
         user.profileImageUrl = user.profileImageUrl || user.photoURL || this.blankProfile;
         usersList.push(user);
-        user.isFavourite  = true;
+        user.isFavourite = true;
       })
     })
 
-  return usersList;
+    return usersList;
 
   }
 
@@ -148,10 +150,8 @@ export class UserServiceService {
     let unlockedUsers = user.unlockedUsers || [];
     let credits = user.credits || 0;
 
-    if(credits > 0)
-    {
-      if(!unlockedUsers.includes(uid))
-      {unlockedUsers.push(uid);}
+    if (credits > 0) {
+      if (!unlockedUsers.includes(uid)) { unlockedUsers.push(uid); }
       credits = credits - 100;
       user.credits = credits;
     }
@@ -173,8 +173,7 @@ export class UserServiceService {
     return age;
   }
 
-  async getCountOfTotalUsers()
-  {
+  async getCountOfTotalUsers() {
     const publicDataRef = this.db.doc('publicData/1');
 
     const publicData = await (await publicDataRef.ref.get()).data()

@@ -52,7 +52,9 @@ export class NavbarComponent implements OnInit {
         this.credits = user && user.credits || 0;
 
         if (item && user && user.gender == undefined) {
-          this.open(this.inCompleteUser);
+          if (!this.modalService.hasOpenModals()) {
+            this.open(this.inCompleteUser);
+          }
         }
 
       });
@@ -105,7 +107,7 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  updateDetails() {
+  async updateDetails() {
 
     if (this.gender != null
       && this.firstName != null
@@ -125,9 +127,15 @@ export class NavbarComponent implements OnInit {
         contact: this.contact
       }
 
-      this.loginService.updateUserData(user, updateData);
+      await this.loginService.updateUserData(user, updateData);
 
-      this.userService.updateUserSharedPrivateData(updateUserSharedPrivateData);
+      await this.userService.updateUserSharedPrivateData(updateUserSharedPrivateData);
+
+      if (this.modalService.hasOpenModals()) {
+        this.modalService.dismissAll();
+      }
+
+      window.location.reload();
     }
     else {
       alert("Please fill all details");

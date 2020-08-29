@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginService } from 'src/app/service/login.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,12 +19,13 @@ export class UserProfileComponent implements OnInit {
   profileImageUrl: String = "";
   blankProfile: any = 'assets/images/blank-profile-picture.png';
 
-  user ;
-  countOfSiblings= 0;
+  user: any = { unlocked: false };
+  countOfSiblings = 0;
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserServiceService,
+    private loginService: LoginService,
     private spinner: NgxSpinnerService,
     private modalService: NgbModal,
     private router: Router) {
@@ -34,28 +36,26 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.spinner.show('loading');
     this.sub = this.route.params.subscribe(async params => {
-       this.id = params['id'];
-       const currentUser = this.userService.getCurrentUser();
-       if(currentUser.uid == this.id)
-       {
-         this.router.navigate(['/profile']);
-       }
-       this.user = await this.userService.getUser(this.id) ;
-       this.spinner.hide('loading');
+      this.id = params['id'];
+      const currentUser = this.userService.getCurrentUser();
+      if (currentUser.uid == this.id) {
+        this.router.navigate(['/profile']);
+      }
 
+      let user: any = await this.userService.getUser(this.id);
+      this.spinner.hide('loading');
 
+      if (currentUser.unlockedUsers && currentUser.unlockedUsers.includes(user.uid)) {
+        user.unlocked = true;
+      }
 
-       if(currentUser.unlockedUsers && currentUser.unlockedUsers.includes(this.user.uid))
-       {
-         this.user.unlocked = true;
-       }
+      this.user = user;
 
-       currentUser.familyDetails.forEach(d => {
-         if(d.relation === "SIBLING")
-         {
-           this.countOfSiblings +=1;
-         }
-       })
+      currentUser.familyDetails && currentUser.familyDetails.forEach(d => {
+        if (d.relation === "SIBLING") {
+          this.countOfSiblings += 1;
+        }
+      })
 
     });
   }
@@ -73,21 +73,35 @@ export class UserProfileComponent implements OnInit {
     return age;
   }
 
-  async unlockUser()
-  {
+  async unlockUser() {
     const currentUser = this.userService.getCurrentUser();
 
-    if(currentUser.credits >= 100)
-    {
-    await this.userService.unlockUser(this.user.uid);
+    if (currentUser.credits >= 100) {
+      try {
+        await this.userService.unlockUser(this.user.uid);
+      } catch (e) {
+        console.log("Firebase permission error");
+      }
+
+      this.loginService.getCurrentUser(this.user.uid).then(user => {
+        this.user.unlocked = true;
+      })
     }
-    else
-    {
+    else {
       alert("You do not have sufficient credits.");
     }
 
     this.modalService.dismissAll();
-    this.user = await this.userService.getUser(this.user.uid);
+
+
+
+      try {
+        this.user = await this.userService.getUser(this.user.uid);
+      } catch (e) {
+        console.log("Firebase permission error");
+      }
+
+
     console.log(this.user);
   }
 

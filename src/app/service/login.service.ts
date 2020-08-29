@@ -21,7 +21,6 @@ export class LoginService {
   private isLoggedIn = new BehaviorSubject<boolean>(false);
   loggedInState$ = this.isLoggedIn.asObservable();
 
-  user$: Observable<User>;
 
   constructor(
     private httpClient: HttpClient,
@@ -34,20 +33,15 @@ export class LoginService {
     // Get the auth state, then fetch the Firestore user document or return null
     this.auth.authState.subscribe(async (user) => {
       if (user) {
-        let userRef = this.afs.collection("users").doc(user.uid);
-        let userSharedPrivateRef = this.afs.collection("usersSharedPrivate").doc(user.uid);
-        let userPrivateRef = this.afs.collection("usersPrivate").doc(user.uid);
 
-        const currentUser = await (await userRef.ref.get()).data();
-        const currentUserSharedPrivate = await (await userSharedPrivateRef.ref.get()).data();
-        const currentUserPrivate = await (await userPrivateRef.ref.get()).data();
+        const prevUser = this.userService.getCurrentUser();
 
-        const finalData = { ...currentUser, ...currentUserPrivate, ...currentUserSharedPrivate };
-
-        this.userService.setCurrentUser(finalData);
+        const _currentUser = await this.getCurrentUser(user.uid);
 
         this.changeLoginState(true);
-        // this.router.navigate(['/profile']);
+
+        this.router.navigate(['/profile']);
+
       }
       else {
         this.changeLoginState(false);
@@ -56,8 +50,25 @@ export class LoginService {
 
   }
 
-  async getCurrentUser() {
-    console.log(this.auth.user);
+  async getCurrentUser(uid) {
+
+    let userRef = this.afs.collection("users").doc(uid);
+    let userSharedPrivateRef = this.afs.collection("usersSharedPrivate").doc(uid);
+    let userPrivateRef = this.afs.collection("usersPrivate").doc(uid);
+
+    const currentUser = await (await userRef.ref.get()).data();
+    const currentUserSharedPrivate = await (await userSharedPrivateRef.ref.get()).data();
+    const currentUserPrivate = await (await userPrivateRef.ref.get()).data();
+
+    const finalData = { ...currentUser, ...currentUserPrivate, ...currentUserSharedPrivate };
+
+    this.userService.setCurrentUser(finalData);
+    const _currentUser = this.userService.getCurrentUser();
+
+    this.changeLoginState(true);
+
+    return _currentUser;
+
   }
 
   async signUpWithEmail(userData) {
@@ -74,6 +85,7 @@ export class LoginService {
 
   logout() {
     localStorage.clear();
+    this.userService.setCurrentUser({});
     this.auth.auth.signOut();
   }
 
@@ -83,7 +95,7 @@ export class LoginService {
     const credential = await this.auth.auth.signInWithPopup(provider);
     await this.updateUserDataForFirstLogin(credential.user);
     // this.changeLoginState(true);
-    this.router.navigate(['/profile']);
+    // this.router.navigate(['/profile']);
     return true;
   }
 
@@ -108,14 +120,18 @@ export class LoginService {
       photoURL: user.photoURL
     }
 
-    let baseData = {
+    let sharedPrivateBaseData = {
       uid: user.uid
+    }
+
+    const privateBaseData = {
+      uid: user.uid,
     }
 
     this.userService.setCurrentUser(data);
 
-    await userSharedPrivateRef.set(baseData, { merge: true });
-    await userPrivateRef.set(baseData, { merge: true });
+    await userSharedPrivateRef.set(sharedPrivateBaseData, { merge: true });
+    await userPrivateRef.set(privateBaseData, { merge: true });
     await userRef.set(data, { merge: true });
 
     return true;

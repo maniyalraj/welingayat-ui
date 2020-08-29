@@ -14,7 +14,7 @@
             <div class="amount">
               <i class="fas fa-rupee-sign"> </i>&nbsp;50
             </div>
-            <div class="payment-btn" (click)="buy(50)">
+            <div class="payment-btn" (click)="buy(50, 100)">
               Buy
             </div>
           </div>
@@ -23,7 +23,7 @@
             <div class="amount">
               <i class="fas fa-rupee-sign"> </i>&nbsp;350
             </div>
-            <div class="payment-btn" (click)="buy(350)">
+            <div class="payment-btn" (click)="buy(350, 1000)">
               Buy
             </div>
           </div>
@@ -32,7 +32,7 @@
             <div class="amount">
               <i class="fas fa-rupee-sign"> </i>&nbsp;200
             </div>
-            <div class="payment-btn" (click)="buy(200)">
+            <div class="payment-btn" (click)="buy(200, 500)">
               Buy
             </div>
           </div>
@@ -43,3 +43,7 @@
 
   </section>
 </main>
+<ngx-spinner bdOpacity=0.2 bdColor="#333" size="large" color="#fff" type="ball-fussion" [fullScreen]="true"
+  name="loading">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

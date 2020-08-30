@@ -10,7 +10,7 @@
                 <img [src]="user.profileImageUrl" class="rounded-circle" />
               </div>
 
-              <div class="unlock" *ngIf="!user.unlocked" (click)="open(classic3,'','')">
+              <div class="unlock" *ngIf="!isUnlocked" (click)="open(classic3,'','')">
                 <div class="btn btn-neutral">
                   <span class="btn-inner--icon">
                     <i class="fa fa-lock"></i>
@@ -136,7 +136,7 @@
                 <h5>Images ({{user.countOfImages || 0}}): </h5>
               </div>
 
-              <div class="user-info" *ngIf="user.unlocked">
+              <div class="user-info" *ngIf="isUnlocked">
                 <div class="row justify-content-center">
                 <div class="image-container" *ngFor="let image of user.libraryImages">
 
@@ -146,7 +146,7 @@
               </div>
               </div>
 
-              <div class="user-info" *ngIf="!user.unlocked">
+              <div class="user-info" *ngIf="!isUnlocked">
 
                   <div class="locked-images flex">
 

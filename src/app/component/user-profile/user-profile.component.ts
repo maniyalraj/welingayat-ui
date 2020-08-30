@@ -15,6 +15,8 @@ export class UserProfileComponent implements OnInit {
   id: number;
   private sub: any;
 
+  isUnlocked = false;
+
   userImagePresent: boolean = false;
   profileImageUrl: String = "";
   blankProfile: any = 'assets/images/blank-profile-picture.png';
@@ -47,6 +49,7 @@ export class UserProfileComponent implements OnInit {
 
       if (currentUser.unlockedUsers && currentUser.unlockedUsers.includes(user.uid)) {
         user.unlocked = true;
+        this.isUnlocked = true;
       }
 
       this.user = user;
@@ -83,10 +86,16 @@ export class UserProfileComponent implements OnInit {
         console.log("Firebase permission error");
       }
 
-      this.loginService.getCurrentUser(this.user.uid).then(user => {
-        this.user.unlocked = true;
-      })
+      // this.loginService.getCurrentUser(this.user.uid).then(user => {
+      //   this.user.unlocked = true;
+      // })
+
+      this.user = await this.userService.getUser(this.user.uid);
+      this.user.unlocked = true;
+      this.isUnlocked = true;
+
     }
+
     else {
       alert("You do not have sufficient credits.");
     }

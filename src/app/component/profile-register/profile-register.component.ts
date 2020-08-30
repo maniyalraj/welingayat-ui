@@ -57,14 +57,14 @@ export class ProfileRegisterComponent implements OnInit {
 
     let user = this.userService.getCurrentUser();
 
-    if (user && !user.profileImageUrl && user.photoURL) {
+    if (user && !user.profileImageUrl ) {
 
-      user.profileImageUrl = user.photoURL || this.croppedImage;
-      this.profileImageUrl = user.photoURL;
+      user.profileImageUrl = user.photoURL || null;
+      this.profileImageUrl = user.profileImageUrl || this.croppedImage;
       // this.userService.setCurrentUser(user);
     }
 
-    this.profileImageUrl = user.profileImageUrl;
+    // this.profileImageUrl = user.profileImageUrl;
 
     this.firstName = user.firstName;
     this.lastName = user.lastName;

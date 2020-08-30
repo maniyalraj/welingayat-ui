@@ -7,7 +7,7 @@
             <div class="col-lg-12">
 
               <div class="card-profile-image">
-                <img [src]="user.profileImageUrl" class="rounded-circle" />
+                <img [src]="profileImageUrl" class="rounded-circle" />
               </div>
 
               <div class="unlock" *ngIf="!isUnlocked" (click)="open(classic3,'','')">
@@ -79,8 +79,8 @@
                 <div class="row">
 
                   <div class="col-lg-3 col-12">
-                    <span class="info-label"> Salary: </span> {{user.monthlyIncome}} <i
-                      class="fas fa-rupee-sign"></i>/ month
+                    <span class="info-label"> Salary: </span> {{user.monthlyIncome}} <i class="fas fa-rupee-sign"></i>/
+                    month
                   </div>
 
                   <div class="col-lg-3 col-12">
@@ -122,7 +122,8 @@
                   </div>
 
                   <div class="col-lg-12 col-12" *ngFor="let r of user.familyDetails">
-                    {{r.relation}} <span *ngIf="r.isMarried"> Married </span>: {{r.title}} {{r.firstName}} {{r.lastName}} ({{r.profession}})
+                    {{r.relation}} <span *ngIf="r.isMarried"> Married </span>: {{r.title}} {{r.firstName}}
+                    {{r.lastName}} ({{r.profession}})
                   </div>
 
                 </div>
@@ -138,21 +139,21 @@
 
               <div class="user-info" *ngIf="isUnlocked">
                 <div class="row justify-content-center">
-                <div class="image-container" *ngFor="let image of user.libraryImages">
+                  <div class="image-container" *ngFor="let image of user.libraryImages">
 
-                  <img [src]="image.imageUrl" />
+                    <img [src]="image.imageUrl" />
 
+                  </div>
                 </div>
-              </div>
               </div>
 
               <div class="user-info" *ngIf="!isUnlocked">
 
-                  <div class="locked-images flex">
+                <div class="locked-images flex">
 
-                    <div><i class="fa fa-lock"></i> Unlock user to see all images</div>
+                  <div><i class="fa fa-lock"></i> Unlock user to see all images</div>
 
-                  </div>
+                </div>
               </div>
 
 

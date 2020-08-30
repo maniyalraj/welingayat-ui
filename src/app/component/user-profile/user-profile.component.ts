@@ -82,13 +82,19 @@ export class UserProfileComponent implements OnInit {
     if (currentUser.credits >= 100) {
       try {
         await this.userService.unlockUser(this.user.uid);
+        this.user = await this.userService.getUser(this.user.uid);
+        this.user.unlocked = true;
+        this.isUnlocked = true;
+
+        currentUser.credits -=100
+        this.userService.setCurrentUser(currentUser);
+        this.loginService.changeLoginState(true);
+
       } catch (e) {
         console.log("Firebase permission error");
       }
 
-      this.user = await this.userService.getUser(this.user.uid);
-      this.user.unlocked = true;
-      this.isUnlocked = true;
+
 
     }
 

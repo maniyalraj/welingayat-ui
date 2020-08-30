@@ -86,10 +86,6 @@ export class UserProfileComponent implements OnInit {
         console.log("Firebase permission error");
       }
 
-      // this.loginService.getCurrentUser(this.user.uid).then(user => {
-      //   this.user.unlocked = true;
-      // })
-
       this.user = await this.userService.getUser(this.user.uid);
       this.user.unlocked = true;
       this.isUnlocked = true;

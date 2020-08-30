@@ -1,5 +1,17 @@
 <div class="justify-content-center">
   <div class="row">
+    <div class="col-lg-12 ">
+      <div class="form-group">
+        <label for="expectations">Expectations: </label>
+        <div class="input-group input-group-alternative">
+          <textarea class="form-control" [(ngModel)]="user.expectations" name="expectations"
+            placeholder="Ex: I am looking for a well educated partner" type="text"
+            maxlength="500" rows="7"> </textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-lg-4 col-md-8">
       <div class="form-group mb-3">
         <label for="firstName">First Name: </label>

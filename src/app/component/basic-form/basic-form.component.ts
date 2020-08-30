@@ -34,6 +34,8 @@ export class BasicFormComponent implements OnInit {
       "contact": this.user.contact,
     }
 
+    this.loginService.updateUserData(this.user, this.user);
+
     this.userService.updateUserSharedPrivateData(updatedUser);
     this.changeTabEvent.emit();
 

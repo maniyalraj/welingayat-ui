@@ -1,5 +1,6 @@
 export interface User {
   uid?: string;
+  expectations?:string;
   email?: string;
   countOfImages?: number;
   photoURL?: string;
